@@ -1,7 +1,6 @@
 "use client";
+import newScript from "@/utils/newScript";
 import { useEffect } from "react";
-// import * as THREE from "three";
-// import Stats from "stats.js";
 
 export default function Stars({
   parentRef,
@@ -9,35 +8,50 @@ export default function Stars({
   parentRef: React.RefObject<HTMLDivElement>;
 }) {
   useEffect(() => {
-    const loadScript = (src: string, callback: () => void) => {
-      const script = document.createElement("script");
-      script.src = src;
-      script.onload = callback;
-      document.body.appendChild(script);
-    };
+    if (typeof window === "undefined") return;
+
+    const scriptElements: HTMLScriptElement[] = [];
+
+    // const loadScript = (src: string, callback: () => void) => {
+    //   const script = document.createElement("script");
+    //   script.src = src;
+    //   script.onload = callback;
+    //   document.body.appendChild(script);
+    //   scriptElements.push(script);
+    // };
 
     // loadScript(
-    //   "https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js",
+    //   "https://cdnjs.cloudflare.com/ajax/libs/three.js/r132/three.min.js",
     //   () => {
-    //     loadScript(
-    //       "https://cdnjs.cloudflare.com/ajax/libs/stats.js/11/Stats.min.js",
-    //       () => {
-    loadScript(
-      "https://cdnjs.cloudflare.com/ajax/libs/three.js/r132/three.min.js",
-      () => {
+    //     if (!window.THREE) {
+    //       console.error("Three.js failed to load.");
+    //       return;
+    //     }
+
+    newScript(
+      "https://cdnjs.cloudflare.com/ajax/libs/three.js/r132/three.min.js"
+    )
+      .then(() => {
+        if (!window.THREE) {
+          console.error("Three.js failed to load.");
+          return;
+        }
+        const THREE = window.THREE;
         let container: HTMLDivElement;
-        let scene: THREE.Scene,
-          camera: THREE.PerspectiveCamera,
-          renderer: THREE.WebGLRenderer;
-        let stars: THREE.Points;
-        // stats: Stats;
+        let scene: typeof THREE.scene,
+          camera: typeof THREE.camera,
+          renderer: typeof THREE.renderer;
+        let stars;
         let mouseX = 0,
           mouseY = 0,
           windowHalfX = window.innerWidth / 2,
           windowHalfY = window.innerHeight / 2;
 
-        if (!parentRef.current) throw new Error("Parent ref not found");
+        if (!parentRef.current) return;
+
         function init() {
+          if (!parentRef.current) return;
+
           container = document.createElement("div");
           parentRef.current.appendChild(container);
           parentRef.current.style.overflow = "hidden";
@@ -68,11 +82,6 @@ export default function Stars({
           renderer.setSize(WIDTH, HEIGHT);
           container.appendChild(renderer.domElement);
 
-          // stats = new Stats();
-          // stats.dom.style.position = "absolute";
-          // stats.dom.style.top = "0px";
-          // container.appendChild(stats.dom);
-
           window.addEventListener("resize", onWindowResize);
           document.addEventListener("mousemove", onMouseMove);
 
@@ -82,10 +91,11 @@ export default function Stars({
         function animate() {
           requestAnimationFrame(animate);
           render();
-          // stats.update();
         }
 
         function render() {
+          if (isNaN(mouseX) || isNaN(mouseY)) return;
+
           camera.position.x += (mouseX - camera.position.x) * 0.005;
           camera.position.y += (-mouseY - camera.position.y) * 0.005;
           camera.lookAt(scene.position);
@@ -113,9 +123,9 @@ export default function Stars({
           const positions = new Float32Array(starQty * 3);
 
           for (let i = 0; i < starQty; i++) {
-            positions[i * 3] = Math.random() * 2000 - 1000; // x
-            positions[i * 3 + 1] = Math.random() * 2000 - 1000; // y
-            positions[i * 3 + 2] = Math.random() * 2000 - 1000; // z
+            positions[i * 3] = Math.random() * 2000 - 1000;
+            positions[i * 3 + 1] = Math.random() * 2000 - 1000;
+            positions[i * 3 + 2] = Math.random() * 2000 - 1000;
           }
 
           geometry.setAttribute(
@@ -138,15 +148,14 @@ export default function Stars({
         return () => {
           window.removeEventListener("resize", onWindowResize);
           document.removeEventListener("mousemove", onMouseMove);
-          container.remove();
+          container?.remove();
+
+          scriptElements.forEach((script) => script.remove());
         };
-      }
-    );
-    //       }
-    //     );
+      })
+      .catch((error) => console.error("Three loading failed:", error));
     //   }
     // );
-  }, []);
-
-  return <></>;
+  }, [parentRef]);
+  return null;
 }
