@@ -1,27 +1,51 @@
-// import Script from "next/script";
+"use client";
+import newScript from "@/utils/newScript";
 import dynamic from "next/dynamic";
+import { useEffect } from "react";
 
 const Header = dynamic(() => import("@/components/Header"));
-const Hero = dynamic(() => import("@/components/Hero"));
-const Tagline = dynamic(() => import("@/components/Tagline"));
-const Services = dynamic(() => import("@/components/Services"));
-const Work = dynamic(() => import("@/components/Work"));
-const Parallax = dynamic(() => import("@/components/Gallery"));
-const Footer = dynamic(() => import("@/components/Footer"));
+const Hero = dynamic(() => import("@/components/Hero"), { ssr: false });
+const Tagline = dynamic(() => import("@/components/HeroContent"), {
+  ssr: false,
+});
+const Intro = dynamic(() => import("@/components/Intro"), { ssr: false });
+const Services = dynamic(() => import("@/components/Services"), { ssr: false });
+const Work = dynamic(() => import("@/components/Work"), { ssr: false });
+const Gallery = dynamic(() => import("@/components/Gallery"), { ssr: false });
+const Footer = dynamic(() => import("@/components/Footer"), { ssr: false });
 
 export default function Home() {
+  useEffect(() => {
+    newScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js")
+      .then(() => {
+        newScript(
+          "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"
+        )
+          .then(() => {
+            if (window.gsap && window.ScrollTrigger) {
+              window.gsap.registerPlugin(window.ScrollTrigger);
+            }
+            // console.log("GSAP and ScrollTrigger loaded successfully");
+          })
+          .catch((error) => {
+            console.error("ScrollTrigger loading failed:", error);
+          });
+      })
+      .catch((error) => {
+        console.error("GSAP loading failed:", error);
+      });
+  }, []);
+
   return (
-    <div className="relative">
-      {/* <Script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/70/three.min.js"></Script> */}
-      <main>
-        <Header />
-        <Hero />
-        <Tagline />
-        <Services />
-        <Work />
-        <Parallax />
-        <Footer />
-      </main>
-    </div>
+    <main className="relative">
+      <Header />
+      <Hero />
+      <Tagline />
+      <Intro />
+      <Services />
+      <Work />
+      <Gallery />
+      <Footer />
+    </main>
   );
 }

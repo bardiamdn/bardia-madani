@@ -1,0 +1,48 @@
+.button {
+  position: relative;
+  overflow: hidden;
+
+  @media (min-width: 480px) {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      transform: translate(-100%, 0);
+      transition: transform 0.3s cubic-bezier(0.77, 0, 0.175, 1) 0.07s;
+      background-color: var(--accent-secondary);
+      z-index: 0;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      transform: translate(-100%, 0);
+      transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1) 0.3s;
+      background-color: #ffffff;
+      z-index: 0;
+    }
+    &:hover::before,
+    &:hover::after {
+      transform: translate(0, 0);
+    }
+
+    span {
+      position: relative;
+      z-index: 1;
+    }
+  }
+}
+
+.secondary {
+  @media (min-width: 480px) {
+    span {
+      transition: color 0.3s ease-in-out 0.5s;
+    }
+
+    &:hover {
+      span {
+        color: var(--foreground);
+      }
+    }
+  }
+}

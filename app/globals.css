@@ -5,6 +5,7 @@
 :root {
   --primary: #E9BC5A;
   --accent: #B9DAEE;
+  --accent-secondary: #b6b6b6;
   --background: #fff;
   --foreground: #161616;
   --background-secondary: #000;
@@ -18,8 +19,8 @@
 } */
 
 body {
-  color: var(--background-secondary);
-  background: var(--background);
+  color: var(--foreground);
+  background: var(--background-secondary);
   font-family: var(--font-geologica), var(--font-space-grotesk), var(--font-inter), sans-serif;
   /* overflow: hidden; */
   margin: 0;

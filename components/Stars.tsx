@@ -12,22 +12,6 @@ export default function Stars({
 
     const scriptElements: HTMLScriptElement[] = [];
 
-    // const loadScript = (src: string, callback: () => void) => {
-    //   const script = document.createElement("script");
-    //   script.src = src;
-    //   script.onload = callback;
-    //   document.body.appendChild(script);
-    //   scriptElements.push(script);
-    // };
-
-    // loadScript(
-    //   "https://cdnjs.cloudflare.com/ajax/libs/three.js/r132/three.min.js",
-    //   () => {
-    //     if (!window.THREE) {
-    //       console.error("Three.js failed to load.");
-    //       return;
-    //     }
-
     newScript(
       "https://cdnjs.cloudflare.com/ajax/libs/three.js/r132/three.min.js"
     )
@@ -154,8 +138,6 @@ export default function Stars({
         };
       })
       .catch((error) => console.error("Three loading failed:", error));
-    //   }
-    // );
   }, [parentRef]);
   return null;
 }
