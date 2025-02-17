@@ -3,7 +3,6 @@ import newScript from "@/utils/newScript";
 import dynamic from "next/dynamic";
 import { useEffect } from "react";
 
-const Header = dynamic(() => import("@/components/Header"));
 const Hero = dynamic(() => import("@/components/Hero"), { ssr: false });
 const Tagline = dynamic(() => import("@/components/HeroContent"), {
   ssr: false,
@@ -12,7 +11,6 @@ const Intro = dynamic(() => import("@/components/Intro"), { ssr: false });
 const Services = dynamic(() => import("@/components/Services"), { ssr: false });
 const Work = dynamic(() => import("@/components/Work"), { ssr: false });
 const Gallery = dynamic(() => import("@/components/Gallery"), { ssr: false });
-const Footer = dynamic(() => import("@/components/Footer"), { ssr: false });
 
 export default function Home() {
   useEffect(() => {
@@ -38,14 +36,12 @@ export default function Home() {
 
   return (
     <main className="relative">
-      <Header />
       <Hero />
       <Tagline />
       <Intro />
       <Services />
       <Work />
       <Gallery />
-      <Footer />
     </main>
   );
 }

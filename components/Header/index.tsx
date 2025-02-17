@@ -1,3 +1,4 @@
+"use client";
 import CTABUtton from "@/common/CTAButton";
 import CustomLink from "@/common/CustomLink";
 import Link from "next/link";
@@ -9,7 +10,7 @@ export default function Header() {
 
   return (
     <>
-      <nav className="w-full d:h-[70px] h-[55px] fixed mix-blend-difference top-0 left-0 flex lg:justify-between md:justify-start justify-between items-center md:py-[10px] md:px-[25px] px-[20px] z-50">
+      <nav className="w-full md:h-[80px] h-[55px] fixed mix-blend-difference top-0 left-0 flex lg:justify-between md:justify-start justify-between items-center md:py-[10px] md:px-[25px] px-[20px] z-50 ">
         <Link className="cursor-pointer" href="/">
           <svg
             width="150"
@@ -48,9 +49,9 @@ export default function Header() {
             Contact
           </CustomLink>
         </div>
-        <div className="text-foregroundSecondary lg:block hidden ">
+        {/* <div className="text-foregroundSecondary lg:block hidden ">
           <CTABUtton type="secondary">+90 553 830 96 78</CTABUtton>
-        </div>
+        </div> */}
         <button
           className={`sm:text-lg text-base font-light text-white block md:hidden`}
           onClick={() => setDropped(true)}

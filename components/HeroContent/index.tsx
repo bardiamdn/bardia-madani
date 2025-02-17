@@ -14,8 +14,8 @@ export default function Tagline() {
           </h3>
         </div>
         <div className="w-full flex flex-row space-x-[20px] md:justify-start justify-center ">
-          <CTABUtton type="primary">Start your project</CTABUtton>
-          <CTABUtton className="md:inline hidden" type="secondary">
+          <CTABUtton btnType="primary">Start your project</CTABUtton>
+          <CTABUtton className="md:inline hidden" btnType="secondary">
             Contact
           </CTABUtton>
         </div>

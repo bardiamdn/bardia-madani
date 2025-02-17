@@ -17,6 +17,7 @@ export default {
         foreground: "var(--foreground)",
         backgroundSecondary: "var(--background-secondary)",
         foregroundSecondary: "var(--foreground-secondary)",
+        border: "var(--border)",
       },
       screens: {
         xs: "475px",

@@ -2,16 +2,19 @@ import styles from "./style.module.scss";
 
 export default function CTABUtton({
   children,
+  btnType,
   type,
   className,
 }: {
   children: React.ReactNode;
-  type: "primary" | "secondary";
+  btnType: "primary" | "secondary";
+  type?: "button" | "submit" | "reset" | undefined;
   className?: string;
 }) {
-  if (type === "primary") {
+  if (btnType === "primary") {
     return (
       <button
+        type={type}
         className={`bg-primary md:px-[20px] px-[15px] md:py-[8px] py-[6px] md:text-lg text-lg font-semibold text-foreground rounded-full ${styles.button} ${className}`}
       >
         <span>{children}</span>
