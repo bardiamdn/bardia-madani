@@ -44,7 +44,7 @@ export default function Gallery() {
 
   return (
     <section
-      className="w-full h-fit py-[200px] space-y-[50px] bg-white overflow-hidden "
+      className="md:block hidden w-full h-fit py-[200px] space-y-[50px] bg-white overflow-hidden "
       ref={containerRef}
     >
       <div className="relative w-[120%] h-[300px] ">

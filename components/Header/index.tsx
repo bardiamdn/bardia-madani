@@ -1,17 +1,17 @@
 "use client";
-import CTABUtton from "@/common/CTAButton";
-import CustomLink from "@/common/CustomLink";
-import Link from "next/link";
+// import CTABUtton from "@/common/CTAButton";
+import TransitionLink from "@/common/TransitionLink";
 import styles from "./style.module.scss";
 import { useState } from "react";
+import CustomLink from "@/common/CustomLink";
 
 export default function Header() {
   const [dropped, setDropped] = useState(false);
 
   return (
     <>
-      <nav className="w-full md:h-[80px] h-[55px] fixed mix-blend-difference top-0 left-0 flex lg:justify-between md:justify-start justify-between items-center md:py-[10px] md:px-[25px] px-[20px] z-50 ">
-        <Link className="cursor-pointer" href="/">
+      <nav className="w-full md:h-[80px] h-[55px] fixed mix-blend-difference top-0 left-0 flex lg:justify-between md:justify-start justify-between items-center md:py-[10px] md:px-[25px] px-[20px] z-20 ">
+        <TransitionLink href="/">
           <svg
             width="150"
             height="26"
@@ -32,21 +32,21 @@ export default function Header() {
               </clipPath>
             </defs>
           </svg>
-        </Link>
+        </TransitionLink>
         <div
           className={`space-x-[15px] font-extralight text-2xl text-white lg:mx-0 mx-auto md:block hidden`}
         >
-          <CustomLink className="" href="/">
-            Home
+          <CustomLink>
+            <TransitionLink href="/">Home</TransitionLink>
           </CustomLink>
-          <CustomLink className="" href="/services">
-            Services
+          <CustomLink>
+            <TransitionLink href="/services">Services</TransitionLink>
           </CustomLink>
-          <CustomLink className="" href="/about">
-            About
+          <CustomLink>
+            <TransitionLink href="/about">About</TransitionLink>
           </CustomLink>
-          <CustomLink className="" href="/contact">
-            Contact
+          <CustomLink>
+            <TransitionLink href="/contact">Contact</TransitionLink>
           </CustomLink>
         </div>
         {/* <div className="text-foregroundSecondary lg:block hidden ">
@@ -60,12 +60,12 @@ export default function Header() {
         </button>
       </nav>
       <div
-        className={`block md:hidden w-full h-screen fixed top-0 left-0 bg-black z-50 transition-transform duration-[0.4s] ease-[cubic-bezier(.5,.08,0,.83)] ${
+        className={`block md:hidden w-full h-screen fixed top-0 left-0 bg-black z-20 transition-transform duration-[0.4s] ease-[cubic-bezier(0.83, 0, 0.17, 1)] ${
           dropped ? "translate-y-0" : "-translate-y-full"
         } ${styles.dropMenu}`}
       >
         <div className="w-full h-[55px] flex justify-between items-center px-[20px]">
-          <Link href="/">
+          <TransitionLink href="/">
             <svg
               width="150"
               height="26"
@@ -86,7 +86,7 @@ export default function Header() {
                 </clipPath>
               </defs>
             </svg>
-          </Link>
+          </TransitionLink>
           <button
             className={`sm:text-lg text-base font-light text-white`}
             onClick={() => setDropped(false)}
@@ -98,17 +98,17 @@ export default function Header() {
           <div
             className={`w-full h-[70%] flex flex-col justify-center font-extralight items-start space-y-[20px] text-white `}
           >
-            <CustomLink className="text-4xl" href="/">
-              Home
+            <CustomLink className="text-4xl" onClick={() => setDropped(false)}>
+              <TransitionLink href="/">Home</TransitionLink>
             </CustomLink>
-            <CustomLink className="text-4xl" href="/services">
-              Services
+            <CustomLink className="text-4xl" onClick={() => setDropped(false)}>
+              <TransitionLink href="/services">Services</TransitionLink>
             </CustomLink>
-            <CustomLink className="text-4xl" href="/about">
-              About
+            <CustomLink className="text-4xl" onClick={() => setDropped(false)}>
+              <TransitionLink href="/about">About</TransitionLink>
             </CustomLink>
-            <CustomLink className="text-4xl" href="/contact">
-              Contact
+            <CustomLink className="text-4xl" onClick={() => setDropped(false)}>
+              <TransitionLink href="/contact">Contact</TransitionLink>
             </CustomLink>
           </div>
           <div className="w-full h-[30%] flex items-center justify-start text-white ">

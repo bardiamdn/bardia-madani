@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Genos } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import dynamic from "next/dynamic";
+import { ScriptLoaderProvider } from "@/utils/ScriptLoaderContext";
 const Footer = dynamic(() => import("@/components/Footer"));
 const Header = dynamic(() => import("@/components/Header"));
 
@@ -24,14 +26,71 @@ const geologica = localFont({
   weight: "100 900",
   display: "swap",
 });
+const genos = Genos({
+  variable: "--font-genos",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  subsets: ["cherokee"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  title: "Bardia Madani",
-  description: "Improve your online presence with a custom website",
-  icons: {
-    apple: "Bardia",
+  title: "Bardia Madani | Web Designer & Developer",
+  description:
+    "Improve your online presence with a custom website. I create high-quality, fast, and responsive websites tailored to your brand.",
+
+  // icons: {
+  //   icon: "favicon.ico",
+  //   shortcut: "favicon-32x32.png",
+  //   apple: "apple-touch-icon.png",
+  // },
+
+  openGraph: {
+    title: "Bardia Madani | Web Designer & Developer",
+    description:
+      "Improve your online presence with a custom website tailored to your brand.",
+    url: "https://bardiamadani.com",
+    siteName: "Bardia Madani",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Bardia Madani – Custom Web Design",
+      },
+    ],
+    type: "website",
+    locale: "en_US",
   },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Bardia Madani | Web Designer & Developer",
+    description:
+      "Improve your online presence with a custom website tailored to your brand.",
+    site: "@yourtwitterhandle",
+    creator: "@yourtwitterhandle",
+    images: ["/og-image.jpg"],
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
+
+  alternates: {
+    canonical: "https://bardiamadani.com",
+  },
+
+  keywords: [
+    "Web Design",
+    "Web Development",
+    "Freelance Web Developer",
+    "Bardia Madani",
+    "Custom Websites",
+    "Responsive Web Design",
+  ],
 };
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -40,12 +99,35 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geologica.variable} ${spaceGrotesk.variable} ${inter.variable} antialiased`}
+        className={`${geologica.variable} ${spaceGrotesk.variable} ${inter.variable}  ${genos.variable} antialiased`}
       >
-        <Header />
-        <SmoothScroll />
-        {children}
-        <Footer />
+        <ScriptLoaderProvider>
+          <Header />
+          <SmoothScroll />
+          {/* <LoadScripts /> */}
+          <div
+            id="overlay"
+            className=" fixed -top-[20vh] w-screen h-[140vh] z-30 bg-black flex items-center justify-center"
+          >
+            <div
+              id="overlay-top"
+              className="absolute top-0 h-[5vh] w-full bg-accentSecondary"
+            ></div>
+            <div
+              id="overlay-bottom"
+              className="absolute bottom-0 h-[5vh] w-full bg-accentSecondary"
+            ></div>
+            <div className="text-white overflow-hidden">
+              <h1 className="">Transition</h1>
+            </div>
+          </div>
+          <main className="overflow-x-hidden relative">
+            {/* <Transition> */}
+            {children}
+            {/* </Transition> */}
+          </main>
+          <Footer />
+        </ScriptLoaderProvider>
       </body>
     </html>
   );

@@ -1,14 +1,94 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 
 export default function Work() {
+  const firstRef = useRef(null);
+  const secondRef = useRef(null);
+
+  useEffect(() => {
+    if (!firstRef.current) return;
+
+    let gsapTimeout: NodeJS.Timeout;
+    const waitForGSAP = () => {
+      if (window.gsap && window.ScrollTrigger) {
+        if (!firstRef.current) return;
+
+        window.gsap.fromTo(
+          firstRef.current,
+          {
+            y: "50px",
+            opacity: 0.5,
+          },
+          {
+            y: "0px",
+            opacity: 1,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: firstRef.current,
+              start: "top 90%",
+              end: "top 90%",
+              // markers: true,
+              toggleActions: "play none none none",
+            },
+          }
+        );
+        window.gsap.fromTo(
+          secondRef.current,
+          {
+            y: "50px",
+            opacity: 0.5,
+          },
+          {
+            y: "0px",
+            opacity: 1,
+            duration: 0.8,
+            ease: "power2.out",
+            delay: 0.35,
+            scrollTrigger: {
+              trigger: secondRef.current,
+              start: "top 90%",
+              end: "top 90%",
+              // markers: true,
+              toggleActions: "play none none none",
+            },
+          }
+        );
+        // window.gsap.fromTo(
+        //   containerRef.current,
+        //   { "--border-width": "0%" },
+        //   {
+        //     "--border-width": "100%",
+        //     duration: 1,
+        //     ease: "power2.out",
+        //     scrollTrigger: {
+        //       trigger: containerRef.current,
+        //       start: "bottom bottom",
+        //       end: "top bottom",
+        //       // markers: true,
+        //       toggleActions: "play none reverse none",
+        //     },
+        //   }
+        // );
+      } else {
+        console.warn("GSAP not loaded yet, retrying...");
+        gsapTimeout = setTimeout(waitForGSAP, 100);
+      }
+    };
+
+    waitForGSAP();
+    return () => clearTimeout(gsapTimeout);
+  }, []);
+
   return (
     <section className="w-full bg-white py-[30px]">
-      <div className="w-full py-[15px] px-[25px]">
+      <div className="w-full py-[15px] px-[25px] 2xl:px-[10%]">
         <h2 className="font-light text-sm">WORK</h2>
       </div>
-      <div className="md:flex flex-row contents gap-[50px] mx-[50px]">
-        <div className="w-full space-y-[20px] mb-[50px]">
+      <div className="md:flex flex-row contents gap-[50px] px-[50px] 2xl:px-[10%]">
+        <div className="w-full space-y-[20px] mb-[50px]" ref={firstRef}>
           <div className="relative w-full aspect-square">
             <Image
               src="/ozkan-screen.png"
@@ -65,7 +145,7 @@ export default function Work() {
             </span>
           </div>
         </div>
-        <div className="w-full space-y-[20px] mb-[50px]">
+        <div className="w-full space-y-[20px] mb-[50px]" ref={secondRef}>
           <div className="relative w-full aspect-square">
             <Image
               src="/walletspace-screen.png"

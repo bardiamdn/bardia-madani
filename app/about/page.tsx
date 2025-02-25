@@ -15,11 +15,11 @@ export default function About() {
           your goals, and positioning your brand effectively in the market. I
           take a holistic approach, ensuring every element—copywriting, design,
           development, and marketing—works together seamlessly. By overseeing
-          each step personally, I create websites that aren’t just visually
+          each step personally, I create websites that aren&apos;t just visually
           appealing but also strategically built to attract and convert
           customers.
           {/* Still not convinced? Let me prove it. Click the &quot;Start
-          Your Project&quot; button, and let’s bring your vision to life. */}
+          Your Project&quot; button, and let&apos;s bring your vision to life. */}
         </p>
         <div className="relative w-full h-full aspect-square">
           <Image
@@ -54,9 +54,9 @@ export default function About() {
           <p>
             Every great project starts with a clear understanding. I take the
             time to learn about your business, your industry, and your specific
-            goals. Whether you're launching a new brand or improving an existing
-            website, this step ensures that everything aligns with your vision
-            and long-term success.
+            goals. Whether you&apos;re launching a new brand or improving an
+            existing website, this step ensures that everything aligns with your
+            vision and long-term success.
           </p>
         </div>
         <div className="flex flex-col gap-[25px] py-[35px] border-b-[0.5px] border-border">
@@ -80,8 +80,8 @@ export default function About() {
           <p>
             Great design starts with great content. I craft compelling copy that
             speaks directly to your audience, communicates your value, and
-            improves search engine rankings. Whether it's landing pages, blog
-            posts, or product descriptions, I ensure your message is clear,
+            improves search engine rankings. Whether it&apos;s landing pages,
+            blog posts, or product descriptions, I ensure your message is clear,
             engaging, and optimized for conversions.
           </p>
         </div>
@@ -93,7 +93,7 @@ export default function About() {
           <p>
             A strong website is visually appealing, intuitive, and easy to
             navigate. I focus on modern, high-converting design, incorporating
-            your brand’s identity while ensuring a seamless user experience
+            your brand&apos;s identity while ensuring a seamless user experience
             across all devices. This step brings your vision to life with
             attention to aesthetics, usability, and engagement.
           </p>

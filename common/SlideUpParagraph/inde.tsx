@@ -40,7 +40,7 @@ export default function SlideUpParagraph({
               start: "top 80%",
               end: "top bottom",
               // markers: true,
-              toggleActions: "play none reverse none",
+              toggleActions: "play none none none", //"play none reverse none" use this combination if you want to redo the animation on reenter
             },
           }
         );

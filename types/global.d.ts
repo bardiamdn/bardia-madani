@@ -3,6 +3,7 @@ declare global {
     gsap?: any;
     ScrollTrigger?: any;
     THREE?: any;
+    CustomEase?: any;
   }
 }
 

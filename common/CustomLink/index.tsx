@@ -1,18 +1,19 @@
-import Link from "next/link";
+import React, { ReactNode } from "react";
 import styles from "./style.module.scss";
+
+interface CustomLinkProps extends React.HTMLProps<HTMLDivElement> {
+  children: ReactNode;
+  className?: string;
+}
 
 export default function CustomLink({
   children,
   className,
   ...props
-}: {
-  children: React.ReactNode;
-  className?: string;
-  href: string;
-}) {
+}: CustomLinkProps) {
   return (
-    <Link className={`${styles.link} ${className}`} {...props}>
+    <div className={`cursor-pointer ${styles.link} ${className}`} {...props}>
       <span className="text-white">{children}</span>
-    </Link>
+    </div>
   );
 }

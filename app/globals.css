@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --primary: #E9BC5A;
+  --primary: #e7c374;
   --accent: #B9DAEE;
   --accent-secondary: #b6b6b6;
   --background: #fff;
@@ -31,6 +31,42 @@ body {
 * {
   box-sizing: border-box;
   margin: 0;
+}
+
+.overlay {
+  transform: translateY(0);
+  animation: slideUpAnimation 1s ease-in-out forwards;
+}
+@keyframes slideUpAnimation {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+.slideIn {
+  animation: slideInAnimation 1s ease-in-out forwards;
+}
+@keyframes slideInAnimation {
+  from {
+    top: 100vh;
+  }
+  to {
+    top: 0;
+  }
+}
+.slideOut {
+  animation: slideOutAnimation 1s ease-in-out forwards;
+}
+@keyframes slideOutAnimation {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100vh);
+  }
 }
 
 p {
