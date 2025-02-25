@@ -34,12 +34,12 @@ export default function TransitionLink({
   const router = useRouter();
   const pathname = usePathname();
   const { loaded } = useScriptLoader();
-  const overlay = document.getElementById("overlay");
-  const body = document.getElementById("body");
-  const overlayTop = document.getElementById("overlay-top");
-  const overlayBottom = document.getElementById("overlay-bottom");
 
   useEffect(() => {
+    const overlay = document.getElementById("overlay");
+    const body = document.getElementById("body");
+    const overlayTop = document.getElementById("overlay-top");
+    // const overlayBottom = document.getElementById("overlay-bottom");
     const checkGSAP = () => {
       if (loaded) {
         if (document.getElementById("overlay")) console.log("overlay found");
@@ -70,9 +70,13 @@ export default function TransitionLink({
       }
     };
     checkGSAP();
-  }, [loaded, href, overlay, body]);
+  }, [loaded, href]);
 
   const handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const overlay = document.getElementById("overlay");
+    const overlayTop = document.getElementById("overlay-top");
+    // const overlayBottom = document.getElementById("overlay-bottom");
+
     if (href.split("/")[1] === pathname.split("/")[1]) return;
     if (!overlay) console.log("overlay not found");
     if (!overlayTop) console.log("overlayTop not found");
