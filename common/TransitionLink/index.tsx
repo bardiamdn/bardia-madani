@@ -38,33 +38,46 @@ export default function TransitionLink({
   useEffect(() => {
     const overlay = document.getElementById("overlay");
     const body = document.getElementById("body");
-    const overlayTop = document.getElementById("overlay-top");
-    // const overlayBottom = document.getElementById("overlay-bottom");
+    const overlaySecond = document.getElementById("second-overlay");
     const checkGSAP = () => {
       if (loaded) {
         if (document.getElementById("overlay")) console.log("overlay found");
-        window.gsap.fromTo(
-          overlay,
-          { top: "-20vh" },
-          {
-            top: "-140vh",
-            duration: 1,
-            ease: "easeInOutQuint",
-          }
-        );
-        window.gsap.fromTo(
-          body,
-          {
-            y: "200px",
-            opacity: 0,
-          },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 1,
-            ease: "easeInOutQuint",
-          }
-        );
+        const timeline = window.gsap.timeline();
+
+        timeline
+          .fromTo(
+            overlay,
+            { top: "0" },
+            {
+              top: "-100vh",
+              duration: 1,
+              ease: "easeInOutQuint",
+            }
+          )
+          .fromTo(
+            overlaySecond,
+            { top: "-25vh" },
+            {
+              top: "-150vh",
+              duration: 1,
+              ease: "easeInOutQuint",
+            },
+            "0.3"
+          )
+          .fromTo(
+            body,
+            {
+              y: "200px",
+              opacity: 0,
+            },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 1,
+              ease: "easeInOutQuint",
+            },
+            "0.4"
+          );
       } else {
         setTimeout(checkGSAP, 50);
       }
@@ -73,9 +86,9 @@ export default function TransitionLink({
   }, [loaded, href]);
 
   const handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const body = document.getElementById("body");
     const overlay = document.getElementById("overlay");
-    const overlayTop = document.getElementById("overlay-top");
-    // const overlayBottom = document.getElementById("overlay-bottom");
+    const overlayTop = document.getElementById("second-overlay");
 
     if (href.split("/")[1] === pathname.split("/")[1]) return;
     if (!overlay) console.log("overlay not found");
@@ -96,52 +109,30 @@ export default function TransitionLink({
 
     if (!loaded) return;
 
-    const timeline = window.gsap.timeline();
+    const timelineIn = window.gsap.timeline();
 
-    await timeline
+    await timelineIn
       .fromTo(
-        overlay,
-        { top: "140vh" },
+        overlayTop,
         {
-          top: "-20vh",
+          top: "150vh",
+        },
+        {
+          top: "-25vh",
           duration: 1,
           ease: "easeInOutQuint",
         }
       )
-      // .fromTo(
-      //   overlayTop,
-      //   {
-      //     height: "5vh",
-      //   },
-      //   {
-      //     height: "20vh",
-      //     duration: 0.8,
-      //     ease: "easeInOutQuint",
-      //     onComplete: () => {
-      //       window.gsap.to(overlayTop, {
-      //         height: "5vh",
-      //       });
-      //     },
-      //   },
-      //   "<"
-      // )
-      // .fromTo(
-      //   overlayBottom,
-      //   {
-      //     height: "5vh",
-      //   },
-      //   {
-      //     height: "20vh",
-      //     duration: 0.8,
-      //     ease: "easeInOutQuint",
-      //     onComplete: () => {
-      //       window.gsap.to(overlayBottom, {
-      //         height: "5vh",
-      //       });
-      //     },
-      //   },
-      //   "<"
-      // )
+      .fromTo(
+        overlay,
+        { top: "100vh" },
+        {
+          top: "0",
+          duration: 1,
+          ease: "easeInOutQuint",
+        },
+        "0.3"
+      )
       .fromTo(
         h1,
         {
@@ -154,22 +145,51 @@ export default function TransitionLink({
           duration: 0.5,
           ease: "easeInOutQuint",
         }
-        // "0.45"
       );
 
     router.push(href);
 
     await wait(750);
 
-    window.gsap.to(overlay, {
-      top: "-140vh",
-      duration: 1,
-      ease: "easeInOutQuint",
-      onComplete: () => {
-        if (!overlay) return;
-        overlay.style.top = "140vh";
-      },
-    });
+    const timelineOut = window.gsap.timeline();
+
+    timelineOut
+      .to(overlay, {
+        top: "-100vh",
+        duration: 1,
+        ease: "easeInOutQuint",
+        onComplete: () => {
+          if (!overlay) return;
+          overlay.style.top = "100vh";
+        },
+      })
+      .to(
+        overlayTop,
+        {
+          top: "-150vh",
+          duration: 1,
+          ease: "easeInOutQuint",
+          onComplete: () => {
+            if (!overlay) return;
+            overlay.style.top = "150vh";
+          },
+        },
+        "0.3"
+      )
+      .fromTo(
+        body,
+        {
+          y: "200px",
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "easeInOutQuint",
+        },
+        "0.4"
+      );
   };
   return (
     <Link onClick={handleClick} href={href} {...props}>

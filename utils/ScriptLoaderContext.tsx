@@ -36,6 +36,8 @@ export const ScriptLoaderProvider = ({
 
           // Register a cubic-bezier easing function
           window.CustomEase.create("easeInOutQuint", "0.83, 0, 0.17, 1");
+          window.CustomEase.create("easeInQuint", "0.64, 0, 0.78, 0");
+          window.CustomEase.create("easeOutQuint", "0.22, 1, 0.36, 1");
 
           setLoaded(true);
         }

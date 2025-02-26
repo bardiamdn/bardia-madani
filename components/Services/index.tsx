@@ -6,26 +6,36 @@ export default function Services() {
       serviceName: "Web Design",
       serviceDescription:
         "I create visually appealing, user-friendly websites designed to capture attention and drive conversions. A well-structured design ensures visitors stay engaged and take action.",
+      serviceMedia: "laptop.jpg",
+      serviceAlt: "laptop.jpg",
     },
     {
       serviceName: "Web Development",
       serviceDescription:
         "I create visually appealing, user-friendly websites designed to capture attention and drive conversions. A well-structured design ensures visitors stay engaged and take action.",
+      serviceMedia: "laptop.jpg",
+      serviceAlt: "laptop.jpg",
     },
     {
       serviceName: "Hosting & Maintenance",
       serviceDescription:
         "I create visually appealing, user-friendly websites designed to capture attention and drive conversions. A well-structured design ensures visitors stay engaged and take action.",
+      serviceMedia: "laptop.jpg",
+      serviceAlt: "laptop.jpg",
     },
     {
       serviceName: "SEO Optimization",
       serviceDescription:
         "I create visually appealing, user-friendly websites designed to capture attention and drive conversions. A well-structured design ensures visitors stay engaged and take action.",
+      serviceMedia: "laptop.jpg",
+      serviceAlt: "laptop.jpg",
     },
     {
       serviceName: "Campaign Management",
       serviceDescription:
         "I create visually appealing, user-friendly websites designed to capture attention and drive conversions. A well-structured design ensures visitors stay engaged and take action.",
+      serviceMedia: "laptop.jpg",
+      serviceAlt: "laptop.jpg",
     },
   ];
 
@@ -35,13 +45,20 @@ export default function Services() {
         <h2 className="font-light text-sm 2xl:ml-[10%]">SERVICES</h2>
       </div>
 
-      {services.map(({ serviceName, serviceDescription }, index) => (
-        <Service
-          key={index}
-          serviceName={serviceName}
-          serviceDescription={serviceDescription}
-        />
-      ))}
+      {services.map(
+        (
+          { serviceName, serviceDescription, serviceMedia, serviceAlt },
+          index
+        ) => (
+          <Service
+            key={index}
+            serviceName={serviceName}
+            serviceMedia={serviceMedia}
+            serviceAlt={serviceAlt}
+            serviceDescription={serviceDescription}
+          />
+        )
+      )}
     </section>
   );
 }

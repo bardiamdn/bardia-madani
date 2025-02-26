@@ -1,7 +1,9 @@
 "use client";
+import LetterDrop from "@/common/DropDownLetter";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
+import Tags from "./Tags";
 
 export default function Work() {
   const firstRef = useRef(null);
@@ -46,7 +48,7 @@ export default function Work() {
             opacity: 1,
             duration: 0.8,
             ease: "power2.out",
-            delay: 0.35,
+            // delay: 0.35,
             scrollTrigger: {
               trigger: secondRef.current,
               start: "top 90%",
@@ -56,22 +58,6 @@ export default function Work() {
             },
           }
         );
-        // window.gsap.fromTo(
-        //   containerRef.current,
-        //   { "--border-width": "0%" },
-        //   {
-        //     "--border-width": "100%",
-        //     duration: 1,
-        //     ease: "power2.out",
-        //     scrollTrigger: {
-        //       trigger: containerRef.current,
-        //       start: "bottom bottom",
-        //       end: "top bottom",
-        //       // markers: true,
-        //       toggleActions: "play none reverse none",
-        //     },
-        //   }
-        // );
       } else {
         console.warn("GSAP not loaded yet, retrying...");
         gsapTimeout = setTimeout(waitForGSAP, 100);
@@ -99,7 +85,7 @@ export default function Work() {
           </div>
           <div className="flex items-center justify-between px-[15px]">
             <h3 className="font-extralight text-3xl text-foreground">
-              Ozkan Eng.
+              <LetterDrop>Ozkan Eng.</LetterDrop>
             </h3>
             <Link href="https://ozkanmuhendislik.com.tr" target="_blank">
               <svg
@@ -133,17 +119,7 @@ export default function Work() {
               </svg>
             </Link>
           </div>
-          <div className="px-[15px] space-y-[13px]">
-            <span className="px-[15px] py-[5px] border-[0.5px] border-gray-400 rounded-full inline-block mr-[13px]">
-              Web Design
-            </span>
-            <span className="px-[15px] py-[5px] border-[0.5px] border-gray-400 rounded-full inline-block mr-[13px]">
-              Web Development
-            </span>
-            <span className="px-[15px] py-[5px] border-[0.5px] border-gray-400 rounded-full inline-block mr-[13px]">
-              SEO
-            </span>
-          </div>
+          <Tags tags={["Web Design", "Web Development", "SEO"]} />
         </div>
         <div className="w-full space-y-[20px] mb-[50px]" ref={secondRef}>
           <div className="relative w-full aspect-square">
@@ -156,7 +132,7 @@ export default function Work() {
           </div>
           <div className="flex items-center justify-between px-[15px]">
             <h3 className="font-extralight text-3xl text-foreground">
-              WalletSpace
+              <LetterDrop>WalletSpace</LetterDrop>
             </h3>
             <Link href="https://wallet-space.com" target="_blank">
               <svg
@@ -190,14 +166,7 @@ export default function Work() {
               </svg>
             </Link>
           </div>
-          <div className="px-[15px] space-y-[13px]">
-            <span className="px-[15px] py-[5px] border-[0.5px] border-gray-400 rounded-full inline-block mr-[13px]">
-              Web Design
-            </span>
-            <span className="px-[15px] py-[5px] border-[0.5px] border-gray-400 rounded-full inline-block mr-[13px]">
-              Web Development
-            </span>
-          </div>
+          <Tags tags={["Web Design", "Web Development"]} />
         </div>
       </div>
     </section>

@@ -1,23 +1,23 @@
 import React, { useEffect, useRef } from "react";
 
-interface LetterSlideUpProps {
+interface LetterDropProps {
   children: string;
 }
 
-const SlideUpLetter: React.FC<{ children: string; index: number }> = ({
+const DropLetter: React.FC<{ children: string; index: number }> = ({
   children,
   index,
 }) => {
   const letterRef = useRef(null);
 
   useEffect(() => {
-    const SlideUpLetter = () => {
+    const DropLetter = () => {
       if (!letterRef.current) return;
 
       window.gsap.fromTo(
         letterRef.current,
         {
-          y: "100%",
+          y: "-100%",
           opacity: 0.5,
         },
         {
@@ -28,15 +28,15 @@ const SlideUpLetter: React.FC<{ children: string; index: number }> = ({
           ease: "power2.out",
           scrollTrigger: {
             trigger: letterRef.current,
-            start: "top 90%",
-            end: "top 90%",
+            start: "top 80%",
+            end: "top 80%",
             // markers: true,
             toggleActions: "play none none none",
           },
         }
       );
     };
-    requestAnimationFrame(SlideUpLetter);
+    requestAnimationFrame(DropLetter);
   }, [letterRef, index]);
 
   return (
@@ -48,13 +48,13 @@ const SlideUpLetter: React.FC<{ children: string; index: number }> = ({
   );
 };
 
-const LetterDrop: React.FC<LetterSlideUpProps> = ({ children }) => {
+const LetterDrop: React.FC<LetterDropProps> = ({ children }) => {
   return (
     <span className="">
       {children.split("").map((char, index) => (
-        <SlideUpLetter key={index} index={index}>
+        <DropLetter key={index} index={index}>
           {char}
-        </SlideUpLetter>
+        </DropLetter>
       ))}
     </span>
   );

@@ -6,6 +6,7 @@
   --primary: #e7c374;
   --accent: #B9DAEE;
   --accent-secondary: #b6b6b6;
+  --background-accent: #303030;
   --background: #fff;
   --foreground: #161616;
   --background-secondary: #000;
@@ -84,13 +85,18 @@ h2 {
   line-height: 1;
 }
 h3 {
-  font-size: 36px;
+  font-size: 56px;
   font-weight: 300;
   line-height: 1;
 }
 h4 {
   font-size: 20px;
   font-weight: 300;
+}
+h5 {
+  font-size: 16px;
+  /* font-weight: 300; */
+  color: #898989;
 }
 
 @media (max-width: 1280px) {
@@ -101,7 +107,7 @@ h4 {
     font-size: 36px;
   }
   h3 {
-    font-size: 26px;
+    font-size: 42px;
   }  
 }
 @media (max-width: 480px) {

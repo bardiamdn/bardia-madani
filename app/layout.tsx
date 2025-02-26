@@ -102,31 +102,29 @@ export default function RootLayout({
         className={`${geologica.variable} ${spaceGrotesk.variable} ${inter.variable}  ${genos.variable} antialiased`}
       >
         <ScriptLoaderProvider>
-          <Header />
-          <SmoothScroll />
-          {/* <LoadScripts /> */}
+          <div
+            id="second-overlay"
+            className="fixed left-0 -top-[25vh] h-[150vh] w-screen z-[29] bg-accentSecondary"
+          ></div>
           <div
             id="overlay"
-            className=" fixed -top-[20vh] w-screen h-[140vh] z-30 bg-black flex items-center justify-center"
+            className=" fixed left-0 top-0 w-screen h-[100vh] z-30 bg-black flex items-center justify-center"
           >
-            <div
-              id="overlay-top"
-              className="absolute top-0 h-[5vh] w-full bg-accentSecondary"
-            ></div>
-            <div
-              id="overlay-bottom"
-              className="absolute bottom-0 h-[5vh] w-full bg-accentSecondary"
-            ></div>
             <div className="text-white overflow-hidden">
               <h1 className="">Transition</h1>
             </div>
           </div>
-          <main className="overflow-x-hidden relative">
-            {/* <Transition> */}
-            {children}
-            {/* </Transition> */}
-          </main>
-          <Footer />
+          <div id="body">
+            <Header />
+            <SmoothScroll />
+            {/* <LoadScripts /> */}
+            <main className="overflow-x-hidden relative">
+              {/* <Transition> */}
+              {children}
+              {/* </Transition> */}
+            </main>
+            <Footer />
+          </div>
         </ScriptLoaderProvider>
       </body>
     </html>
