@@ -14,7 +14,7 @@ export default function Service({
   serviceDescription: string;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const nameRef = useRef<HTMLDivElement>(null);
+  const serviceRef = useRef<HTMLDivElement>(null);
   const desRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
 
@@ -27,7 +27,7 @@ export default function Service({
         if (!containerRef.current) return;
 
         window.gsap.fromTo(
-          nameRef.current,
+          serviceRef.current,
           {
             x: "-30px",
             opacity: 0,
@@ -38,7 +38,7 @@ export default function Service({
             duration: 1,
             ease: "power2.out",
             scrollTrigger: {
-              trigger: nameRef.current,
+              trigger: serviceRef.current,
               start: "bottom bottom",
               end: "top bottom",
               // markers: true,
@@ -82,6 +82,49 @@ export default function Service({
             },
           }
         );
+
+        const mm = window.gsap.matchMedia();
+
+        mm.add("(max-width: 768px)", () => {
+          const tl = window.gsap.timeline({
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: "top 70%",
+              end: "top 20%",
+              // markers: true,
+              toggleActions: "play reverse play reverse",
+            },
+          });
+          tl.fromTo(
+            containerRef.current,
+            { height: 150 },
+            {
+              height: 300,
+              // justifyContent: "space-between",
+              duration: 0.5,
+              ease: "easeInOutQuint",
+            }
+          )
+            // .set(desRef.current, {
+            //   display: "inline",
+            // })
+            // .to(desRef.current, {
+            //   opacity: 1,
+            //   // display: "inline",
+            // })
+            .fromTo(
+              imageRef.current,
+              { display: "none", opacity: 0, width: 0, height: 0 },
+              {
+                display: "block",
+                opacity: 1,
+                width: "50%",
+                height: "50%",
+                duration: 0.5,
+                ease: "easeOutQuint",
+              }
+            );
+        });
       } else {
         console.warn("GSAP not loaded yet, retrying...");
         gsapTimeout = setTimeout(waitForGSAP, 100);
@@ -94,109 +137,90 @@ export default function Service({
 
   const handleMouseEnter = () => {
     if (!containerRef.current) return;
-    const tl = window.gsap.timeline();
+    const mm = window.gsap.matchMedia();
 
-    tl.to(
-      containerRef.current,
-      {
-        height: "300px",
-        duration: 0.5,
-        ease: "easeInOutQuint",
-        // onComplete: () => {
-        //   window.gsap.set(containerRef.current, {
-        //     height: "300px",
-        //   });
-        //   window.gsap.set(imageRef.current, {
-        //     display: "block",
-        //     opacity: 1,
-        //     width: "15%",
-        //   });
-        //   window.gsap.set(desRef.current, {
-        //     width: "40%",
-        //   });
-        // },
-      }
-      // 0
-    )
-      .to(
-        desRef.current,
+    mm.add("(min-width: 768px)", () => {
+      const tl = window.gsap.timeline();
+
+      tl.to(
+        containerRef.current,
         {
-          width: "40%",
+          height: "300px",
           duration: 0.5,
           ease: "easeInOutQuint",
-        }
-        // 0
+        },
+        0
       )
-      .to(
-        imageRef.current,
-        {
-          display: "block",
-          opacity: 1,
-          width: "15%",
-          duration: 0.5,
-          ease: "easeInOutQuint",
-        }
-        // "<"
-      );
+        .to(
+          desRef.current,
+          {
+            width: "40%",
+            duration: 0.5,
+            ease: "easeInOutQuint",
+          },
+          0
+        )
+        .to(
+          imageRef.current,
+          {
+            display: "block",
+            opacity: 1,
+            width: "15%",
+            duration: 0.5,
+            ease: "easeInOutQuint",
+          },
+          0
+        );
+    });
   };
   const handleMouseLeave = () => {
     if (!containerRef.current) return;
-    const tl = window.gsap.timeline();
+    const mm = window.gsap.matchMedia();
 
-    tl.to(
-      imageRef.current,
-      {
-        display: "none",
-        opacity: 0,
-        width: "5%",
-        duration: 0.5,
-        ease: "easeInOutQuint",
-      }
-      // 0
-    )
-      // .set(imageRef.current, { display: "none" })
-      .to(
-        containerRef.current,
+    mm.add("(min-width: 768px)", () => {
+      const tl = window.gsap.timeline();
+
+      tl.to(
+        imageRef.current,
         {
-          height: "150px",
+          display: "none",
+          opacity: 0,
+          width: "5%",
           duration: 0.5,
           ease: "easeInOutQuint",
-          // onComplete: () => {
-          //   window.gsap.set(containerRef.current, {
-          //     height: "150px",
-          //   });
-          //   window.gsap.set(imageRef.current, {
-          //     display: "hidden",
-          //     opacity: 0,
-          //     width: "5%",
-          //   });
-          //   window.gsap.set(desRef.current, {
-          //     width: "55%",
-          //   });
-          // },
-        }
-        // 0
+        },
+        0
       )
-      // .set(imageRef.current, { display: "none" })
-      .to(
-        desRef.current,
-        {
-          width: "55%",
-          duration: 0.5,
-          ease: "easeInOutQuint",
-        }
-        // 0.2
-      );
+        .set(imageRef.current, { display: "none" })
+        .to(
+          containerRef.current,
+          {
+            height: "150px",
+            duration: 0.5,
+            ease: "easeInOutQuint",
+          },
+          0
+        )
+        .to(
+          desRef.current,
+          {
+            width: "55%",
+            duration: 0.5,
+            ease: "easeInOutQuint",
+          }
+          // 0.2
+        );
+    });
   };
 
   return (
     <div
-      className="2xl:px-[10%] w-full py-[20px] md:h-[150px] relative flex items-center justify-center md:justify-between md:px-[30px] after:absolute after:bottom-0 after:left-0 after:w-[var(--border-width)] after:h-[1px] after:bg-black"
+      className="2xl:px-[10%] w-full py-[20px] md:h-[150px] h-[150px] relative flex md:flex-row flex-col items-center justify-evenly md:justify-between md:px-[30px] after:absolute after:bottom-0 after:left-0 after:w-[var(--border-width)] after:h-[1px] after:bg-black"
       ref={containerRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <h3 className="w-[40%] font-extralight" ref={nameRef}>
+      <h3 className="md:w-[40%] w-auto font-extralight" ref={serviceRef}>
         {serviceName}
       </h3>
       <div
@@ -210,7 +234,10 @@ export default function Service({
           className="object-center object-cover"
         />
       </div>
-      <p className="w-[55%] md:inline hidden" ref={desRef}>
+      <p
+        className="w-[55%] md:inline hidden md:opacity-100 opacity-0"
+        ref={desRef}
+      >
         {serviceDescription}
       </p>
     </div>

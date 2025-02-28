@@ -1,3 +1,4 @@
+import Star from "@/common/Star";
 import Link from "next/link";
 
 const Footer: React.FC = () => {
@@ -6,19 +7,7 @@ const Footer: React.FC = () => {
       <div className="2xl:w-[80%] 2xl:px-0 w-full h-full p-[25px]">
         <div className="h-[90%] py-[60px] flex flex-col justify-between gap-[25px]">
           <div className="inline-flex items-center gap-[15px]">
-            <svg
-              width="56"
-              height="58"
-              viewBox="0 0 56 58"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="flex-shrink-0"
-            >
-              <path
-                d="M27.042 1.69993C27.3267 0.748996 28.6733 0.748998 28.958 1.69993L34.8474 21.3721C34.943 21.6914 35.1914 21.9421 35.5098 22.0406L54.9128 28.0447C55.852 28.3353 55.852 29.6647 54.9128 29.9553L35.5098 35.9594C35.1914 36.0579 34.943 36.3086 34.8474 36.6279L28.958 56.3001C28.6733 57.251 27.3267 57.251 27.042 56.3001L21.1526 36.6279C21.057 36.3086 20.8086 36.0579 20.4902 35.9594L1.08721 29.9553C0.148022 29.6647 0.148022 28.3353 1.08721 28.0447L20.4902 22.0406C20.8086 21.9421 21.057 21.6914 21.1526 21.3721L27.042 1.69993Z"
-                fill="#B9DAEE"
-              />
-            </svg>
+            <Star />
             <h3 className="text-center">
               Let&apos;s bring your business online
             </h3>
@@ -66,10 +55,7 @@ const Footer: React.FC = () => {
             </p>
           </div>
 
-          <p className="">
-            &copy; {new Date().getFullYear()} Bardia Madani. All rights
-            reserved.
-          </p>
+          <p className="">&copy; {new Date().getFullYear()} Bardia Madani</p>
         </div>
       </div>
     </footer>

@@ -25,7 +25,7 @@ export default function Tags({ tags }: { tags: string[] }) {
             trigger: tagRef,
             start: "top 70%",
             end: "top 70%",
-            toggleActions: "play none reverse none",
+            toggleActions: "play none none none",
           },
         }
       );

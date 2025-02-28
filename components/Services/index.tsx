@@ -1,4 +1,5 @@
 import Service from "./service";
+import NavigateLink from "@/common/NavigateLink";
 
 export default function Services() {
   const services = [
@@ -7,35 +8,35 @@ export default function Services() {
       serviceDescription:
         "I create visually appealing, user-friendly websites designed to capture attention and drive conversions. A well-structured design ensures visitors stay engaged and take action.",
       serviceMedia: "laptop.jpg",
-      serviceAlt: "laptop.jpg",
+      serviceAlt: "laptop",
     },
     {
       serviceName: "Web Development",
       serviceDescription:
         "I create visually appealing, user-friendly websites designed to capture attention and drive conversions. A well-structured design ensures visitors stay engaged and take action.",
       serviceMedia: "laptop.jpg",
-      serviceAlt: "laptop.jpg",
+      serviceAlt: "laptop",
     },
     {
       serviceName: "Hosting & Maintenance",
       serviceDescription:
         "I create visually appealing, user-friendly websites designed to capture attention and drive conversions. A well-structured design ensures visitors stay engaged and take action.",
       serviceMedia: "laptop.jpg",
-      serviceAlt: "laptop.jpg",
+      serviceAlt: "laptop",
     },
     {
       serviceName: "SEO Optimization",
       serviceDescription:
         "I create visually appealing, user-friendly websites designed to capture attention and drive conversions. A well-structured design ensures visitors stay engaged and take action.",
       serviceMedia: "laptop.jpg",
-      serviceAlt: "laptop.jpg",
+      serviceAlt: "laptop",
     },
     {
       serviceName: "Campaign Management",
       serviceDescription:
         "I create visually appealing, user-friendly websites designed to capture attention and drive conversions. A well-structured design ensures visitors stay engaged and take action.",
       serviceMedia: "laptop.jpg",
-      serviceAlt: "laptop.jpg",
+      serviceAlt: "laptop",
     },
   ];
 
@@ -59,6 +60,9 @@ export default function Services() {
           />
         )
       )}
+      <div className="2xl:ml-[10%] mt-[20px] w-full flex items-center md:justify-start justify-center">
+        <NavigateLink href="/services">Services</NavigateLink>
+      </div>
     </section>
   );
 }

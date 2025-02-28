@@ -44,9 +44,14 @@ export default function Gallery() {
 
   return (
     <section
-      className="md:block hidden w-full h-fit py-[200px] space-y-[50px] bg-white overflow-hidden "
+      className="relative md:block hidden w-full h-fit py-[200px] space-y-[50px] bg-[#797979] overflow-hidden "
       ref={containerRef}
     >
+      {/* Top Shadow */}
+      <div className="absolute top-0 left-0 w-full h-[150px] bg-gradient-to-b from-white to-transparent" />
+
+      {/* Bottom Shadow */}
+      <div className="absolute bottom-0 left-0 w-full h-[150px] bg-gradient-to-t from-black to-transparent" />
       <div className="relative w-[120%] h-[300px] ">
         <div
           className="flex w-[120%] h-[300px] space-x-[50px] absolute top-0 right-0"

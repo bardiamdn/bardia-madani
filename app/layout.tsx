@@ -99,7 +99,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geologica.variable} ${spaceGrotesk.variable} ${inter.variable}  ${genos.variable} antialiased`}
+        className={`${geologica.variable} ${spaceGrotesk.variable} ${inter.variable}  ${genos.variable} antialiased relative`}
       >
         <ScriptLoaderProvider>
           <div
@@ -114,17 +114,12 @@ export default function RootLayout({
               <h1 className="">Transition</h1>
             </div>
           </div>
-          <div id="body">
-            <Header />
-            <SmoothScroll />
-            {/* <LoadScripts /> */}
-            <main className="overflow-x-hidden relative">
-              {/* <Transition> */}
-              {children}
-              {/* </Transition> */}
-            </main>
-            <Footer />
-          </div>
+          <Header />
+          <SmoothScroll />
+          <main id="main" className="relative">
+            {children}
+          </main>
+          <Footer />
         </ScriptLoaderProvider>
       </body>
     </html>

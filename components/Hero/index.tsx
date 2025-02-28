@@ -34,6 +34,19 @@ export default function Hero() {
             },
           },
         });
+        window.gsap.to(containerRef.current, {
+          y: "-50vh",
+          opacity: 0.1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top top",
+            end: "bottom top",
+            // markers: true,
+            scrub: true,
+            // toggleActions: "play none reverse none",
+          },
+        });
       } else {
         console.warn("GSAP not loaded yet, retrying...");
         gsapTimeout = setTimeout(waitForGSAP, 100);

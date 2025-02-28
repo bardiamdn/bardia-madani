@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 // import { useEffect } from "react";
 
 import Hero from "@/components/Hero";
-import Tagline from "@/components/HeroContent";
+import Tagline from "@/components/Hero/HeroContent";
 // import Transition from "@/components/Transition";
 // const Tagline = dynamic(() => import("@/components/HeroContent"), {
 //   ssr: false,

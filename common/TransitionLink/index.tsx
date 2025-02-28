@@ -37,11 +37,10 @@ export default function TransitionLink({
 
   useEffect(() => {
     const overlay = document.getElementById("overlay");
-    const body = document.getElementById("body");
+    const main = document.getElementById("main");
     const overlaySecond = document.getElementById("second-overlay");
     const checkGSAP = () => {
       if (loaded) {
-        if (document.getElementById("overlay")) console.log("overlay found");
         const timeline = window.gsap.timeline();
 
         timeline
@@ -65,13 +64,13 @@ export default function TransitionLink({
             "0.3"
           )
           .fromTo(
-            body,
+            main,
             {
-              y: "200px",
+              top: "200px",
               opacity: 0,
             },
             {
-              y: 0,
+              top: 0,
               opacity: 1,
               duration: 1,
               ease: "easeInOutQuint",
@@ -86,7 +85,7 @@ export default function TransitionLink({
   }, [loaded, href]);
 
   const handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const body = document.getElementById("body");
+    const main = document.getElementById("main");
     const overlay = document.getElementById("overlay");
     const overlayTop = document.getElementById("second-overlay");
 
@@ -177,13 +176,13 @@ export default function TransitionLink({
         "0.3"
       )
       .fromTo(
-        body,
+        main,
         {
-          y: "200px",
+          top: "200px",
           opacity: 0,
         },
         {
-          y: 0,
+          top: 0,
           opacity: 1,
           duration: 1,
           ease: "easeInOutQuint",
@@ -193,7 +192,15 @@ export default function TransitionLink({
   };
   return (
     <Link onClick={handleClick} href={href} {...props}>
-      {children}
+      <span
+        className={
+          href.split("/")[1] === pathname.split("/")[1]
+            ? "text-foregroundSecondary"
+            : "text-foregroundLight"
+        }
+      >
+        {children}
+      </span>
     </Link>
   );
 }

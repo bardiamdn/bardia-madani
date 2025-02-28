@@ -70,12 +70,15 @@ export default function Work() {
 
   return (
     <section className="w-full bg-white py-[30px]">
-      <div className="w-full py-[15px] px-[25px] 2xl:px-[10%]">
+      <div className="w-full py-[15px] px-[30px] 2xl:px-[10%]">
         <h2 className="font-light text-sm">WORK</h2>
       </div>
-      <div className="md:flex flex-row contents gap-[50px] px-[50px] 2xl:px-[10%]">
-        <div className="w-full space-y-[20px] mb-[50px]" ref={firstRef}>
-          <div className="relative w-full aspect-square">
+      <div className="md:flex flex-row contents px-[30px] 2xl:px-[10%]">
+        <div
+          className="w-full space-y-[20px] mb-[50px] mr-[50px]"
+          ref={firstRef}
+        >
+          <div className="relative w-full aspect-square overflow-hidden">
             <Image
               src="/ozkan-screen.png"
               alt="ozkan engineering website screenshot "

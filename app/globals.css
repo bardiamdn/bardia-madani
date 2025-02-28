@@ -9,16 +9,44 @@
   --background-accent: #303030;
   --background: #fff;
   --foreground: #161616;
+  --foreground-light: #888888;
   --background-secondary: #000;
   --foreground-secondary: #fff;
   --border: #9a9a9a80;
   --font-primary: var(--font-geologica), var(--font-space-grotesk), var(--font-inter), sans-serif;
 }
 
-/* @media (prefers-color-scheme: dark) {
-  :root {
+/* Webkit Browsers */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  width: 0;
+  /* border-radius: 100px; */
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+::-webkit-scrollbar-corner {
+  background: #f1f1f1;
+}
+
+@supports (scrollbar-color: auto) {
+  * {
+    /* scrollbar-color: var(--primary) black; */
+    scrollbar-width: none;
   }
-} */
+}
 
 body {
   color: var(--foreground);
@@ -75,7 +103,7 @@ p {
 }
 
 h1 {
-  font-size: 72px;
+  font-size: 102px;
   font-weight: 200;
   line-height: 1;
 }

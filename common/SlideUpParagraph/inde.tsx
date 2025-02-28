@@ -5,7 +5,7 @@ export default function SlideUpParagraph({
   className,
 }: {
   children: string;
-  className: string;
+  className?: string;
 }) {
   const ref = useRef<HTMLParagraphElement>(null);
 

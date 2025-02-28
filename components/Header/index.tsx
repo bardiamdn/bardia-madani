@@ -4,6 +4,7 @@ import TransitionLink from "@/common/TransitionLink";
 import styles from "./style.module.scss";
 import { useState } from "react";
 import CustomLink from "@/common/CustomLink";
+import Link from "next/link";
 
 export default function Header() {
   const [dropped, setDropped] = useState(false);
@@ -96,7 +97,7 @@ export default function Header() {
         </div>
         <div className={styles.menuContainer}>
           <div
-            className={`w-full h-[70%] flex flex-col justify-center font-extralight items-start space-y-[20px] text-white `}
+            className={`w-full h-[60%] flex flex-col justify-center font-extralight items-start space-y-[20px] text-white `}
           >
             <CustomLink className="text-4xl" onClick={() => setDropped(false)}>
               <TransitionLink href="/">Home</TransitionLink>
@@ -111,8 +112,15 @@ export default function Header() {
               <TransitionLink href="/contact">Contact</TransitionLink>
             </CustomLink>
           </div>
-          <div className="w-full h-[30%] flex items-center justify-start text-white ">
-            Contact Info
+          <div className="w-full h-[40%] flex items-center justify-start text-white ">
+            <div className="flex flex-col">
+              <h5 className="mb-[8px]">Socials </h5>
+              <div className="flex gap-[15px]">
+                <Link href="https://awwwards.com/bardia">Awwwards</Link>
+                <Link href="https://github.com/bardiamdn">Github</Link>
+                <Link href="https://twitter.com/bardiamdn">Twitter</Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>
