@@ -72,7 +72,7 @@ export default function Hero() {
           </>
         ) : null}
       </div>
-      <div className="md:w-1/2 w-full md:h-auto h-1/2 md:my-auto">
+      <div className="md:w-1/2 2xl:pr-[10%] w-full md:h-auto h-1/2 md:my-auto">
         <div className="w-full aspect-square">
           <video
             autoPlay

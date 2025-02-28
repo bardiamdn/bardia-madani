@@ -1,12 +1,16 @@
 import { useEffect, useRef } from "react";
 
+interface SlideUpParagraphProps {
+  children: string;
+  className?: string;
+  setEntered: (entered: boolean) => void;
+}
+
 export default function SlideUpParagraph({
   children,
   className,
-}: {
-  children: string;
-  className?: string;
-}) {
+  setEntered,
+}: SlideUpParagraphProps) {
   const ref = useRef<HTMLParagraphElement>(null);
 
   const words = children.split(" ").map((word, index) => (
@@ -32,15 +36,15 @@ export default function SlideUpParagraph({
           {
             y: "0%",
             opacity: 1,
-            duration: 1,
+            duration: 0.7,
             stagger: 0.03,
             ease: "power2.out",
             scrollTrigger: {
               trigger: ref.current,
               start: "top 80%",
               end: "top bottom",
-              // markers: true,
-              toggleActions: "play none none none", //"play none reverse none" use this combination if you want to redo the animation on reenter
+              toggleActions: "play none none none",
+              onEnter: () => setEntered(true),
             },
           }
         );
@@ -52,7 +56,7 @@ export default function SlideUpParagraph({
 
     waitForGSAP();
     return () => clearTimeout(gsapTimeout);
-  }, []);
+  }, [setEntered]);
 
   return (
     <p className={` ${className}`} ref={ref}>

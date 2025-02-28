@@ -44,7 +44,7 @@
 @supports (scrollbar-color: auto) {
   * {
     /* scrollbar-color: var(--primary) black; */
-    scrollbar-width: none;
+    scrollbar-width: thin;
   }
 }
 
@@ -52,7 +52,7 @@ body {
   color: var(--foreground);
   background: var(--background-secondary);
   font-family: var(--font-geologica), var(--font-space-grotesk), var(--font-inter), sans-serif;
-  /* overflow: hidden; */
+  overflow-x: hidden;
   margin: 0;
   scroll-behavior: smooth;
 }
@@ -103,8 +103,8 @@ p {
 }
 
 h1 {
-  font-size: 102px;
-  font-weight: 200;
+  font-size: 110px;
+  font-weight: 300;
   line-height: 1;
 }
 h2 {
@@ -118,7 +118,7 @@ h3 {
   line-height: 1;
 }
 h4 {
-  font-size: 20px;
+  font-size: 48px;
   font-weight: 300;
 }
 h5 {

@@ -69,7 +69,7 @@ export default function Work() {
   }, []);
 
   return (
-    <section className="w-full bg-white py-[30px]">
+    <section className="w-full bg-white py-[200px]">
       <div className="w-full py-[15px] px-[30px] 2xl:px-[10%]">
         <h2 className="font-light text-sm">WORK</h2>
       </div>

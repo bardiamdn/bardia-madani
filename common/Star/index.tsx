@@ -1,41 +1,53 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export default function Star() {
-  const [offset, setOffset] = useState({
-    y: 0,
-    x: 0,
-  });
+  const bgPathRef = useRef(null);
 
   useEffect(() => {
-    const handleMouseMove = (event: MouseEvent) => {
-      const yfactor = 0.02;
-      const xfactor = 0.005;
-      const offsetY = (window.innerHeight / 2 - event.clientY) * yfactor;
-      const offsetX = (window.innerWidth / 2 - event.clientX) * xfactor;
-      setOffset({ y: offsetY, x: offsetX });
-      // console.log(offset);
+    if (!bgPathRef.current) return;
+
+    let gsapTimeout: NodeJS.Timeout;
+    const waitForGsap = () => {
+      if (window.gsap && window.ScrollTrigger) {
+        window.gsap.registerPlugin(window.ScrollTrigger);
+        window.gsap.to(bgPathRef.current, {
+          y: "-20px",
+          // duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: bgPathRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            markers: true,
+            scrub: true,
+          },
+        });
+      } else {
+        console.warn("GSAP not loaded in tags, retrying...");
+        gsapTimeout = setTimeout(waitForGsap, 100);
+      }
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    waitForGsap();
+    return () => clearTimeout(gsapTimeout);
   }, []);
 
   return (
     <svg
-      width="90"
-      height="94"
-      viewBox="0 0 90 94"
+      width="202"
+      height="230"
+      viewBox="0 0 101 115"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M49.4258 65.0479L42.8628 86.97C42.4357 88.3964 40.4158 88.3964 39.9888 86.97L31.1547 57.4617C31.0113 56.9828 30.6387 56.6068 30.1611 56.459L1.05658 47.4529C-0.352194 47.0169 -0.352194 45.0229 1.05658 44.5869L30.1611 35.5808C30.6387 35.433 31.0113 35.057 31.1547 34.5781L39.9888 5.0698C40.4158 3.6434 42.4357 3.6434 42.8628 5.0698L49.4258 26.9919V65.0479Z"
-        fill="#597484"
-        transform={`translate(${offset.x}, ${offset.y})`}
+        ref={bgPathRef}
+        d="M50.4258 91.0479L43.8628 112.97C43.4357 114.396 41.4158 114.396 40.9888 112.97L32.1547 83.4617C32.0113 82.9828 31.6387 82.6068 31.1611 82.459L2.05658 73.4529C0.647806 73.0169 0.647806 71.0229 2.05658 70.5869L31.1611 61.5808C31.6387 61.433 32.0113 61.057 32.1547 60.5781L40.9888 31.0698C41.4158 29.6434 43.4357 29.6434 43.8628 31.0698L50.4258 52.9919V91.0479Z"
+        fill="#85ACC4"
       />
       <path
-        d="M43.563 7.0499C43.99 5.6235 46.01 5.6235 46.437 7.0499L55.2711 36.5582C55.4145 37.0371 55.7871 37.4131 56.2647 37.5609L85.3692 46.567C86.778 47.003 86.778 48.997 85.3692 49.433L56.2647 58.4391C55.7871 58.5869 55.4145 58.9629 55.2711 59.4418L46.437 88.9501C46.01 90.3765 43.99 90.3765 43.563 88.9501L34.7289 59.4418C34.5855 58.9629 34.2129 58.5869 33.7353 58.4391L4.63081 49.433C3.22204 48.997 3.22203 47.003 4.63081 46.567L33.7353 37.5609C34.2129 37.4131 34.5855 37.0371 34.7289 36.5582L43.563 7.0499Z"
+        d="M49.563 17.0499C49.99 15.6235 52.01 15.6235 52.437 17.0499L61.2711 46.5582C61.4145 47.0371 61.7871 47.4131 62.2647 47.5609L91.3692 56.567C92.778 57.003 92.778 58.997 91.3692 59.433L62.2647 68.4391C61.7871 68.5869 61.4145 68.9629 61.2711 69.4418L52.437 98.9501C52.01 100.377 49.99 100.377 49.563 98.9501L40.7289 69.4418C40.5855 68.9629 40.2129 68.5869 39.7353 68.4391L10.6308 59.433C9.22204 58.997 9.22203 57.003 10.6308 56.567L39.7353 47.5609C40.2129 47.4131 40.5855 47.0371 40.7289 46.5582L49.563 17.0499Z"
         fill="#B9DAEE"
       />
     </svg>

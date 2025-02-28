@@ -23,6 +23,7 @@ export default function CTABUtton({
   } else
     return (
       <button
+        type={type}
         className={`md:px-[20px] px-[15px] md:py-[8px] py-[6px] md:text-lg text-lg text-white border-[0.5px] border-primary rounded-full ${styles.button} ${styles.secondary} ${className}`}
       >
         <span>{children}</span>

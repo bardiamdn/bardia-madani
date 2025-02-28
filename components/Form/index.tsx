@@ -143,7 +143,7 @@ export default function Form() {
         ></textarea>
       </div>
 
-      <div className="md:px-[25px px-[15px]  ">
+      <div className="md:px-[25px] px-[15px]  py-[100px]">
         <CTABUtton type="submit" btnType="primary" className="w-full py-[16px]">
           Send Message
         </CTABUtton>
