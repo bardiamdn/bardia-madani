@@ -5,7 +5,12 @@ import { useState } from "react";
 export default function ServiceRow({
   services,
 }: {
-  services: { title: string; description: string; mediaSrc: string }[];
+  services: {
+    title: string;
+    description: string;
+    mediaSrc: string;
+    isVideo: boolean;
+  }[];
 }) {
   const [hoverIndex, setHoverIndex] = useState(0); // 0 for no hover
   const [loaded, setLoaded] = useState(false);
@@ -52,25 +57,41 @@ export default function ServiceRow({
                   : " opacity-0 w-0 h-0"
               }`}
             >
-              <Image
-                src="/laptop-low.jpg"
-                alt="reduntant image alt"
-                className={`object-cover object-center ${
-                  loaded ? "opacity-0 " : "opacity-100 "
-                }`}
-                priority
-                fill
-              />
-              <Image
-                src="/laptop.jpg"
-                alt="half closed laptop in a dark room"
-                className={`object-cover object-center ${
-                  loaded ? "opacity-100 " : "opacity-0 "
-                }`}
-                loading="lazy"
-                fill
-                onLoad={() => setLoaded(true)}
-              />
+              {service.isVideo ? (
+                <video
+                  src={service.mediaSrc}
+                  // aria-label={serviceAlt}
+                  autoPlay
+                  loop
+                  muted
+                  className="object-center object-cover w-full h-full"
+                  // ref={videoRef}
+                >
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <>
+                  <Image
+                    src="/laptop-low.jpg"
+                    alt="reduntant image alt"
+                    className={`object-cover object-center ${
+                      loaded ? "opacity-0 " : "opacity-100 "
+                    }`}
+                    priority
+                    fill
+                  />
+                  <Image
+                    src={service.mediaSrc}
+                    alt="half closed laptop in a dark room"
+                    className={`object-cover object-center ${
+                      loaded ? "opacity-100 " : "opacity-0 "
+                    }`}
+                    loading="lazy"
+                    fill
+                    onLoad={() => setLoaded(true)}
+                  />
+                </>
+              )}
             </div>
           </div>
           <p

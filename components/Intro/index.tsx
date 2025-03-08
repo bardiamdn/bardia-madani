@@ -28,16 +28,16 @@ export default function Intro() {
         x: offset.x,
         duration: 1,
         ease: "easeOutQuint",
-        delay: 0.1,
+        // delay: 0.1,
       })
         .to(
           ".second-intro-image",
           {
             y: offset.y,
             x: offset.x,
-            duration: 1,
+            duration: 1.1,
             ease: "easeOutQuint",
-            delay: 0.17,
+            // delay: 0.17,
           },
           "-=0.8"
         )
@@ -46,9 +46,9 @@ export default function Intro() {
           {
             y: offset.y,
             x: offset.x,
-            duration: 1,
+            duration: 1.2,
             ease: "easeOutQuint",
-            delay: 0.15,
+            // delay: 0.15,
           },
           "-=0.7"
         )
@@ -57,9 +57,9 @@ export default function Intro() {
           {
             y: offset.y,
             x: offset.x,
-            duration: 1,
+            duration: 1.3,
             ease: "easeOutQuint",
-            delay: 0.13,
+            // delay: 0.13,
           },
           "-=0.9"
         )
@@ -68,9 +68,9 @@ export default function Intro() {
           {
             y: offset.y,
             x: offset.x,
-            duration: 1,
+            duration: 1.4,
             ease: "easeOutQuint",
-            delay: 0.16,
+            // delay: 0.16,
           },
           "-=0.8"
         )
@@ -79,9 +79,9 @@ export default function Intro() {
           {
             y: offset.y,
             x: offset.x,
-            duration: 1,
+            duration: 1.5,
             ease: "easeOutQuint",
-            delay: 0.14,
+            // delay: 0.14,
           },
           "-=1"
         );
@@ -97,7 +97,7 @@ export default function Intro() {
       const offsetY = (window.innerHeight / 2 - event.clientY) * yfactor;
       const offsetX = (window.innerWidth / 2 - event.clientX) * xfactor;
       setOffset({ y: offsetY, x: offsetX });
-      // console.log(offset);
+      console.log(offset);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -186,7 +186,6 @@ export default function Intro() {
               className={`object-cover object-center ${
                 loaded.first ? "opacity-0 " : "opacity-100 "
               }`}
-              // loading="lazy"
               priority
               fill
             />
@@ -210,7 +209,6 @@ export default function Intro() {
               className={`object-cover object-center ${
                 loaded.second ? "opacity-0 " : "opacity-100 "
               }`}
-              // loading="lazy"
               priority
               fill
             />
@@ -234,7 +232,6 @@ export default function Intro() {
               className={`object-cover object-center ${
                 loaded.third ? "opacity-0 " : "opacity-100 "
               }`}
-              // loading="lazy"
               priority
               fill
             />
@@ -258,7 +255,6 @@ export default function Intro() {
               className={`object-cover object-center ${
                 loaded.forth ? "opacity-0 " : "opacity-100 "
               }`}
-              // loading="lazy"
               priority
               fill
             />
@@ -282,7 +278,6 @@ export default function Intro() {
               className={`object-cover object-center ${
                 loaded.fifth ? "opacity-0 " : "opacity-100 "
               }`}
-              // loading="lazy"
               priority
               fill
             />
@@ -306,7 +301,6 @@ export default function Intro() {
               className={`object-cover object-center ${
                 loaded.sixth ? "opacity-0 " : "opacity-100 "
               }`}
-              // loading="lazy"
               priority
               fill
             />
@@ -322,15 +316,13 @@ export default function Intro() {
             />
           </div>
         </div>
-        <div className="md:w-full py-[20px] mb-[50px]">
+        <div className="md:w-full py-[20px] mb-[50px] flex items-center justify-center">
           <SlideUpParagraph
             setEntered={setEntered}
-            className="md:text-6xl text-3xl md:leading-[76px] leading-[42px] text-center font-light text-foreground px-[20px]"
+            className="md:text-6xl text-3xl md:leading-[76px] leading-[42px] text-center font-light text-foreground px-[20px] max-w-[1300px]"
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
+            Creating high performance websites using cutting edge technologies.
+            Helping you turn your ideas into a reality and convert.
           </SlideUpParagraph>
         </div>
         <div>

@@ -7,6 +7,7 @@ import { useScriptLoader } from "@/utils/ScriptLoaderContext";
 interface TransitionLinkProps extends LinkProps {
   children: React.ReactNode;
   href: string;
+  className?: string;
 }
 
 function wait(ms: number) {
@@ -29,6 +30,7 @@ function waitForGSAP(): Promise<void> {
 export default function TransitionLink({
   children,
   href,
+  className,
   ...props
 }: TransitionLinkProps) {
   const router = useRouter();
@@ -193,11 +195,11 @@ export default function TransitionLink({
   return (
     <Link onClick={handleClick} href={href} {...props}>
       <span
-        className={
+        className={`${
           href.split("/")[1] === pathname.split("/")[1]
             ? "text-foregroundSecondary"
             : "text-foregroundLight"
-        }
+        } ${className}`}
       >
         {children}
       </span>

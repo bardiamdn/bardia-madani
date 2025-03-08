@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 export default function Hero() {
   const [inView, setInView] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
-  const isTablet = useMediaQuery("(min-width: 768px)");
+  const isMobile = useMediaQuery("(min-width: 768px)");
   const startsContainerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -65,7 +65,7 @@ export default function Hero() {
     >
       {inView ? null : <div className="bg-white absolute inset-0 z-10"></div>}
       <div className="md:w-1/2 w-full h-full" ref={startsContainerRef}>
-        {isTablet ? (
+        {isMobile ? (
           <>
             <div className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-transparent to-black"></div>
             <Stars parentRef={startsContainerRef} />

@@ -28,6 +28,9 @@ export default {
         // xl: "1280px",
         // "2xl": "1536px",
       },
+      fontFamily: {
+        geologica: "var(--font-geologica), sans-serif",
+      },
     },
   },
   plugins: [],

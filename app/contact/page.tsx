@@ -6,10 +6,10 @@ import Link from "next/link";
 
 export default function Contact() {
   return (
-    <section className="bg-white flex flex-col px-[15px] pt-[50px] 2xl:px-0 w-full items-center">
-      <div className=" w-full 2xl:w-[80%] ">
+    <section className=" bg-white flex flex-col py-[50px] w-full items-center">
+      <div className=" w-full flex flex-col items-center">
         {/* Headline */}
-        <div className="h-[700px] flex flex-col justify-center mt-[100px] ">
+        <div className="h-[700px] flex flex-col justify-center mt-[100px] 2xl:w-[80%] w-full 2xl:px-0 px-[25px]">
           <div className="flex items-center ">
             {/* <Star /> */}
             <h1 className=" my-[40px] ">
@@ -19,13 +19,13 @@ export default function Contact() {
           </div>
           <div className="flex justify-end">
             <p className="w-[250px] -translate-y-[75px]">
-              Your website needs ongoing care to perform at its best. I provide
-              regular updates, bug fixes, and performance monitoring to ensure
-              smooth operation and continued success.
+              Whether you have a detailed project plan or just an idea, feel
+              free to get in touch. I&apos;m here to help bring your vision to
+              life.
             </p>
           </div>
         </div>
-        <div className="relative flex flex-col md:flex-row justify-center">
+        <div className="relative w-full flex flex-col md:flex-row justify-center">
           {/* contact info */}
           <div className="md:sticky md:top-[25vh] md:self-start 2xl:w-[40%] 2xl:ml-[10%] md:w-1/2 w-full md:px-[25px] px-[15px] flex flex-col">
             <h3 className="mb-[50px]">Contact Info</h3>

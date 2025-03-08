@@ -19,7 +19,6 @@ export default function Star() {
             trigger: bgPathRef.current,
             start: "top bottom",
             end: "bottom top",
-            markers: true,
             scrub: true,
           },
         });

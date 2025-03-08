@@ -66,10 +66,10 @@ const Footer: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="h-[10%] border-t border-border flex items-center justify-between">
+        <div className=" h-[10%] border-t border-border flex items-center justify-between">
           <div className="flex flex-col">
             <h5 className="mb-[8px]">Local Time</h5>
-            <p className="">
+            <span className="">
               {new Date().toLocaleString("en-GB", {
                 timeZone: "Europe/Istanbul",
                 hour: "2-digit",
@@ -77,10 +77,12 @@ const Footer: React.FC = () => {
                 hour12: true,
               })}{" "}
               GMT+3
-            </p>
+            </span>
           </div>
 
-          <p className="">&copy; {new Date().getFullYear()} Bardia Madani</p>
+          <span className="">
+            &copy; {new Date().getFullYear()} Bardia Madani
+          </span>
         </div>
       </div>
     </footer>

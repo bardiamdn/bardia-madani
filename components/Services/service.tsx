@@ -7,12 +7,15 @@ export default function Service({
   serviceMedia,
   serviceAlt,
   serviceDescription,
+  isVideo,
 }: {
   serviceName: string;
   serviceMedia: string;
   serviceAlt: string;
   serviceDescription: string;
+  isVideo: boolean;
 }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const serviceRef = useRef<HTMLDivElement>(null);
   const desRef = useRef<HTMLDivElement>(null);
@@ -86,13 +89,14 @@ export default function Service({
         const mm = window.gsap.matchMedia();
 
         mm.add("(max-width: 768px)", () => {
+          // if (videoRef.current) videoRef.current.play();
           const tl = window.gsap.timeline({
             scrollTrigger: {
               trigger: containerRef.current,
-              start: "top 70%",
-              end: "top 20%",
-              // markers: true,
-              toggleActions: "play reverse play reverse",
+              start: "top 80%",
+              end: "top 55%",
+              markers: true,
+              scrub: true,
             },
           });
           tl.fromTo(
@@ -124,6 +128,45 @@ export default function Service({
                 ease: "easeOutQuint",
               }
             );
+          const tlReverse = window.gsap.timeline({
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: "top 35%",
+              end: "top top",
+              markers: true,
+              scrub: true,
+            },
+          });
+          tlReverse
+            .to(
+              containerRef.current,
+              // { height: 300 },
+              {
+                height: 150,
+                // justifyContent: "space-between",
+                duration: 0.5,
+                ease: "easeInOutQuint",
+              }
+            )
+            // .set(desRef.current, {
+            //   display: "inline",
+            // })
+            // .to(desRef.current, {
+            //   opacity: 1,
+            //   // display: "inline",
+            // })
+            .to(
+              imageRef.current,
+              // { display: "block", opacity: 1, width: "50%", height: "50%" },
+              {
+                display: "none",
+                opacity: 0,
+                width: 0,
+                height: 0,
+                duration: 0.5,
+                ease: "easeOutQuint",
+              }
+            );
         });
       } else {
         console.warn("GSAP not loaded yet, retrying...");
@@ -140,6 +183,7 @@ export default function Service({
     const mm = window.gsap.matchMedia();
 
     mm.add("(min-width: 768px)", () => {
+      if (videoRef.current) videoRef.current.play();
       const tl = window.gsap.timeline();
 
       tl.to(
@@ -174,7 +218,7 @@ export default function Service({
     });
   };
   const handleMouseLeave = () => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || !videoRef.current) return;
     const mm = window.gsap.matchMedia();
 
     mm.add("(min-width: 768px)", () => {
@@ -210,6 +254,7 @@ export default function Service({
           }
           // 0.2
         );
+      if (videoRef.current) videoRef.current.pause();
     });
   };
 
@@ -227,12 +272,26 @@ export default function Service({
         className="relative w-[5%] opacity-0 hidden aspect-square"
         ref={imageRef}
       >
-        <Image
-          src={serviceMedia}
-          alt={serviceAlt}
-          fill
-          className="object-center object-cover"
-        />
+        {isVideo ? (
+          <video
+            src={serviceMedia}
+            aria-label={serviceAlt}
+            // autoPlay
+            loop
+            muted
+            className="object-center object-cover w-full h-full"
+            ref={videoRef}
+          >
+            Your browser does not support the video tag.
+          </video>
+        ) : (
+          <Image
+            src={serviceMedia}
+            alt={serviceAlt}
+            fill
+            className="object-center object-cover"
+          />
+        )}
       </div>
       <p
         className="w-[55%] md:inline hidden md:opacity-100 opacity-0"

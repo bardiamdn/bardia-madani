@@ -100,6 +100,7 @@ body {
 
 p {
   font-family:  var(--font-inter), sans-serif;
+  font-size: 22px;
 }
 
 h1 {
@@ -132,10 +133,10 @@ h5 {
     font-size: 64px;
   }
   h2 {
-    font-size: 36px;
+    font-size: 56px;
   }
   h3 {
-    font-size: 42px;
+    font-size: 46px;
   }  
 }
 @media (max-width: 480px) {
