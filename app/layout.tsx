@@ -5,6 +5,7 @@ import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import dynamic from "next/dynamic";
 import { ScriptLoaderProvider } from "@/utils/ScriptLoaderContext";
+import Loading from "@/common/Loading";
 const Footer = dynamic(() => import("@/components/Footer"));
 const Header = dynamic(() => import("@/components/Header"));
 
@@ -110,9 +111,7 @@ export default function RootLayout({
             id="overlay"
             className=" fixed left-0 top-0 w-screen h-[100vh] z-30 bg-black flex items-center justify-center"
           >
-            <div className="text-white overflow-hidden">
-              <h1 className="">Transition</h1>
-            </div>
+            <Loading />
           </div>
           <Header />
           <SmoothScroll />

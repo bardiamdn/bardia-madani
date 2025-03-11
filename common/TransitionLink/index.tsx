@@ -95,7 +95,13 @@ export default function TransitionLink({
     if (!overlay) console.log("overlay not found");
     if (!overlayTop) console.log("overlayTop not found");
 
-    const h1 = overlay?.querySelector("h1");
+    let h1 = overlay?.querySelector("h1");
+    const loading = overlay?.querySelector("svg");
+
+    if (loading) {
+      loading.remove();
+    }
+
     if (h1) {
       if (href === "/") h1.textContent = "Home";
       else {
@@ -103,7 +109,22 @@ export default function TransitionLink({
           href.split("/")[1].charAt(0).toUpperCase() +
           href.split("/")[1].slice(1);
       }
-    } else console.log("h1 not found");
+    } else {
+      const wrapper = document.createElement("div");
+      wrapper.style.overflow = "hidden";
+      wrapper.style.color = "white";
+
+      h1 = document.createElement("h1");
+      h1.textContent =
+        href === "/"
+          ? "Home"
+          : href.split("/")[1].charAt(0).toUpperCase() +
+            href.split("/")[1].slice(1);
+
+      wrapper.appendChild(h1);
+
+      overlay?.appendChild(wrapper);
+    }
 
     e.preventDefault();
     await waitForGSAP();
@@ -150,7 +171,7 @@ export default function TransitionLink({
 
     router.push(href);
 
-    await wait(750);
+    await wait(1000);
 
     const timelineOut = window.gsap.timeline();
 

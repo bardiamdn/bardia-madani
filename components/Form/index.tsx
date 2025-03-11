@@ -79,7 +79,7 @@ export default function Form() {
       </h2>
       <div
         id="name"
-        className="mb-[35px] relative after:absolute after:bottom-0 after:left-0 after:w-[var(--border-height)] after:h-[1px] after:bg-black "
+        className="mb-[35px] relative after:absolute after:bottom-0 after:left-0 after:w-[var(--border-height)] after:h-[1px] after:bg-black focus-within:after:bg-transparent"
       >
         <label className="md:px-[25px] px-[15px] block mb-[15px] text-xl">
           Full Name
@@ -87,13 +87,13 @@ export default function Form() {
         <input
           type="text"
           placeholder="Enter your full name"
-          className="w-full py-[10px] focus:outline-none focus:border-b-2 focus:border-accent text-lg md:px-[25px] px-[15px]"
+          className="w-full py-[10px] 2xl:pr-[10vw] focus:outline-none focus:border-b-2 focus:border-accent text-lg md:px-[25px] px-[15px]"
         />
       </div>
 
       <div
         id="email"
-        className="mb-[35px] relative after:absolute after:bottom-0 after:left-0 after:w-[var(--border-height)] after:h-[1px] after:bg-black"
+        className="mb-[35px] relative after:absolute after:bottom-0 after:left-0 after:w-[var(--border-height)] after:h-[1px] after:bg-black focus-within:after:bg-transparent"
       >
         <label className="md:px-[25px] px-[15px] block mb-[15px] text-xl">
           Email Address
@@ -101,12 +101,12 @@ export default function Form() {
         <input
           type="email"
           placeholder="e.g., name@example.com"
-          className="w-full py-[10px] focus:outline-none focus:border-b-2 focus:border-accent text-lg md:px-[25px] px-[15px] "
+          className="w-full py-[10px] 2xl:pr-[10vw] focus:outline-none focus:border-b-2 focus:border-accent text-lg md:px-[25px] px-[15px] "
         />
       </div>
       <div
         id="organization"
-        className="mb-[35px] relative after:absolute after:bottom-0 after:left-0 after:w-[var(--border-height)] after:h-[1px] after:bg-black"
+        className="mb-[35px] relative after:absolute after:bottom-0 after:left-0 after:w-[var(--border-height)] after:h-[1px] after:bg-black focus-within:after:bg-transparent"
       >
         <label className="md:px-[25px] px-[15px] block mb-[15px] text-xl">
           Organization Name
@@ -114,12 +114,12 @@ export default function Form() {
         <input
           type="text"
           placeholder="e.g., Acme Corp."
-          className="w-full py-[10px] focus:outline-none focus:border-b-2 focus:border-accent text-lg md:px-[25px] px-[15px] "
+          className="w-full py-[10px] 2xl:pr-[10vw] focus:outline-none focus:border-b-2 focus:border-accent text-lg md:px-[25px] px-[15px] "
         />
       </div>
       <div
         id="service"
-        className="mb-[35px] relative after:absolute after:bottom-0 after:left-0 after:w-[var(--border-height)] after:h-[1px] after:bg-black"
+        className="mb-[35px] relative after:absolute after:bottom-0 after:left-0 after:w-[var(--border-height)] after:h-[1px] after:bg-black focus-within:after:bg-transparent"
       >
         <label className="md:px-[25px] px-[15px] block mb-[15px] text-xl">
           Which Service Are You Interested In?
@@ -127,23 +127,23 @@ export default function Form() {
         <input
           type="text"
           placeholder="e.g., Web Development, Web Design"
-          className="w-full py-[10px] focus:outline-none focus:border-b-2 focus:border-accent text-lg md:px-[25px] px-[15px] "
+          className="w-full py-[10px] 2xl:pr-[10vw] focus:outline-none focus:border-b-2 focus:border-accent text-lg md:px-[25px] px-[15px] "
         />
       </div>
       <div
         id="message"
-        className="mb-[35px] relative after:absolute after:bottom-0 after:left-0 after:w-[var(--border-height)] after:h-[1px] after:bg-black"
+        className="mb-[35px] relative after:absolute after:bottom-0 after:left-0 after:w-[var(--border-height)] after:h-[1px] after:bg-black focus-within:after:bg-transparent"
       >
         <label className="md:px-[25px] px-[15px] block mb-[15px] text-xl">
           Message
         </label>
         <textarea
           placeholder="Enter your message here"
-          className="w-full py-[10px] focus:outline-none focus:border-b-2 focus:border-accent text-lg md:px-[25px] px-[15px] h-32"
+          className="w-full py-[10px] 2xl:pr-[10vw] focus:outline-none focus:border-b-2 focus:border-accent text-lg md:px-[25px] px-[15px] h-32"
         ></textarea>
       </div>
 
-      <div className="md:px-[25px] px-[15px]  py-[100px]">
+      <div className="md:px-[25px] px-[15px] 2xl:pr-[10vw] py-[100px]">
         <CTABUtton type="submit" btnType="primary" className="w-full py-[16px]">
           Send Message
         </CTABUtton>

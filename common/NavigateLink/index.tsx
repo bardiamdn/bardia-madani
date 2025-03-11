@@ -1,4 +1,3 @@
-import Link from "next/link";
 import TransitionLink from "../TransitionLink";
 
 export default function Navigate({

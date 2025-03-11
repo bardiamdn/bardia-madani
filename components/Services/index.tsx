@@ -31,7 +31,7 @@ export default function Services() {
       serviceName: "Technical SEO",
       serviceDescription:
         "A well-optimized website features a streamlined structure, rapid loading times, and improved indexing, driving higher search engine rankings and boosting organic traffic.",
-      serviceMedia: "/videos/technical-seo.mp4",
+      serviceMedia: "/videos/seo.mp4",
       serviceAlt: "AI generated video of search button",
       isVideo: true,
     },

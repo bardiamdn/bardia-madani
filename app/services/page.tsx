@@ -1,7 +1,6 @@
 "use client";
-// import CTABUtton from "@/common/CTAButton";
+import Navigate from "@/common/NavigateLink";
 import Star from "@/common/Star";
-import TransitionLink from "@/common/TransitionLink";
 import ServiceBlocks from "@/components/ServiceRow";
 
 const services = [
@@ -9,16 +8,15 @@ const services = [
     {
       title: "Web Design",
       description:
-        "I create visually appealing, user-friendly websites designed to capture attention and drive conversions. A well-structured design ensures visitors stay engaged and take action.",
-      mediaSrc: "/design.avif",
+        "I create visually appealing, user-friendly websites that capture attention by incorporating motion and interactive elements.",
+      mediaSrc: "/laptop-design.jpg",
       isVideo: false,
     },
     {
       title: "Web Development",
       description:
-        // "A well-built website is the foundation of your online presence. With clean, efficient code and best practices, I develop websites that are fast, scalable, and optimized for search engines—helping you rank on Google without relying solely on ads.",
-        "I develop websites using React, Next JS or plain javascript. The goal is always the same, to make sure it works seamlesly on all devices and load times are fast.",
-      mediaSrc: "/development.avif",
+        "I develop websites using React, Next.js, or plain JavaScript, always ensuring seamless experience across all devices and fast load times.",
+      mediaSrc: "/laptop-development.jpg",
       isVideo: false,
     },
   ],
@@ -26,14 +24,14 @@ const services = [
     {
       title: "Technical SEO",
       description:
-        "I optimize your website to rank higher on Google and attract organic traffic. From technical SEO and keyword strategy to improving site structure and page speed, I ensure your site is search-engine friendly.",
+        "I optimize websites to rank higher on search engines and attract organic traffic by implementing technical SEO practices, such as improving site structure and page speed.",
       mediaSrc: "/videos/technical-seo.mp4",
       isVideo: true,
     },
     {
-      title: "Maintanance & Support",
+      title: "Maintenance & Support",
       description:
-        "I offer reliable hosting solutions, ensuring your website is fast, secure, and always accessible. With regular backups, SSL certificates, and security measures, I help protect your site from threats and downtime.",
+        "I provide 24/7 support to keep your website fast, secure, and always available. Protecting your site from threats and minimize downtime.",
       mediaSrc: "/videos/support.mp4",
       isVideo: true,
     },
@@ -45,26 +43,37 @@ export default function Services() {
     <section className="bg-white flex flex-col px-[15px] py-[50px] 2xl:px-0 w-full items-center">
       <div className=" w-full 2xl:w-[80%] ">
         {/* Intro */}
-        <div className="h-[700px] flex flex-col justify-center mt-[100px] ">
+        <div className="md:h-[700px] h-auto flex flex-col justify-center md:mt-[100px] md:mb-0 mb-[100px]">
           <div className="flex items-center ">
             <Star />
             <h1 className=" my-[40px] ">
-              <span className="block">What I can </span>
-              <span className="block ml-[200px] mt-[30px]">do for you</span>
+              <span className="md:block">What I can </span>
+              <span className="md:block md:ml-[200px] md:mt-[30px]">
+                do for you
+              </span>
             </h1>
           </div>
           <div className="flex justify-end">
-            <p className="w-[250px] -translate-y-[75px]">
-              Making sure your website is beautifully crafted while compliying
-              with SEO best practices.
+            <p className="md:w-[250px] md:-translate-y-[75px]">
+              Ensuring your website is beautifully crafted, well-built, and
+              compliant with SEO best practices.
             </p>
           </div>
         </div>
         <ServiceBlocks services={services[0]} />
         <ServiceBlocks services={services[1]} />
-        <div>
-          <p>To see the process you can visit about.</p>
-          <TransitionLink href="/about">About</TransitionLink>
+        <div className="border-t border-border md:py-[150px] py-[100px] md:h-auto md:space-y-0 space-y-[50px] mt-[100px] flex md:flex-row flex-col justify-between items-center">
+          <div className="md:w-[800px]">
+            <p>
+              Combining design, development, and SEO gives me a unique
+              opportunity to see through the entire project lifecycle. If
+              you&apos;re interested in a comprehensive service, please visit my
+              About page to review the full process.
+            </p>
+          </div>
+          <div className="md:w-[20%]">
+            <Navigate href="/about/#process">The Process</Navigate>
+          </div>
         </div>
         {/* <div className="py-[200px] flex flex-col gap-[25px]">
           <h4>

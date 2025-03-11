@@ -44,7 +44,6 @@ export default function Service({
               trigger: serviceRef.current,
               start: "bottom bottom",
               end: "top bottom",
-              // markers: true,
               toggleActions: "play none none none",
             },
           }
@@ -64,7 +63,6 @@ export default function Service({
               trigger: desRef.current,
               start: "bottom bottom",
               end: "top bottom",
-              // markers: true,
               toggleActions: "play none none none",
             },
           }
@@ -80,7 +78,6 @@ export default function Service({
               trigger: containerRef.current,
               start: "bottom bottom",
               end: "top bottom",
-              // markers: true,
               toggleActions: "play none none none",
             },
           }
@@ -95,7 +92,6 @@ export default function Service({
               trigger: containerRef.current,
               start: "top 80%",
               end: "top 55%",
-              markers: true,
               scrub: true,
             },
           });
@@ -133,7 +129,6 @@ export default function Service({
               trigger: containerRef.current,
               start: "top 35%",
               end: "top top",
-              markers: true,
               scrub: true,
             },
           });

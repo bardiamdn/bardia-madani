@@ -8,37 +8,30 @@ export default function About() {
     <section className="bg-white flex flex-col px-[15px] py-[50px] 2xl:px-0 w-full items-center">
       <div className=" w-full 2xl:w-[80%] ">
         {/* Headline */}
-        <div className="relative h-[500px] flex flex-col justify-center mt-[100px] bg-pink-200">
-          <div className="flex items-center bg-pink-300">
-            <h1 className=" my-[40px] ">
-              <span className="block">Design, Developement</span>
-              <span className="block ml-[200px] mt-[30px]">
+        <div className="relative md:h-[500px] flex flex-col justify-center md:mt-[100px]">
+          <div className="flex items-center">
+            <h1 className=" md:my-[40px] mt-[40px]">
+              <span className="md:block">Design, Development </span>
+              <span className="md:block md:ml-[200px] md:mt-[30px]">
                 Interaction & Motion
               </span>
             </h1>
           </div>
         </div>
         <div className="relative flex md:flex-row flex-col items-center gap-[35px] py-[50px] h-[600px]">
-          <div className="w-[60%] space-y-[25px]">
+          <div className="md:w-[60%] ms:space-y-[25px] flex flex-col justify-between h-full">
             <p>
-              I consistently push boundaries on every project, elevating them to
-              new heights while managing your project from concept to launch.
-              {/* I work with businesses across the globe to craft websites that not
-            only look great but also deliver real results. From start to finish,
-            I handle everything myself—understanding your unique needs, defining
-            your goals, and positioning your brand effectively in the market. I
-            take a holistic approach, ensuring every element—copywriting,
-            design, development, and marketing—works together seamlessly. By
-            overseeing each step personally, I create websites that aren&apos;t
-            just visually appealing but also strategically built to attract and
-            convert customers. */}
+              I&apos;m passionate about great design , bringing creative ideas
+              to life with dynamic motion and interactive code. I constantly
+              push boundaries, elevating each project to new heights while
+              managing every detail from concept to launch.
             </p>
             <p>
-              I bring designs to life by integrating dynamic motion and
-              interactive elements through code.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
           </div>
-          <div className="absolute right-0 bottom-0 bg-pink-400 w-[40%] h-[150%]">
+          <div className="absolute right-0 bottom-0 md:w-[40%] w-full md:h-[100%] h-[50%]">
             <Image
               src="/laptop-low.jpg"
               alt="half closed laptop in a dark room"
@@ -60,15 +53,29 @@ export default function About() {
             />
           </div>
         </div>
-        <div className="flex flex-col md:flex-row md:border-t border-black">
-          <div className="md:w-1/2 w-full md:mr-[50px]">
-            <h2 className="mt-[45px] mb-[20px] text-center md:text-start">
+        <div className="flex flex-col md:flex-row md:border-t md:mt-0  my-[70px] border-black md:my-[150px]">
+          <div className="md:w-1/2 w-full md:mr-[50px] border-t border-border ">
+            <h2
+              id="process"
+              className="mt-[45px] mb-[20px] text-center md:text-start"
+            >
               The Process
             </h2>
-            <p className="w-[85%] text-[26px] font-geologica font-extralight">
-              are the steps I follow to deliver a comprehensive, end-to-end
-              solution tailored to your unique needs and requirements.
+            <p className="md:w-[85%] md:text-[26px] text-[20px] font-geologica font-extralight">
+              Here’s how I will bring your vision to life with a seamless,
+              end-to-end solution tailored to your needs.
             </p>
+            <div className="md:my-[100px] my-[50px]">
+              <video
+                src="/videos/development.mp4"
+                autoPlay
+                loop
+                muted
+                className="object-center object-cover w-full h-full"
+              >
+                Your browser does not support the video tag.
+              </video>
+            </div>
           </div>
           <div className="md:w-1/2 w-full">
             <div className="flex flex-col gap-[25px] py-[35px] border-b-[0.5px] border-border md:border-black">
@@ -78,13 +85,8 @@ export default function About() {
                 {/* <h3>Understanding Your Business & Goals</h3> */}
               </div>
               <p>
-                {/* I would set up a quick video call, so I can gather information
-                about your business, your goals, your special requirements, etc. */}
-                Every great project starts with a clear understanding. I take
-                the time to learn about your business, your industry, and your
-                specific goals. Whether you&apos;re launching a new brand or
-                improving an existing website, this step ensures that everything
-                aligns with your vision and long-term success.
+                We start with a quick online consultation to understand your
+                goals, challenges, and expectations.
               </p>
             </div>
             <div className="flex flex-col gap-[25px] py-[35px] border-b-[0.5px] border-border md:border-black">
@@ -94,12 +96,16 @@ export default function About() {
                 {/* <h3>Market Research & Strategy</h3> */}
               </div>
               <p>
+                I analyze your industry, competitors, and target audience to
+                define the website’s content and strategy.
+              </p>
+              {/* <p>
                 A website should do more than just look good it should perform
                 well in your industry. I analyze your competitors, target
                 audience, and market trends to create a strategic approach that
                 positions your business effectively online. This research shapes
                 the structure, content, and design of your site.
-              </p>
+              </p> */}
             </div>
             <div className="flex flex-col gap-[25px] py-[35px] border-b-[0.5px] border-border md:border-black">
               <div className="inline-flex gap-[15px]">
@@ -108,11 +114,8 @@ export default function About() {
                 {/* <h3>Content & Messaging</h3> */}
               </div>
               <p>
-                Great design starts with great content. I craft compelling copy
-                that speaks directly to your audience, communicates your value,
-                and improves search engine rankings. Whether it&apos;s landing
-                pages, blog posts, or product descriptions, I ensure your
-                message is clear, engaging, and optimized for conversions.
+                Once we’ve established the concept, I create the design and
+                refine it based on your feedback.
               </p>
             </div>
             <div className="flex flex-col gap-[25px] py-[35px] border-b-[0.5px] border-border md:border-black">
@@ -122,12 +125,8 @@ export default function About() {
                 <h3>Develop</h3>
               </div>
               <p>
-                A strong website is visually appealing, intuitive, and easy to
-                navigate. I focus on modern, high-converting design,
-                incorporating your brand&apos;s identity while ensuring a
-                seamless user experience across all devices. This step brings
-                your vision to life with attention to aesthetics, usability, and
-                engagement.
+                My favorite part—coding the website, adding motion, and bringing
+                everything to life.
               </p>
             </div>
             <div className="flex flex-col gap-[25px] py-[35px] border-b-[0.5px] border-border md:border-black">
@@ -137,11 +136,8 @@ export default function About() {
                 <h3>Deploy</h3>
               </div>
               <p>
-                Once the design is finalized, I build your website with clean,
-                efficient code that ensures speed, security, and
-                SEO-friendliness. I integrate all necessary features, from
-                contact forms to payment gateways, making sure your site is
-                functional, responsive, and built to scale.
+                After thorough testing and final refinements, your website goes
+                live.
               </p>
             </div>
             <div className="flex flex-col gap-[25px] py-[35px]">
@@ -151,11 +147,8 @@ export default function About() {
                 <h3>Drive</h3>
               </div>
               <p>
-                A website is never truly “finished.” To keep it running
-                smoothly, I offer ongoing updates, security monitoring, and
-                performance optimizations. This ensures your site remains fast,
-                secure, and aligned with the latest industry standards—so you
-                can focus on growing your business.
+                Post-launch, I analyze performance and ensure everything is
+                optimized for search engines.
               </p>
             </div>
           </div>

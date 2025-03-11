@@ -4,11 +4,7 @@ import dynamic from "next/dynamic";
 // import { useEffect } from "react";
 
 import Hero from "@/components/Hero";
-import Tagline from "@/components/Hero/HeroContent";
-// import Transition from "@/components/Transition";
-// const Tagline = dynamic(() => import("@/components/HeroContent"), {
-//   ssr: false,
-// });
+import HeroContent from "@/components/Hero/HeroContent";
 const Intro = dynamic(() => import("@/components/Intro"), { ssr: false });
 const Services = dynamic(() => import("@/components/Services"), { ssr: false });
 const Work = dynamic(() => import("@/components/Work"), { ssr: false });
@@ -18,7 +14,7 @@ export default function Home() {
   return (
     <main className="relative">
       <Hero />
-      <Tagline />
+      <HeroContent />
       <Intro />
       <Services />
       <Work />

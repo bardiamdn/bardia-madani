@@ -39,6 +39,7 @@ export default function Star() {
       viewBox="0 0 101 115"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className="flex-shrink-0 md:w-[202px] w-[102px] md:block hidden"
     >
       <path
         ref={bgPathRef}

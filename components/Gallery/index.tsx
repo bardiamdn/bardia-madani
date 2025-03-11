@@ -9,9 +9,9 @@ interface ScrollTriggerInstance {
 const galleryInfo = [
   { imgSrc: "gallery-1.png", imgLowSrc: "laptop-low.jpg" },
   { imgSrc: "gallery-2.png", imgLowSrc: "laptop-low.jpg" },
-  { imgSrc: "laptop.jpg", imgLowSrc: "laptop-low.jpg" },
-  { imgSrc: "laptop.jpg", imgLowSrc: "laptop-low.jpg" },
-  { imgSrc: "laptop.jpg", imgLowSrc: "laptop-low.jpg" },
+  { imgSrc: "gallery-3.png", imgLowSrc: "laptop-low.jpg" },
+  { imgSrc: "gallery-4.png", imgLowSrc: "laptop-low.jpg" },
+  { imgSrc: "gallery-5.png", imgLowSrc: "laptop-low.jpg" },
 ];
 
 export default function Gallery() {

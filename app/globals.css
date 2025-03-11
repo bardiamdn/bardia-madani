@@ -130,7 +130,7 @@ h5 {
 
 @media (max-width: 1280px) {
   h1 {
-    font-size: 64px;
+    font-size: 80px;
   }
   h2 {
     font-size: 56px;
@@ -138,6 +138,17 @@ h5 {
   h3 {
     font-size: 46px;
   }  
+  p {
+    font-size: 20px;
+  }
+}
+@media (max-width: 768px) {
+  h1 {
+    font-size: 64px;
+  }
+  h2 {
+    font-size: 48px;
+  }
 }
 @media (max-width: 480px) {
   h1 {
