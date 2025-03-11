@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 interface ScrollTriggerInstance {
   direction: number;
@@ -26,8 +26,20 @@ export default function Gallery() {
   const secondRef = useRef(null);
   const containerRef = useRef(null);
   const sliderRef = useRef(null);
-  let direction = -1;
-  let xPercent = 0;
+  const direction = useRef(-1);
+  const xPercent = useRef(0);
+
+  const animate = useCallback(() => {
+    if (xPercent.current < -100) {
+      xPercent.current = 0;
+    } else if (xPercent.current > 0) {
+      xPercent.current = -100;
+    }
+    window.gsap.set(firstRef.current, { xPercent: xPercent.current });
+    window.gsap.set(secondRef.current, { xPercent: xPercent.current });
+    requestAnimationFrame(animate);
+    xPercent.current += 0.03 * direction.current;
+  }, []);
 
   useEffect(() => {
     let gsapTimeout: NodeJS.Timeout;
@@ -44,7 +56,7 @@ export default function Gallery() {
             scrub: 0.1,
             // markers: true,
             onUpdate: (self: ScrollTriggerInstance) => {
-              direction = self.direction * -1;
+              direction.current = self.direction * -1;
             },
           },
         });
@@ -59,19 +71,7 @@ export default function Gallery() {
     requestAnimationFrame(waitForGsap);
 
     return () => clearTimeout(gsapTimeout);
-  }, []);
-
-  const animate = () => {
-    if (xPercent < -100) {
-      xPercent = 0;
-    } else if (xPercent > 0) {
-      xPercent = -100;
-    }
-    window.gsap.set(firstRef.current, { xPercent: xPercent });
-    window.gsap.set(secondRef.current, { xPercent: xPercent });
-    requestAnimationFrame(animate);
-    xPercent += 0.03 * direction;
-  };
+  }, [animate]);
   // 2300 - 5 * (700-300) = 300 / 5 = 60 -> margin between
   return (
     <div className="w-full h-[700px] bg-white py-[150px]" ref={containerRef}>

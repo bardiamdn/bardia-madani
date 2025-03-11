@@ -13,7 +13,7 @@ export default function Intro() {
     fifth: false,
     sixth: false,
   });
-  const [entered, setEntered] = useState(false);
+  // const [entered, setEntered] = useState(false);
   const containerRef = useRef(null);
   const stickyRef = useRef(null);
 
@@ -345,7 +345,7 @@ export default function Intro() {
         >
           <div className=" md:w-full md:py-[20px] mb-[50px] ">
             <SlideUpParagraph
-              setEntered={setEntered}
+              // setEntered={setEntered}
               className="md:text-6xl text-3xl md:leading-[76px] leading-[42px] text-center font-light text-foreground md:px-[25px] px-[15px] max-w-[1300px]"
             >
               Creating high performance websites with cutting edge technologies

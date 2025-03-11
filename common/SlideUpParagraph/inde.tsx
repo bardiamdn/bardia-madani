@@ -3,14 +3,14 @@ import { useEffect, useRef } from "react";
 interface SlideUpParagraphProps {
   children: string;
   className?: string;
-  setEntered: (entered: boolean) => void;
+  // setEntered: (entered: boolean) => void;
 }
 
 export default function SlideUpParagraph({
   children,
   className,
-  setEntered,
-}: SlideUpParagraphProps) {
+}: // setEntered,
+SlideUpParagraphProps) {
   const ref = useRef<HTMLParagraphElement>(null);
 
   const words = children.split(" ").map((word, index) => (
@@ -44,7 +44,7 @@ export default function SlideUpParagraph({
               start: "top 80%",
               end: "top bottom",
               toggleActions: "play none none none",
-              onEnter: () => setEntered(true),
+              // onEnter: () => setEntered(true),
             },
           }
         );
@@ -56,7 +56,7 @@ export default function SlideUpParagraph({
 
     waitForGSAP();
     return () => clearTimeout(gsapTimeout);
-  }, [setEntered]);
+  }, []);
 
   return (
     <p className={` ${className}`} ref={ref}>
