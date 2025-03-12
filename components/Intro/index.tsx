@@ -31,50 +31,50 @@ export default function Intro() {
         {
           y: offset.y,
           x: offset.x,
-          // stagger: 1.1,
+          stagger: 0.5,
           ease: "easeOutQuint",
-        },
-        "-=0.3"
+        }
+        // "-=0.3"
       )
       .to(
         ".third-intro-image",
         {
           y: offset.y,
           x: offset.x,
-          // stagger: 1.3,
+          stagger: 0.5,
           ease: "easeOutQuint",
-        },
-        "-=0.2"
+        }
+        // "-=0.2"
       )
       .to(
         ".forth-intro-image",
         {
           y: offset.y,
           x: offset.x,
-          // stagger: 1.5,
+          stagger: 0.5,
           ease: "easeOutQuint",
-        },
-        "-=0.1"
+        }
+        // "-=0.1"
       )
       .to(
         ".fifth-intro-image",
         {
           y: offset.y,
           x: offset.x,
-          // stagger: 1.7,
+          stagger: 0.5,
           ease: "easeOutQuint",
-        },
-        "-=0.3"
+        }
+        // "-=0.3"
       )
       .to(
         ".sixth-intro-image",
         {
           y: offset.y,
           x: offset.x,
-          // stagger: 1.9,
+          stagger: 0.5,
           ease: "easeOutQuint",
-        },
-        "-=0.1"
+        }
+        // "-=0.1"
       );
   };
 
@@ -84,6 +84,7 @@ export default function Intro() {
       const xfactor = 0.005;
       const offsetY = (window.innerHeight / 2 - event.clientY) * yfactor;
       const offsetX = (window.innerWidth / 2 - event.clientX) * xfactor;
+
       animateImages({ x: offsetX, y: offsetY });
     };
 
@@ -159,16 +160,17 @@ export default function Intro() {
       ease: "power2.easeOut",
     });
 
-    window.gsap.fromTo(
+    window.gsap.to(
       stickyRef.current,
-      { y: 150 },
+      // { y: 150 },
       {
         y: 0,
         // ease: "power2.inOut",
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "5% center",
-          end: "5% 20%",
+          start: "-5% center",
+          end: "-5% 20%",
+          markers: true,
           scrub: true,
         },
       }
@@ -186,13 +188,17 @@ export default function Intro() {
           trigger: containerRef.current,
           start: "95% bottom",
           end: "95% 60%",
+          markers: true,
           scrub: true,
         },
       }
     );
 
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    const mm = window.gsap.matchMedia();
+    mm.add("(min-width: 768px)", () => {
+      window.addEventListener("mousemove", handleMouseMove);
+      return () => window.removeEventListener("mousemove", handleMouseMove);
+    });
   }, []);
 
   return (
@@ -260,7 +266,7 @@ export default function Intro() {
             fill
           />
           <Image
-            src="/intro-3.jpg"
+            src="/gallery-4.png"
             alt="half closed laptop in a dark room"
             className={`object-contain  ${
               loaded.third ? "opacity-100 " : "opacity-0 "
@@ -283,7 +289,7 @@ export default function Intro() {
             fill
           />
           <Image
-            src="/intro-4.avif"
+            src="/gallery-4.png"
             alt="half closed laptop in a dark room"
             className={`object-contain  ${
               loaded.forth ? "opacity-100 " : "opacity-0 "
@@ -306,7 +312,7 @@ export default function Intro() {
             fill
           />
           <Image
-            src="/gallery-4.png"
+            src="/gallery-3.png"
             alt="half closed laptop in a dark room"
             className={`object-contain  ${
               loaded.fifth ? "opacity-100 " : "opacity-0 "
@@ -329,7 +335,7 @@ export default function Intro() {
             fill
           />
           <Image
-            src="/gallery-3.png"
+            src="/intro-6.jpg"
             alt="half closed laptop in a dark room"
             className={`object-contain  ${
               loaded.sixth ? "opacity-100 " : "opacity-0 "
@@ -340,7 +346,7 @@ export default function Intro() {
           />
         </div>
         <div
-          className="sticky h-[50vh] top-[calc(25vh+150px)] flex flex-col items-center justify-center"
+          className="sticky h-[50vh] top-[calc(25vh+150px)] flex flex-col items-center justify-center translate-y-[150px]"
           ref={stickyRef}
         >
           <div className=" md:w-full md:py-[20px] mb-[50px] ">

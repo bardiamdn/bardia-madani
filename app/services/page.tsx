@@ -2,6 +2,7 @@
 import Navigate from "@/common/NavigateLink";
 import Star from "@/common/Star";
 import ServiceBlocks from "@/components/ServiceRow";
+import { usePageTransition } from "@/hooks/usePageTransition";
 
 const services = [
   [
@@ -39,11 +40,12 @@ const services = [
 ];
 
 export default function Services() {
+  usePageTransition();
   return (
     <section className="bg-white flex flex-col px-[15px] py-[50px] 2xl:px-0 w-full items-center">
       <div className=" w-full 2xl:w-[80%] ">
         {/* Intro */}
-        <div className="md:h-[700px] h-auto flex flex-col justify-center md:mt-[100px] md:mb-0 mb-[100px]">
+        <div className="border-b border-border md:h-[500px] h-auto flex flex-col justify-center md:mb-[150px] md:mt-[100px] md:p-0 pb-[100px] mb-[100px]">
           <div className="flex items-center ">
             <Star />
             <h1 className=" my-[40px] ">

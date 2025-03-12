@@ -1,0 +1,33 @@
+.dash {
+  stroke: var(--primary);
+  animation: spin 50s linear infinite;
+  transform-origin: center;
+}
+.loading {
+  stroke: var(--accent);
+  animation: loading-animation 1.5s cubic-bezier(0.85, 0, 0.15, 1) forwards;
+}
+
+@keyframes spin {
+  100% {
+    rotate: 360deg;
+  }
+}
+
+@keyframes loading-animation {
+  0% {
+    stroke-dashoffset: 282.74;
+  }
+  20% {
+    stroke-dashoffset: 210;
+  }
+  50% {
+    stroke-dashoffset: 120;
+  }
+  90% {
+    stroke-dashoffset: 20;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}

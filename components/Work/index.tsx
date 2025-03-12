@@ -122,7 +122,7 @@ export default function Work() {
               </svg>
             </Link>
           </div>
-          <Tags tags={["Web Design", "Web Development", "SEO"]} />
+          <Tags tags={["Web Design", "Web Development"]} />
         </div>
         <div className="w-full space-y-[20px] mb-[50px]" ref={secondRef}>
           <div className="relative w-full aspect-square">

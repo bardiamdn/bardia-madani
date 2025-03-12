@@ -1,7 +1,6 @@
 "use client";
 import Link, { LinkProps } from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect } from "react";
 import { useScriptLoader } from "@/utils/ScriptLoaderContext";
 
 interface TransitionLinkProps extends LinkProps {
@@ -36,55 +35,6 @@ export default function TransitionLink({
   const router = useRouter();
   const pathname = usePathname();
   const { loaded } = useScriptLoader();
-
-  useEffect(() => {
-    const overlay = document.getElementById("overlay");
-    const main = document.getElementById("main");
-    const overlaySecond = document.getElementById("second-overlay");
-    const checkGSAP = () => {
-      if (loaded) {
-        const timeline = window.gsap.timeline();
-
-        timeline
-          .fromTo(
-            overlay,
-            { top: "0" },
-            {
-              top: "-100vh",
-              duration: 1,
-              ease: "easeInOutQuint",
-            }
-          )
-          .fromTo(
-            overlaySecond,
-            { top: "-25vh" },
-            {
-              top: "-150vh",
-              duration: 1,
-              ease: "easeInOutQuint",
-            },
-            "0.3"
-          )
-          .fromTo(
-            main,
-            {
-              top: "200px",
-              opacity: 0,
-            },
-            {
-              top: 0,
-              opacity: 1,
-              duration: 1,
-              ease: "easeInOutQuint",
-            },
-            "0.4"
-          );
-      } else {
-        setTimeout(checkGSAP, 50);
-      }
-    };
-    checkGSAP();
-  }, [loaded, href]);
 
   const handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
     const main = document.getElementById("main");

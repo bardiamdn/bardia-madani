@@ -5,7 +5,8 @@ import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import dynamic from "next/dynamic";
 import { ScriptLoaderProvider } from "@/utils/ScriptLoaderContext";
-import Loading from "@/common/Loading";
+import Loading from "@/components/Loading";
+import { usePageTransition } from "@/hooks/usePageTransition";
 const Footer = dynamic(() => import("@/components/Footer"));
 const Header = dynamic(() => import("@/components/Header"));
 

@@ -83,86 +83,86 @@ export default function Service({
           }
         );
 
-        const mm = window.gsap.matchMedia();
+        // const mm = window.gsap.matchMedia();
 
-        mm.add("(max-width: 768px)", () => {
-          // if (videoRef.current) videoRef.current.play();
-          const tl = window.gsap.timeline({
-            scrollTrigger: {
-              trigger: containerRef.current,
-              start: "top 80%",
-              end: "top 55%",
-              scrub: true,
-            },
-          });
-          tl.fromTo(
-            containerRef.current,
-            { height: 150 },
-            {
-              height: 300,
-              // justifyContent: "space-between",
-              duration: 0.5,
-              ease: "easeInOutQuint",
-            }
-          )
-            // .set(desRef.current, {
-            //   display: "inline",
-            // })
-            // .to(desRef.current, {
-            //   opacity: 1,
-            //   // display: "inline",
-            // })
-            .fromTo(
-              imageRef.current,
-              { display: "none", opacity: 0, width: 0, height: 0 },
-              {
-                display: "block",
-                opacity: 1,
-                width: "50%",
-                height: "50%",
-                duration: 0.5,
-                ease: "easeOutQuint",
-              }
-            );
-          const tlReverse = window.gsap.timeline({
-            scrollTrigger: {
-              trigger: containerRef.current,
-              start: "top 35%",
-              end: "top top",
-              scrub: true,
-            },
-          });
-          tlReverse
-            .to(
-              containerRef.current,
-              // { height: 300 },
-              {
-                height: 150,
-                // justifyContent: "space-between",
-                duration: 0.5,
-                ease: "easeInOutQuint",
-              }
-            )
-            // .set(desRef.current, {
-            //   display: "inline",
-            // })
-            // .to(desRef.current, {
-            //   opacity: 1,
-            //   // display: "inline",
-            // })
-            .to(
-              imageRef.current,
-              // { display: "block", opacity: 1, width: "50%", height: "50%" },
-              {
-                display: "none",
-                opacity: 0,
-                width: 0,
-                height: 0,
-                duration: 0.5,
-                ease: "easeOutQuint",
-              }
-            );
-        });
+        // mm.add("(max-width: 768px)", () => {
+        //   // if (videoRef.current) videoRef.current.play();
+        //   const tl = window.gsap.timeline({
+        //     scrollTrigger: {
+        //       trigger: containerRef.current,
+        //       start: "top 80%",
+        //       end: "top 55%",
+        //       scrub: true,
+        //     },
+        //   });
+        //   tl.fromTo(
+        //     containerRef.current,
+        //     { height: 150 },
+        //     {
+        //       height: 300,
+        //       // justifyContent: "space-between",
+        //       duration: 0.5,
+        //       ease: "easeInOutQuint",
+        //     }
+        //   )
+        //     // .set(desRef.current, {
+        //     //   display: "inline",
+        //     // })
+        //     // .to(desRef.current, {
+        //     //   opacity: 1,
+        //     //   // display: "inline",
+        //     // })
+        //     .fromTo(
+        //       imageRef.current,
+        //       { display: "none", opacity: 0, width: 0, height: 0 },
+        //       {
+        //         display: "block",
+        //         opacity: 1,
+        //         width: "50%",
+        //         height: "50%",
+        //         duration: 0.5,
+        //         ease: "easeOutQuint",
+        //       }
+        //     );
+        //   const tlReverse = window.gsap.timeline({
+        //     scrollTrigger: {
+        //       trigger: containerRef.current,
+        //       start: "top 35%",
+        //       end: "top top",
+        //       scrub: true,
+        //     },
+        //   });
+        //   tlReverse
+        //     .to(
+        //       containerRef.current,
+        //       // { height: 300 },
+        //       {
+        //         height: 150,
+        //         // justifyContent: "space-between",
+        //         duration: 0.5,
+        //         ease: "easeInOutQuint",
+        //       }
+        //     )
+        //     // .set(desRef.current, {
+        //     //   display: "inline",
+        //     // })
+        //     // .to(desRef.current, {
+        //     //   opacity: 1,
+        //     //   // display: "inline",
+        //     // })
+        //     .to(
+        //       imageRef.current,
+        //       // { display: "block", opacity: 1, width: "50%", height: "50%" },
+        //       {
+        //         display: "none",
+        //         opacity: 0,
+        //         width: 0,
+        //         height: 0,
+        //         duration: 0.5,
+        //         ease: "easeOutQuint",
+        //       }
+        //     );
+        // });
       } else {
         console.warn("GSAP not loaded yet, retrying...");
         gsapTimeout = setTimeout(waitForGSAP, 100);
@@ -255,16 +255,19 @@ export default function Service({
 
   return (
     <div
-      className="2xl:px-[10%] w-full py-[20px] md:h-[150px] h-[150px] relative flex md:flex-row flex-col items-center justify-evenly md:justify-between md:px-[30px] after:absolute after:bottom-0 after:left-0 after:w-[var(--border-width)] after:h-[1px] after:bg-black"
+      className="2xl:px-[10%] px-[15px] w-full py-[20px] md:h-[150px] h-auto relative flex md:flex-row flex-col items-center justify-evenly md:justify-between md:px-[30px] after:absolute after:bottom-0 after:left-0 after:w-[var(--border-width)] after:h-[1px] after:bg-black"
       ref={containerRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <h3 className="md:w-[40%] w-auto font-extralight" ref={serviceRef}>
+      <h3
+        className="md:w-[40%] w-auto font-extralight md:text-start text-center"
+        ref={serviceRef}
+      >
         {serviceName}
       </h3>
       <div
-        className="relative w-[5%] opacity-0 hidden aspect-square"
+        className="relative w-[5%] opacity-0 hidden aspect-square "
         ref={imageRef}
       >
         {isVideo ? (
@@ -289,7 +292,7 @@ export default function Service({
         )}
       </div>
       <p
-        className="w-[55%] md:inline hidden md:opacity-100 opacity-0"
+        className="md:w-[55%] w-full md:py-0 py-[25px] md:text-[20px] text-base"
         ref={desRef}
       >
         {serviceDescription}
