@@ -1,5 +1,5 @@
 "use client";
-import SlideUpParagraph from "@/common/SlideUpParagraph/inde";
+import SlideUpParagraph from "@/common/SlideUpParagraph";
 import Navigate from "../../common/NavigateLink";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -88,117 +88,127 @@ export default function Intro() {
       animateImages({ x: offsetX, y: offsetY });
     };
 
-    window.gsap.to(".first-intro-image", {
-      scrollTrigger: {
-        trigger: ".first-intro-image",
-        start: "-100% bottom",
-        end: "top 90%",
-        scrub: 0.3,
-      },
-      top: "-=150px",
-      opacity: 1,
-      ease: "power2.easeOut",
-    });
+    let gsapTimeout: NodeJS.Timeout;
+    const waitForGSAP = () => {
+      if (window.gsap && window.ScrollTrigger) {
+        window.gsap.to(".first-intro-image", {
+          scrollTrigger: {
+            trigger: ".first-intro-image",
+            start: "-100% bottom",
+            end: "top 90%",
+            scrub: 0.3,
+          },
+          top: "-=150px",
+          opacity: 1,
+          ease: "power2.easeOut",
+        });
 
-    window.gsap.to(".second-intro-image", {
-      scrollTrigger: {
-        trigger: ".second-intro-image",
-        start: "-100% bottom",
-        end: "top 90%",
-        scrub: 0.3,
-      },
-      top: "-=170px",
-      opacity: 1,
-      ease: "power2.easeOut",
-    });
+        window.gsap.to(".second-intro-image", {
+          scrollTrigger: {
+            trigger: ".second-intro-image",
+            start: "-100% bottom",
+            end: "top 90%",
+            scrub: 0.3,
+          },
+          top: "-=170px",
+          opacity: 1,
+          ease: "power2.easeOut",
+        });
 
-    window.gsap.to(".third-intro-image", {
-      scrollTrigger: {
-        trigger: ".third-intro-image",
-        start: "-100% bottom",
-        end: "top 90%",
-        scrub: 0.3,
-      },
-      top: "-=140px",
-      opacity: 1,
-      ease: "power2.easeOut",
-    });
+        window.gsap.to(".third-intro-image", {
+          scrollTrigger: {
+            trigger: ".third-intro-image",
+            start: "-100% bottom",
+            end: "top 90%",
+            scrub: 0.3,
+          },
+          top: "-=140px",
+          opacity: 1,
+          ease: "power2.easeOut",
+        });
 
-    window.gsap.to(".forth-intro-image", {
-      scrollTrigger: {
-        trigger: ".forth-intro-image",
-        start: "-100% bottom",
-        end: "top 90%",
-        scrub: 0.3,
-      },
-      top: "-=160px",
-      opacity: 1,
-      ease: "power2.easeOut",
-    });
+        window.gsap.to(".forth-intro-image", {
+          scrollTrigger: {
+            trigger: ".forth-intro-image",
+            start: "-100% bottom",
+            end: "top 90%",
+            scrub: 0.3,
+          },
+          top: "-=160px",
+          opacity: 1,
+          ease: "power2.easeOut",
+        });
 
-    window.gsap.to(".fifth-intro-image", {
-      scrollTrigger: {
-        trigger: ".fifth-intro-image",
-        start: "-100% bottom",
-        end: "top 90%",
-        scrub: 0.3,
-      },
-      top: "-=145px",
-      opacity: 1,
-      ease: "power2.easeOut",
-    });
+        window.gsap.to(".fifth-intro-image", {
+          scrollTrigger: {
+            trigger: ".fifth-intro-image",
+            start: "-100% bottom",
+            end: "top 90%",
+            scrub: 0.3,
+          },
+          top: "-=145px",
+          opacity: 1,
+          ease: "power2.easeOut",
+        });
 
-    window.gsap.to(".sixth-intro-image", {
-      scrollTrigger: {
-        trigger: ".sixth-intro-image",
-        start: "-100% bottom",
-        end: "top 90%",
-        scrub: 0.3,
-      },
-      top: "-=155px",
-      opacity: 1,
-      ease: "power2.easeOut",
-    });
+        window.gsap.to(".sixth-intro-image", {
+          scrollTrigger: {
+            trigger: ".sixth-intro-image",
+            start: "-100% bottom",
+            end: "top 90%",
+            scrub: 0.3,
+          },
+          top: "-=155px",
+          opacity: 1,
+          ease: "power2.easeOut",
+        });
 
-    window.gsap.to(
-      stickyRef.current,
-      // { y: 150 },
-      {
-        y: 0,
-        // ease: "power2.inOut",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "-5% center",
-          end: "-5% 20%",
-          markers: true,
-          scrub: true,
-        },
+        window.gsap.to(
+          stickyRef.current,
+          // { y: 150 },
+          {
+            y: 0,
+            // ease: "power2.inOut",
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: "0 center",
+              end: "0 10%",
+              scrub: true,
+            },
+          }
+        );
+        window.gsap.fromTo(
+          stickyRef.current,
+          {
+            top: "25vh",
+          },
+          {
+            top: "calc(25vh - 150px)",
+            // y: -100,
+            // ease: "power2.inOut",
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: "100% 100%",
+              end: "100% 50%",
+              // markers: true,
+              scrub: true,
+            },
+          }
+        );
+
+        const mm = window.gsap.matchMedia();
+        mm.add("(min-width: 768px)", () => {
+          window.addEventListener("mousemove", handleMouseMove);
+          return () => window.removeEventListener("mousemove", handleMouseMove);
+        });
+      } else {
+        console.warn("GSAP not loaded yet, retrying...");
+        gsapTimeout = setTimeout(waitForGSAP, 100);
       }
-    );
-    window.gsap.fromTo(
-      stickyRef.current,
-      {
-        top: "25vh",
-      },
-      {
-        top: "calc(25vh - 150px)",
-        // y: -100,
-        // ease: "power2.inOut",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "95% bottom",
-          end: "95% 60%",
-          markers: true,
-          scrub: true,
-        },
-      }
-    );
+    };
 
-    const mm = window.gsap.matchMedia();
-    mm.add("(min-width: 768px)", () => {
-      window.addEventListener("mousemove", handleMouseMove);
-      return () => window.removeEventListener("mousemove", handleMouseMove);
-    });
+    waitForGSAP();
+    return () => clearTimeout(gsapTimeout);
   }, []);
 
   return (
@@ -208,7 +218,7 @@ export default function Intro() {
     >
       <div className="2xl:w-[80%] md:h-[230vh] h-[200vh] flex flex-col items-center ">
         <div
-          className={`first-intro-image absolute opacity-0 md:top-[20%] top-[33%] left-[17%] md:w-[250px] w-[100px] aspect-square`}
+          className={`first-intro-image absolute opacity-0 md:top-[20%] top-[33%] md:left-[17%] left-[5%] md:w-[250px] w-[40%] aspect-square`}
         >
           <Image
             src="/laptop-low.jpg"
@@ -231,7 +241,7 @@ export default function Intro() {
           />
         </div>
         <div
-          className={`second-intro-image absolute opacity-0 md:top-[23%] top-[30%] right-[12%] md:w-[200px] w-[90px] aspect-square`}
+          className={`second-intro-image absolute opacity-0 md:top-[23%] top-[30%] md:right-[12%] right-[7%] md:w-[230px] w-[35%] aspect-square`}
         >
           <Image
             src="/laptop-low.jpg"
@@ -254,7 +264,7 @@ export default function Intro() {
           />
         </div>
         <div
-          className={`third-intro-image absolute opacity-0 top-[45%] left-[18%] md:w-[220px] w-[64px] aspect-square`}
+          className={`third-intro-image absolute opacity-0 top-[45%] md:left-[18%] left-[10%] md:w-[240px] w-[40%] aspect-square`}
         >
           <Image
             src="/laptop-low.jpg"
@@ -266,7 +276,7 @@ export default function Intro() {
             fill
           />
           <Image
-            src="/gallery-4.png"
+            src="/intro-3.png"
             alt="half closed laptop in a dark room"
             className={`object-contain  ${
               loaded.third ? "opacity-100 " : "opacity-0 "
@@ -277,7 +287,7 @@ export default function Intro() {
           />
         </div>
         <div
-          className={`forth-intro-image absolute opacity-0 top-[53%] right-[13%] md:w-[210px] w-[56px] aspect-square`}
+          className={`forth-intro-image absolute opacity-0 top-[45%] md:right-[13%] right-[8%] md:w-[250px] w-[35%] aspect-square`}
         >
           <Image
             src="/laptop-low.jpg"
@@ -289,7 +299,7 @@ export default function Intro() {
             fill
           />
           <Image
-            src="/gallery-4.png"
+            src="/intro-4.png"
             alt="half closed laptop in a dark room"
             className={`object-contain  ${
               loaded.forth ? "opacity-100 " : "opacity-0 "
@@ -300,7 +310,7 @@ export default function Intro() {
           />
         </div>
         <div
-          className={`fifth-intro-image absolute opacity-0 md:bottom-[18%] bottom-[35%] left-[20%] md:w-[200px] w-[90px] aspect-square`}
+          className={`fifth-intro-image absolute opacity-0 md:bottom-[18%] bottom-[33%] md:left-[20%] left-[15%] md:w-[270px] w-[40%] aspect-square`}
         >
           <Image
             src="/laptop-low.jpg"
@@ -312,7 +322,7 @@ export default function Intro() {
             fill
           />
           <Image
-            src="/gallery-3.png"
+            src="/intro-5.png"
             alt="half closed laptop in a dark room"
             className={`object-contain  ${
               loaded.fifth ? "opacity-100 " : "opacity-0 "
@@ -323,7 +333,7 @@ export default function Intro() {
           />
         </div>
         <div
-          className={`sixth-intro-image absolute opacity-0 md:bottom-[22%] bottom-[32%] right-[15%] md:w-[240px] w-[120px] aspect-square`}
+          className={`sixth-intro-image absolute opacity-0 md:bottom-[22%] bottom-[25%] md:right-[15%] right-[3%] md:h-[240px] h-auto w-[30%] aspect-square`}
         >
           <Image
             src="/laptop-low.jpg"

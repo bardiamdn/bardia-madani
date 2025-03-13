@@ -26,7 +26,7 @@ export default function ServiceRow({
           onMouseLeave={() => {
             setHoverIndex(0);
           }}
-          className={`md:p-[40px] p-[20px] md:h-[570px] h-auto ${
+          className={`xl:p-[40px] md:p-[30px] p-[20px] md:h-[570px] h-auto ${
             index % 2 === 0 ? "md:mr-[25px]" : "md:ml-[25px]"
           } ${
             index < 2 ? "md:mb-[50px] mb-[25px]" : ""
@@ -38,14 +38,14 @@ export default function ServiceRow({
               : "md:w-[35%] w-full"
           }`}
         >
-          <div className="flex md:flex-row flex-col md:space-y-0 space-y-[25px] justify-between mb-[75px]">
+          <div className="flex md:flex-row flex-col justify-between mb-[50px]">
             <h2
-              className={`transition-all md:text-white text-foreground ease-[cubic-bezier(0.83,0,0.17,1)] duration-500 ${
+              className={`transition-all md:text-white text-foreground md:mb-0 mb-[50px] ease-[cubic-bezier(0.83,0,0.17,1)] duration-500 ${
                 hoverIndex === index + 1
-                  ? "md:text-7xl text-5xl md:text-foreground"
+                  ? "xl:text-7xl md:text-5xl text-5xl md:text-foreground"
                   : hoverIndex !== index + 1 && hoverIndex !== 0
-                  ? "md:text-5xl text-5xl"
-                  : "md:text-6xl text-5xl"
+                  ? "xl:text-5xl md:text-4xl text-5xl"
+                  : "xl:text-6xl md:text-5xl text-5xl"
               } md:font-thin font-extralight`}
             >
               {service.title}
@@ -53,7 +53,7 @@ export default function ServiceRow({
             <div
               className={` relative transition-all ease-[cubic-bezier(0.83,0,0.17,1)] duration-500 flex-shrink-0 ${
                 hoverIndex === index + 1
-                  ? " md:opacity-100 md:w-[200px] md:h-[300px] opacity-100 w-[100px] h-[200px]"
+                  ? " md:opacity-100 xl:w-[200px] md:w-0 xl:h-[300px] md:h-0 opacity-100 w-[100px] h-[200px]"
                   : " md:opacity-0 md:w-0 md:h-0 opacity-100 w-[100px] h-[200px]"
               }`}
             >
@@ -95,12 +95,12 @@ export default function ServiceRow({
             </div>
           </div>
           <p
-            className={`text-foregroundLight transition-all ease-[cubic-bezier(0.83,0,0.17,1)] duration-500  ${
+            className={`text-foreground transition-all ease-[cubic-bezier(0.83,0,0.17,1)] duration-500  ${
               hoverIndex === index + 1
-                ? "md:text-2xl text-xl"
+                ? "md:text-2xl text-xl md:text-foreground"
                 : hoverIndex !== index + 1 && hoverIndex !== 0
-                ? "md:text-md text-xl"
-                : "md:text-2xl text-xl"
+                ? "md:text-md text-xl md:text-foregroundLight"
+                : "md:text-2xl text-xl md:text-foregroundLight"
             }`}
           >
             {service.description}

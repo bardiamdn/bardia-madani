@@ -12,9 +12,9 @@ export default function About() {
         {/* Headline */}
         <div className="relative md:h-[400px] flex flex-col justify-center md:mt-[100px] mb-[100px]">
           <div className="flex items-center">
-            <h1 className=" md:my-[40px] mt-[40px]">
+            <h1 className=" md:my-[40px] mt-[40px]  lg:text-start text-center">
               <span className="md:block">Design, Development </span>
-              <span className="md:block md:ml-[200px] md:mt-[30px]">
+              <span className="md:block lg:ml-[200px] lg:mt-[30px]">
                 Interaction & Motion
               </span>
             </h1>
@@ -22,7 +22,7 @@ export default function About() {
         </div>
         <div className="md:space-x-[50px] md:space-y-0 relative flex md:flex-row flex-col items-center md:py-[200px] py-[50px] md:h-[1000px] h-[600px] border-t border-border">
           <div className="md:w-[50%] md:space-y-[35px] flex flex-col justify-center h-full space-y-[25px]">
-            <h4>Creative Dynamics</h4>
+            <h4>Creative Developer</h4>
             <p>
               I&apos;m passionate about great design , bringing creative ideas
               to life with dynamic motion and interactive code. I constantly
@@ -89,7 +89,7 @@ export default function About() {
           <div className="md:w-1/2 w-full ">
             <div className="flex flex-col md:py-[50px] space-y-[25px] py-[35px] border-b-[0.5px] border-border md:border-black">
               <div className="flex items-center space-x-[15px]">
-                <span className="md:text-xl text-accent font-semibold ">
+                <span className="md:text-xl text-foregroundAccent font-semibold ">
                   01
                 </span>
                 <h4>Discover</h4>
@@ -101,7 +101,7 @@ export default function About() {
             </div>
             <div className="flex flex-col space-y-[25px] md:py-[50px] py-[35px] border-b-[0.5px] border-border md:border-black">
               <div className="flex items-center space-x-[15px]">
-                <span className="md:text-xl text-accent font-semibold ">
+                <span className="md:text-xl text-foregroundAccent font-semibold ">
                   02
                 </span>
                 <h4>Define</h4>
@@ -113,7 +113,7 @@ export default function About() {
             </div>
             <div className="flex flex-col space-y-[25px] md:py-[50px] py-[35px] border-b-[0.5px] border-border md:border-black">
               <div className="flex items-center space-x-[15px]">
-                <span className="md:text-xl text-accent font-semibold ">
+                <span className="md:text-xl text-foregroundAccent font-semibold ">
                   03
                 </span>
                 <h4>Design</h4>
@@ -125,7 +125,7 @@ export default function About() {
             </div>
             <div className="flex flex-col space-y-[25px] md:py-[50px] py-[35px] border-b-[0.5px] border-border md:border-black">
               <div className="flex items-center space-x-[15px]">
-                <span className="md:text-xl text-accent font-semibold ">
+                <span className="md:text-xl text-foregroundAccent font-semibold ">
                   04
                 </span>
                 <h4>Develop</h4>
@@ -137,7 +137,7 @@ export default function About() {
             </div>
             <div className="flex flex-col space-y-[25px] md:py-[50px] py-[35px] border-b-[0.5px] border-border md:border-black">
               <div className="flex items-center space-x-[15px]">
-                <span className="md:text-xl text-accent font-semibold ">
+                <span className="md:text-xl text-foregroundAccent font-semibold ">
                   05
                 </span>
                 <h4>Deploy</h4>
@@ -149,7 +149,7 @@ export default function About() {
             </div>
             <div className="flex flex-col space-y-[25px] md:py-[50px] py-[35px]">
               <div className="flex items-center space-x-[15px]">
-                <span className="md:text-xl text-accent font-semibold ">
+                <span className="md:text-xl text-foregroundAccent font-semibold ">
                   06
                 </span>
                 <h4>Drive</h4>

@@ -26,15 +26,15 @@ const services = [
       title: "Technical SEO",
       description:
         "I optimize websites to rank higher on search engines and attract organic traffic by implementing technical SEO practices, such as improving site structure and page speed.",
-      mediaSrc: "/videos/technical-seo.mp4",
-      isVideo: true,
+      mediaSrc: "/seo.jpg",
+      isVideo: false,
     },
     {
       title: "Maintenance & Support",
       description:
         "I provide 24/7 support to keep your website fast, secure, and always available. Protecting your site from threats and minimize downtime.",
-      mediaSrc: "/videos/support.mp4",
-      isVideo: true,
+      mediaSrc: "/maintenance.jpg",
+      isVideo: false,
     },
   ],
 ];
@@ -50,13 +50,13 @@ export default function Services() {
             <Star />
             <h1 className=" my-[40px] ">
               <span className="md:block">What I can </span>
-              <span className="md:block md:ml-[200px] md:mt-[30px]">
+              <span className="md:block xl:ml-[200px] lg:ml-[100px] md:mt-[30px]">
                 do for you
               </span>
             </h1>
           </div>
           <div className="flex justify-end">
-            <p className="md:w-[250px] md:-translate-y-[75px]">
+            <p className="md:w-[250px] lg:-translate-y-[75px]">
               Ensuring your website is beautifully crafted, well-built, and
               compliant with SEO best practices.
             </p>
@@ -65,7 +65,8 @@ export default function Services() {
         <ServiceBlocks services={services[0]} />
         <ServiceBlocks services={services[1]} />
         <div className="border-t border-border md:py-[150px] py-[100px] md:h-auto md:space-y-0 space-y-[50px] mt-[100px] flex md:flex-row flex-col justify-between items-center">
-          <div className="md:w-[800px]">
+          <div className="md:w-[70%] md:space-y-[35px] flex flex-col justify-center space-y-[25px]">
+            <h4>Process</h4>
             <p>
               Combining design, development, and SEO gives me a unique
               opportunity to see through the entire project lifecycle. If
@@ -73,7 +74,7 @@ export default function Services() {
               About page to review the full process.
             </p>
           </div>
-          <div className="md:w-[20%]">
+          <div className="w-fit flex-shrink-0 h-full">
             <Navigate href="/about/#process">The Process</Navigate>
           </div>
         </div>

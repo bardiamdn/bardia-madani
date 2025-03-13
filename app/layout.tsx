@@ -6,7 +6,8 @@ import SmoothScroll from "@/components/SmoothScroll";
 import dynamic from "next/dynamic";
 import { ScriptLoaderProvider } from "@/utils/ScriptLoaderContext";
 import Loading from "@/components/Loading";
-import { usePageTransition } from "@/hooks/usePageTransition";
+import { Analytics } from "@vercel/analytics/react";
+
 const Footer = dynamic(() => import("@/components/Footer"));
 const Header = dynamic(() => import("@/components/Header"));
 
@@ -121,6 +122,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </ScriptLoaderProvider>
+        <Analytics />
       </body>
     </html>
   );

@@ -255,13 +255,13 @@ export default function Service({
 
   return (
     <div
-      className="2xl:px-[10%] px-[15px] w-full py-[20px] md:h-[150px] h-auto relative flex md:flex-row flex-col items-center justify-evenly md:justify-between md:px-[30px] after:absolute after:bottom-0 after:left-0 after:w-[var(--border-width)] after:h-[1px] after:bg-black"
+      className="2xl:px-[10%] px-[15px] w-full py-[50px] md:h-[150px] h-auto relative flex md:flex-row flex-col items-center justify-evenly md:justify-between md:px-[30px] after:absolute after:bottom-0 after:left-0 after:w-[var(--border-width)] after:h-[1px] after:bg-black"
       ref={containerRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <h3
-        className="md:w-[40%] w-auto font-extralight md:text-start text-center"
+        className="md:w-[40%] w-auto md:font-extralight md:text-start text-center"
         ref={serviceRef}
       >
         {serviceName}
@@ -292,7 +292,7 @@ export default function Service({
         )}
       </div>
       <p
-        className="md:w-[55%] w-full md:py-0 py-[25px] md:text-[20px] text-base"
+        className="md:w-[55%] w-full md:pt-0 pt-[35px] md:text-[20px] text-base"
         ref={desRef}
       >
         {serviceDescription}

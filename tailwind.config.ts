@@ -11,11 +11,13 @@ export default {
     extend: {
       colors: {
         primary: "var(--primary)",
+        antiPrimary: "var(--anti-primary)",
         accent: "var(--accent)",
         accentSecondary: "var(--accent-secondary)",
         background: "var(--background)",
         backgroundSecondary: "var(--background-secondary)",
         foreground: "var(--foreground)",
+        foregroundAccent: "var(--foreground-accent)",
         foregroundLight: "var(--foreground-light)",
         foregroundSecondary: "var(--foreground-secondary)",
         border: "var(--border)",
