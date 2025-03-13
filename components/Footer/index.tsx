@@ -5,7 +5,10 @@ import Clock from "./Clock";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="w-full h-screen bg-black text-white flex justify-center">
+    <footer
+      id="footer"
+      className="w-full h-screen bg-black text-white flex justify-center"
+    >
       <div className="2xl:w-[80%] 2xl:px-0 w-full h-full md:p-[25px] px-[15px]">
         <div className="h-[90%] flex flex-col justify-between md:space-y-[25px]">
           <div className=" md:mb-[50px] flex lg:flex-row flex-col md:justify-between justify-evenly items-center lg:h-auto h-full md:py-[30px]">
@@ -13,7 +16,7 @@ const Footer: React.FC = () => {
               <Star />
               <h2 className="lg:text-start text-center">
                 <span className="md:block">Let&apos;s turn your ideas </span>
-                <span className="md:block md:ml-[100px] md:mt-[30px]">
+                <span className="md:block xl:ml-[100px] md:mt-[30px]">
                   into something amazing
                 </span>
               </h2>

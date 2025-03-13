@@ -6,73 +6,77 @@ export default function Form() {
   const formRef = useRef(null);
 
   useEffect(() => {
-    let gsapTimeout: NodeJS.Timeout;
-    const waitForGsap = () => {
-      if (window.gsap && window.ScrollTrigger) {
-        if (!formRef.current) return;
-        window.gsap.registerPlugin(window.ScrollTrigger);
+    // let gsapTimeout: NodeJS.Timeout;
+    // const waitForGsap = () => {
+    if (window.gsap && window.ScrollTrigger) {
+      if (!formRef.current) return;
+      window.gsap.registerPlugin(window.ScrollTrigger);
 
-        const tl = window.gsap.timeline({
-          scrollTrigger: {
-            trigger: formRef.current,
-            start: "top center",
-            end: "bottom center",
-            toggleActions: "play none none none",
-          },
-        });
-        tl.fromTo(
-          formRef.current,
-          { "--border-height": "0%" },
-          {
-            "--border-height": "100%",
-            duration: 1.5,
-            ease: "power2.out",
-          }
+      const tl = window.gsap.timeline({
+        scrollTrigger: {
+          trigger: formRef.current,
+          start: "top center",
+          end: "bottom center",
+          toggleActions: "play none none none",
+        },
+      });
+      tl.fromTo(
+        formRef.current,
+        { "--border-height": "0%" },
+        {
+          "--border-height": "100%",
+          duration: 1.5,
+          ease: "power2.out",
+        }
+      )
+        .fromTo(
+          "#name",
+          { "--border-width": "0%" },
+          { "--border-width": "100%", duration: 1, ease: "power2.out" },
+          "-=0.8"
         )
-          .fromTo(
-            "#name",
-            { "--border-width": "0%" },
-            { "--border-width": "100%", duration: 1, ease: "power2.out" },
-            "-=0.8"
-          )
-          .fromTo(
-            "#email",
-            { "--border-width": "0%" },
-            { "--border-width": "100%", duration: 1, ease: "power2.out" },
-            "-=0.8"
-          )
-          .fromTo(
-            "#organization",
-            { "--border-width": "0%" },
-            { "--border-width": "100%", duration: 1, ease: "power2.out" },
-            "-=0.8"
-          )
-          .fromTo(
-            "#service",
-            { "--border-width": "0%" },
-            { "--border-width": "100%", duration: 1, ease: "power2.out" },
-            "-=0.8"
-          )
-          .fromTo(
-            "#message",
-            { "--border-width": "0%" },
-            { "--border-width": "100%", duration: 1, ease: "power2.out" },
-            "-=0.8"
-          );
-      } else {
-        console.warn("GSAP not loaded yet, retrying...");
-        gsapTimeout = setTimeout(waitForGsap, 100);
-      }
-    };
+        .fromTo(
+          "#email",
+          { "--border-width": "0%" },
+          { "--border-width": "100%", duration: 1, ease: "power2.out" },
+          "-=0.8"
+        )
+        .fromTo(
+          "#organization",
+          { "--border-width": "0%" },
+          { "--border-width": "100%", duration: 1, ease: "power2.out" },
+          "-=0.8"
+        )
+        .fromTo(
+          "#service",
+          { "--border-width": "0%" },
+          { "--border-width": "100%", duration: 1, ease: "power2.out" },
+          "-=0.8"
+        )
+        .fromTo(
+          "#message",
+          { "--border-width": "0%" },
+          { "--border-width": "100%", duration: 1, ease: "power2.out" },
+          "-=0.8"
+        );
+    }
+    //   else {
+    //     console.warn("GSAP not loaded yet, retrying...");
+    //     gsapTimeout = setTimeout(waitForGsap, 100);
+    //   }
+    // };
 
-    waitForGsap();
-    return () => clearTimeout(gsapTimeout);
+    // waitForGsap();
+    // return () => clearTimeout(gsapTimeout);
   }, []);
 
   return (
     <form
       className="relative md:my-0 my-[50px] w-full md:w-1/2 md:after:absolute md:after:top-0 md:after:left-0 md:after:h-[var(--border-height)] md:after:w-[1px] md:after:bg-black"
+      name="contact"
       ref={formRef}
+      method="post"
+      data-netlify="true"
     >
       <h2 className="md:px-[25px] px-[15px] mb-[80px] mx-auto ">
         Get in Touch

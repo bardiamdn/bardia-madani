@@ -1,15 +1,12 @@
 "use client";
-// import newScript from "@/utils/newScript";
-import dynamic from "next/dynamic";
-// import { useEffect } from "react";
 
 import Hero from "@/components/Hero";
 import HeroContent from "@/components/Hero/HeroContent";
 import { usePageTransition } from "@/hooks/usePageTransition";
-const Intro = dynamic(() => import("@/components/Intro"), { ssr: false });
-const Services = dynamic(() => import("@/components/Services"), { ssr: false });
-const Work = dynamic(() => import("@/components/Work"), { ssr: false });
-const Gallery = dynamic(() => import("@/components/Gallery"), { ssr: false });
+import Intro from "@/components/Intro";
+import Services from "@/components/Services";
+import Work from "@/components/Work";
+import Gallery from "@/components/Gallery";
 
 export default function Home() {
   usePageTransition();

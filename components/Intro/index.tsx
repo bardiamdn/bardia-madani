@@ -2,7 +2,7 @@
 import SlideUpParagraph from "@/common/SlideUpParagraph";
 import Navigate from "../../common/NavigateLink";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 
 export default function Intro() {
   const [loaded, setLoaded] = useState({
@@ -16,6 +16,7 @@ export default function Intro() {
   // const [entered, setEntered] = useState(false);
   const containerRef = useRef(null);
   const stickyRef = useRef(null);
+  const timelineRef = useRef<Window["gsap"] | null>(null);
 
   const animateImages = (offset: { x: number; y: number }) => {
     const tl = window.gsap.timeline();
@@ -23,75 +24,58 @@ export default function Intro() {
     tl.to(".first-intro-image", {
       y: offset.y,
       x: offset.x,
-      // stagger: 0.9,
       ease: "easeOutQuint",
     })
-      .to(
-        ".second-intro-image",
-        {
-          y: offset.y,
-          x: offset.x,
-          stagger: 0.5,
-          ease: "easeOutQuint",
-        }
-        // "-=0.3"
-      )
-      .to(
-        ".third-intro-image",
-        {
-          y: offset.y,
-          x: offset.x,
-          stagger: 0.5,
-          ease: "easeOutQuint",
-        }
-        // "-=0.2"
-      )
-      .to(
-        ".forth-intro-image",
-        {
-          y: offset.y,
-          x: offset.x,
-          stagger: 0.5,
-          ease: "easeOutQuint",
-        }
-        // "-=0.1"
-      )
-      .to(
-        ".fifth-intro-image",
-        {
-          y: offset.y,
-          x: offset.x,
-          stagger: 0.5,
-          ease: "easeOutQuint",
-        }
-        // "-=0.3"
-      )
-      .to(
-        ".sixth-intro-image",
-        {
-          y: offset.y,
-          x: offset.x,
-          stagger: 0.5,
-          ease: "easeOutQuint",
-        }
-        // "-=0.1"
-      );
+      .to(".second-intro-image", {
+        y: offset.y,
+        x: offset.x,
+        stagger: 0.5,
+        ease: "easeOutQuint",
+      })
+      .to(".third-intro-image", {
+        y: offset.y,
+        x: offset.x,
+        stagger: 0.5,
+        ease: "easeOutQuint",
+      })
+      .to(".forth-intro-image", {
+        y: offset.y,
+        x: offset.x,
+        stagger: 0.5,
+        ease: "easeOutQuint",
+      })
+      .to(".fifth-intro-image", {
+        y: offset.y,
+        x: offset.x,
+        stagger: 0.5,
+        ease: "easeOutQuint",
+      })
+      .to(".sixth-intro-image", {
+        y: offset.y,
+        x: offset.x,
+        stagger: 0.5,
+        ease: "easeOutQuint",
+      });
+
+    return tl;
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
       const yfactor = 0.02;
       const xfactor = 0.005;
       const offsetY = (window.innerHeight / 2 - event.clientY) * yfactor;
       const offsetX = (window.innerWidth / 2 - event.clientX) * xfactor;
 
-      animateImages({ x: offsetX, y: offsetY });
+      timelineRef.current = animateImages({ x: offsetX, y: offsetY });
     };
+
+    const animations: Window["gsap"] = [];
 
     let gsapTimeout: NodeJS.Timeout;
     const waitForGSAP = () => {
       if (window.gsap && window.ScrollTrigger) {
-        window.gsap.to(".first-intro-image", {
+        const firstAnim = window.gsap.to(".first-intro-image", {
           scrollTrigger: {
             trigger: ".first-intro-image",
             start: "-100% bottom",
@@ -102,8 +86,9 @@ export default function Intro() {
           opacity: 1,
           ease: "power2.easeOut",
         });
+        animations.push(firstAnim);
 
-        window.gsap.to(".second-intro-image", {
+        const secondAnim = window.gsap.to(".second-intro-image", {
           scrollTrigger: {
             trigger: ".second-intro-image",
             start: "-100% bottom",
@@ -114,8 +99,9 @@ export default function Intro() {
           opacity: 1,
           ease: "power2.easeOut",
         });
+        animations.push(secondAnim);
 
-        window.gsap.to(".third-intro-image", {
+        const thirdAnim = window.gsap.to(".third-intro-image", {
           scrollTrigger: {
             trigger: ".third-intro-image",
             start: "-100% bottom",
@@ -126,8 +112,9 @@ export default function Intro() {
           opacity: 1,
           ease: "power2.easeOut",
         });
+        animations.push(thirdAnim);
 
-        window.gsap.to(".forth-intro-image", {
+        const forthAnim = window.gsap.to(".forth-intro-image", {
           scrollTrigger: {
             trigger: ".forth-intro-image",
             start: "-100% bottom",
@@ -138,8 +125,9 @@ export default function Intro() {
           opacity: 1,
           ease: "power2.easeOut",
         });
+        animations.push(forthAnim);
 
-        window.gsap.to(".fifth-intro-image", {
+        const fifthAnim = window.gsap.to(".fifth-intro-image", {
           scrollTrigger: {
             trigger: ".fifth-intro-image",
             start: "-100% bottom",
@@ -150,8 +138,9 @@ export default function Intro() {
           opacity: 1,
           ease: "power2.easeOut",
         });
+        animations.push(fifthAnim);
 
-        window.gsap.to(".sixth-intro-image", {
+        const sixthAnim = window.gsap.to(".sixth-intro-image", {
           scrollTrigger: {
             trigger: ".sixth-intro-image",
             start: "-100% bottom",
@@ -162,45 +151,33 @@ export default function Intro() {
           opacity: 1,
           ease: "power2.easeOut",
         });
+        animations.push(sixthAnim);
 
-        window.gsap.to(
-          stickyRef.current,
-          // { y: 150 },
-          {
-            y: 0,
-            // ease: "power2.inOut",
-            scrollTrigger: {
-              trigger: containerRef.current,
-              start: "0 center",
-              end: "0 10%",
-              scrub: true,
-            },
-          }
-        );
-        window.gsap.fromTo(
-          stickyRef.current,
-          {
-            top: "25vh",
+        const enterAnim = window.gsap.to(stickyRef.current, {
+          y: 0,
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "0 center",
+            end: "0 10%",
+            scrub: true,
           },
+        });
+        animations.push(enterAnim);
+
+        const exitAnim = window.gsap.fromTo(
+          stickyRef.current,
+          { top: "25vh" },
           {
             top: "calc(25vh - 150px)",
-            // y: -100,
-            // ease: "power2.inOut",
             scrollTrigger: {
               trigger: containerRef.current,
               start: "100% 100%",
               end: "100% 50%",
-              // markers: true,
               scrub: true,
             },
           }
         );
-
-        const mm = window.gsap.matchMedia();
-        mm.add("(min-width: 768px)", () => {
-          window.addEventListener("mousemove", handleMouseMove);
-          return () => window.removeEventListener("mousemove", handleMouseMove);
-        });
+        animations.push(exitAnim);
       } else {
         console.warn("GSAP not loaded yet, retrying...");
         gsapTimeout = setTimeout(waitForGSAP, 100);
@@ -208,7 +185,14 @@ export default function Intro() {
     };
 
     waitForGSAP();
-    return () => clearTimeout(gsapTimeout);
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => {
+      clearTimeout(gsapTimeout);
+      window.removeEventListener("mousemove", handleMouseMove);
+      animations.forEach((animation: Window["gsap"]) => animation.kill());
+      if (timelineRef.current) timelineRef.current.kill();
+    };
   }, []);
 
   return (

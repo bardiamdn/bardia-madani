@@ -13,13 +13,14 @@ function wait(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function waitForGSAP(): Promise<void> {
+function waitForGSAP(loaded: boolean): Promise<void> {
   return new Promise((resolve) => {
     const checkGSAP = () => {
-      if (window.gsap) {
+      if (loaded) {
         resolve();
       } else {
-        setTimeout(checkGSAP, 50);
+        console.warn("modules not loaded yet ...");
+        setTimeout(checkGSAP, 100);
       }
     };
     checkGSAP();
@@ -37,7 +38,7 @@ export default function TransitionLink({
   const { loaded } = useScriptLoader();
 
   const handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const main = document.getElementById("main");
+    // const main = document.getElementById("main");
     const overlay = document.getElementById("overlay");
     const overlayTop = document.getElementById("second-overlay");
 
@@ -77,7 +78,7 @@ export default function TransitionLink({
     }
 
     e.preventDefault();
-    await waitForGSAP();
+    await waitForGSAP(loaded);
 
     if (!loaded) return;
 
@@ -121,6 +122,8 @@ export default function TransitionLink({
 
     router.push(href);
 
+    await waitForGSAP(loaded);
+
     await wait(1000);
 
     const timelineOut = window.gsap.timeline();
@@ -147,21 +150,21 @@ export default function TransitionLink({
           },
         },
         "0.3"
-      )
-      .fromTo(
-        main,
-        {
-          top: "200px",
-          opacity: 0,
-        },
-        {
-          top: 0,
-          opacity: 1,
-          duration: 1,
-          ease: "easeInOutQuint",
-        },
-        "0.4"
       );
+    // .fromTo(
+    //   main,
+    //   {
+    //     top: "200px",
+    //     opacity: 0,
+    //   },
+    //   {
+    //     top: 0,
+    //     opacity: 1,
+    //     duration: 1,
+    //     ease: "easeInOutQuint",
+    //   },
+    //   "0.4"
+    // );
   };
   return (
     <Link onClick={handleClick} href={href} {...props}>

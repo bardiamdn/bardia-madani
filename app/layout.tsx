@@ -6,7 +6,7 @@ import SmoothScroll from "@/components/SmoothScroll";
 import dynamic from "next/dynamic";
 import { ScriptLoaderProvider } from "@/utils/ScriptLoaderContext";
 import Loading from "@/components/Loading";
-import { Analytics } from "@vercel/analytics/react";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const Footer = dynamic(() => import("@/components/Footer"));
 const Header = dynamic(() => import("@/components/Header"));
@@ -122,7 +122,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </ScriptLoaderProvider>
-        <Analytics />
+        <GoogleAnalytics gaId="G-6DCBFCPNTD" />
       </body>
     </html>
   );

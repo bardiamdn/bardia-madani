@@ -10,24 +10,55 @@ export default function About() {
     <section className="bg-white flex flex-col px-[15px] py-[50px] 2xl:px-0 w-full items-center">
       <div className=" w-full 2xl:w-[80%] ">
         {/* Headline */}
-        <div className="relative md:h-[400px] flex flex-col justify-center md:mt-[100px] mb-[100px]">
-          <div className="flex items-center">
-            <h1 className=" md:my-[40px] mt-[40px]  lg:text-start text-center">
-              <span className="md:block">Design, Development </span>
-              <span className="md:block lg:ml-[200px] lg:mt-[30px]">
-                Interaction & Motion
-              </span>
+        <div className="relative md:h-[500px] flex flex-col justify-center md:mt-[100px] md:mb-0 mb-[100px]">
+          <div className="relative w-full h-full flex items-center">
+            <h1 className=" md:my-[40px] mt-[40px] lg:text-start text-center">
+              <div className="h-[50%] md:flex w-full items-center justify-between md:absolute top-0 left-0">
+                <span>Design, Development </span>
+                <div className="ml-[20px] flex-grow justify-center items-center h-full lg:flex hidden">
+                  <div className="relative aspect-square h-[70%]">
+                    <Image
+                      src={"/about-1.jpg"}
+                      alt="steps"
+                      fill
+                      className="text-sm object-cover object-center"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="z-10 relative h-[50%] md:flex w-full items-center justify-between md:absolute bottom-0 right-0 lg:ml-[200px] lg:mt-[30px]">
+                <div className="mr-[70px] relative flex-grow h-full lg:flex hidden">
+                  <div className="absolute top-[45px] left-0 w-full h-[calc(100%-45px)]">
+                    <video
+                      src="/videos/about.mp4"
+                      autoPlay
+                      loop
+                      muted
+                      className="object-center object-cover w-full h-full"
+                    >
+                      Your browser does not support the video tag.
+                    </video>
+                    {/* <Image
+                      src={"/corner-stairs.jpg"}
+                      alt="steps"
+                      fill
+                      className="text-sm object-cover object-center"
+                    /> */}
+                  </div>
+                </div>
+                <span>Interaction & Motion</span>
+              </div>
             </h1>
           </div>
         </div>
-        <div className="md:space-x-[50px] md:space-y-0 relative flex md:flex-row flex-col items-center md:py-[200px] py-[50px] md:h-[1000px] h-[600px] border-t border-border">
+        <div className="md:space-x-[50px] md:space-y-0 relative flex md:flex-row flex-col items-center justify-between md:py-[200px] py-[50px] md:h-[1000px] h-[600px]">
           <div className="md:w-[50%] md:space-y-[35px] flex flex-col justify-center h-full space-y-[25px]">
             <h4>Creative Developer</h4>
             <p>
-              I&apos;m passionate about great design , bringing creative ideas
-              to life with dynamic motion and interactive code. I constantly
-              push boundaries, elevating each project to new heights while
-              managing every detail from concept to launch.
+              I&apos;m passionate about great design, bringing creative ideas to
+              life with dynamic motion and interactive code. I constantly push
+              boundaries, elevating each project to new heights while managing
+              every detail from concept to launch.
             </p>
             {/* <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -69,15 +100,6 @@ export default function About() {
               end-to-end solution tailored to your needs.
             </p>
             <div className="relative md:w-[50%] md:h-[50%] h-[200px] md:my-[100px] my-[50px] ">
-              {/* <video
-                src="/videos/development.mp4"
-                autoPlay
-                loop
-                muted
-                className="object-center object-cover w-full h-full"
-              >
-                Your browser does not support the video tag.
-              </video> */}
               <Image
                 src={"/stairs.png"}
                 alt="blue stairs"
@@ -140,7 +162,7 @@ export default function About() {
                 <span className="md:text-xl text-foregroundAccent font-semibold ">
                   05
                 </span>
-                <h4>Deploy</h4>
+                <h4>Launch</h4>
               </div>
               <p className="text-[#757575] md:pl-[25px]">
                 After thorough testing and final refinements, your website goes
@@ -152,7 +174,7 @@ export default function About() {
                 <span className="md:text-xl text-foregroundAccent font-semibold ">
                   06
                 </span>
-                <h4>Drive</h4>
+                <h4>Optimize</h4>
               </div>
               <p className="text-[#757575] md:pl-[25px]">
                 Post-launch, I analyze performance and ensure everything is

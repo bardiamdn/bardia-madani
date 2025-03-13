@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useLayoutEffect, useRef, useState } from "react";
 
 interface ScrollTriggerInstance {
   direction: number;
@@ -29,51 +29,54 @@ export default function Gallery() {
   const direction = useRef(-1);
   const xPercent = useRef(0);
 
+  const animationFrameId = useRef<number | null>(null);
+
   const animate = useCallback(() => {
+    if (!firstRef.current || !secondRef.current) return;
+
     if (xPercent.current < -100) {
       xPercent.current = 0;
     } else if (xPercent.current > 0) {
       xPercent.current = -100;
     }
+
     window.gsap.set(firstRef.current, { xPercent: xPercent.current });
     window.gsap.set(secondRef.current, { xPercent: xPercent.current });
-    requestAnimationFrame(animate);
+
     xPercent.current += 0.017 * direction.current;
+    animationFrameId.current = requestAnimationFrame(animate);
   }, []);
 
-  useEffect(() => {
-    let gsapTimeout: NodeJS.Timeout;
-    const waitForGsap = () => {
-      if (window.gsap && window.ScrollTrigger) {
-        window.gsap.registerPlugin(window.ScrollTrigger);
+  useLayoutEffect(() => {
+    if (!window.gsap || !window.ScrollTrigger) return;
 
-        window.gsap.to(sliderRef.current, {
-          x: "-300px",
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 0.1,
-            // markers: true,
-            onUpdate: (self: ScrollTriggerInstance) => {
-              direction.current = self.direction * -1;
-            },
+    const ctx = window.gsap.context(() => {
+      if (!sliderRef.current || !containerRef.current) return;
+
+      window.gsap.to(sliderRef.current, {
+        x: "-300px",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 0.1,
+          onUpdate: (self: ScrollTriggerInstance) => {
+            direction.current = self.direction * -1;
           },
-        });
+        },
+      });
 
-        requestAnimationFrame(animate);
-      } else {
-        console.warn("GSAP not loaded, retrying...");
-        gsapTimeout = setTimeout(waitForGsap, 100);
+      animationFrameId.current = requestAnimationFrame(animate);
+    }, containerRef);
+
+    return () => {
+      ctx.revert();
+      if (animationFrameId.current) {
+        cancelAnimationFrame(animationFrameId.current);
       }
     };
-
-    requestAnimationFrame(waitForGsap);
-
-    return () => clearTimeout(gsapTimeout);
   }, [animate]);
-  // 2300 - 5 * (700-300) = 300 / 5 = 60 -> margin between
-  // x - 5 * 640 = 300
+
   return (
     <div className="w-full h-[700px] bg-white py-[150px]" ref={containerRef}>
       <div className="relative w-full h-full" ref={sliderRef}>

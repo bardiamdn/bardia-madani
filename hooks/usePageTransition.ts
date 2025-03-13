@@ -12,43 +12,55 @@ export function usePageTransition() {
     const main = document.getElementById("main");
     const overlaySecond = document.getElementById("second-overlay");
 
-    if (!loaded || !overlay || !main || !overlaySecond) return;
+    if (!overlay || !main || !overlaySecond) return;
 
-    const timeline = window.gsap.timeline();
+    let gsapTimeout: NodeJS.Timeout;
+    const waitForGSAP = () => {
+      if (window.gsap && window.ScrollTrigger && loaded) {
 
-    timeline
-      .fromTo(
-        overlay,
-        { top: "0" },
-        {
-          top: "-100vh",
-          duration: 1,
-          ease: "easeInOutQuint",
-        }
-      )
-      .fromTo(
-        overlaySecond,
-        { top: "-25vh" },
-        {
-          top: "-150vh",
-          duration: 1,
-          ease: "easeInOutQuint",
-        },
-        "0.3"
-      )
-      .fromTo(
-        main,
-        {
-          top: "200px",
-          opacity: 0,
-        },
-        {
-          top: 0,
-          opacity: 1,
-          duration: 1,
-          ease: "easeInOutQuint",
-        },
-        "0.4"
-      );
+        const timeline = window.gsap.timeline();
+
+        timeline
+          .fromTo(
+            overlay,
+            { top: "0" },
+            {
+              top: "-100vh",
+              duration: 1,
+              ease: "easeInOutQuint",
+            }
+          )
+          .fromTo(
+            overlaySecond,
+            { top: "-25vh" },
+            {
+              top: "-150vh",
+              duration: 1,
+              ease: "easeInOutQuint",
+            },
+            "0.3"
+          )
+          .fromTo(
+            main,
+            {
+              top: "200px",
+              opacity: 0,
+            },
+            {
+              top: 0,
+              opacity: 1,
+              duration: 1,
+              ease: "easeInOutQuint",
+            },
+            "0.4"
+          );
+      } else {
+        console.warn("GSAP not loaded yet, retrying...");
+        gsapTimeout = setTimeout(waitForGSAP, 100);
+      }
+    };
+
+    waitForGSAP();
+    return () => clearTimeout(gsapTimeout);
   }, [loaded, router]);
 }
