@@ -3,13 +3,13 @@ import localFont from "next/font/local";
 import { Genos } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
-import dynamic from "next/dynamic";
 import { ScriptLoaderProvider } from "@/utils/ScriptLoaderContext";
 import Loading from "@/components/Loading";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { LoadingProvider } from "@/utils/LoadingContext";
 
-const Footer = dynamic(() => import("@/components/Footer"));
-const Header = dynamic(() => import("@/components/Header"));
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 
 const inter = localFont({
   src: "./fonts/Inter/Inter-VariableFont_opsz,wght.ttf",
@@ -105,22 +105,24 @@ export default function RootLayout({
         className={`${geologica.variable} ${spaceGrotesk.variable} ${inter.variable}  ${genos.variable} antialiased relative`}
       >
         <ScriptLoaderProvider>
-          <div
-            id="second-overlay"
-            className="fixed left-0 -top-[25vh] h-[150vh] w-screen z-[29] bg-accentSecondary"
-          ></div>
-          <div
-            id="overlay"
-            className=" fixed left-0 top-0 w-screen h-[100vh] z-30 bg-black flex items-center justify-center"
-          >
-            <Loading />
-          </div>
-          <Header />
-          <SmoothScroll />
-          <main id="main" className="relative">
-            {children}
-          </main>
-          <Footer />
+          <LoadingProvider>
+            <div
+              id="second-overlay"
+              className="fixed left-0 -top-[25vh] h-[150vh] w-screen z-[29] bg-accentSecondary"
+            ></div>
+            <div
+              id="overlay"
+              className=" fixed left-0 top-0 w-screen h-[100vh] z-30 bg-black flex items-center justify-center"
+            >
+              <Loading />
+            </div>
+            <Header />
+            <SmoothScroll />
+            <main id="main" className="relative">
+              {children}
+            </main>
+            <Footer />
+          </LoadingProvider>
         </ScriptLoaderProvider>
         <GoogleAnalytics gaId="G-6DCBFCPNTD" />
       </body>

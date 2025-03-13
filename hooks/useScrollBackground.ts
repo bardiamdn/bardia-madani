@@ -15,10 +15,13 @@ export function useScrollBackground() {
     }
 
     let gsapTimeout: NodeJS.Timeout;
+    let heroTrigger: Window["gsap"] = null;
+    let footerTrigger: Window["gsap"] = null;
+
     const waitForGSAP = () => {
       if (loaded) {
         if (pathname === "/") {
-          window.ScrollTrigger.create({
+          heroTrigger = window.ScrollTrigger.create({
             trigger: document.getElementById("hero-content"),
             start: "-500px top",
             end: "bottom-=50px top",
@@ -28,9 +31,9 @@ export function useScrollBackground() {
             onLeaveBack: () => setIsBackgroundLight(true),
           });
         } else {
-          setIsBackgroundLight(true)
+          setIsBackgroundLight(true);
         }
-        window.ScrollTrigger.create({
+        footerTrigger = window.ScrollTrigger.create({
           trigger: document.getElementById("footer"),
           start: "-50px top",
           end: "bottom top",
@@ -49,6 +52,12 @@ export function useScrollBackground() {
 
     return () => {
       clearTimeout(gsapTimeout);
+      if (heroTrigger) {
+        heroTrigger.kill();
+      }
+      if (footerTrigger) {
+        footerTrigger.kill();
+      }
     };
   }, [loaded, pathname]);
 

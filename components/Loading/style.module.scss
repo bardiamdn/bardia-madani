@@ -5,7 +5,7 @@
 }
 .loading {
   stroke: var(--accent);
-  animation: loading-animation 1.5s cubic-bezier(0.85, 0, 0.15, 1) forwards;
+  // animation: loading-animation 1.5s cubic-bezier(0.85, 0, 0.15, 1) forwards;
 }
 
 @keyframes spin {
@@ -14,20 +14,20 @@
   }
 }
 
-@keyframes loading-animation {
-  0% {
-    stroke-dashoffset: 282.74;
-  }
-  20% {
-    stroke-dashoffset: 210;
-  }
-  50% {
-    stroke-dashoffset: 120;
-  }
-  90% {
-    stroke-dashoffset: 20;
-  }
-  100% {
-    stroke-dashoffset: 0;
-  }
-}
+// @keyframes loading-animation {
+//   0% {
+//     stroke-dashoffset: 282.74;
+//   }
+//   20% {
+//     stroke-dashoffset: 210;
+//   }
+//   50% {
+//     stroke-dashoffset: 120;
+//   }
+//   90% {
+//     stroke-dashoffset: 20;
+//   }
+//   100% {
+//     stroke-dashoffset: 0;
+//   }
+// }

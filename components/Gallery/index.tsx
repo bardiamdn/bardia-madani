@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useCallback, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 interface ScrollTriggerInstance {
   direction: number;
@@ -29,8 +29,6 @@ export default function Gallery() {
   const direction = useRef(-1);
   const xPercent = useRef(0);
 
-  const animationFrameId = useRef<number | null>(null);
-
   const animate = useCallback(() => {
     if (!firstRef.current || !secondRef.current) return;
 
@@ -44,37 +42,36 @@ export default function Gallery() {
     window.gsap.set(secondRef.current, { xPercent: xPercent.current });
 
     xPercent.current += 0.017 * direction.current;
-    animationFrameId.current = requestAnimationFrame(animate);
+    requestAnimationFrame(animate);
   }, []);
 
-  useLayoutEffect(() => {
-    if (!window.gsap || !window.ScrollTrigger) return;
+  useEffect(() => {
+    if (!sliderRef.current || !containerRef.current) return;
 
-    const ctx = window.gsap.context(() => {
-      if (!sliderRef.current || !containerRef.current) return;
-
-      window.gsap.to(sliderRef.current, {
-        x: "-300px",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 0.1,
-          onUpdate: (self: ScrollTriggerInstance) => {
-            direction.current = self.direction * -1;
+    let gsapTimeout: NodeJS.Timeout;
+    const waitForGSAP = () => {
+      if (window.gsap && window.ScrollTrigger) {
+        window.gsap.to(sliderRef.current, {
+          x: "-300px",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 0.1,
+            onUpdate: (self: ScrollTriggerInstance) => {
+              direction.current = self.direction * -1;
+            },
           },
-        },
-      });
-
-      animationFrameId.current = requestAnimationFrame(animate);
-    }, containerRef);
-
-    return () => {
-      ctx.revert();
-      if (animationFrameId.current) {
-        cancelAnimationFrame(animationFrameId.current);
+        });
+        requestAnimationFrame(animate);
+      } else {
+        console.warn("GSAP not loaded yet, retrying...");
+        gsapTimeout = setTimeout(waitForGSAP, 100);
       }
     };
+    waitForGSAP();
+
+    return () => clearTimeout(gsapTimeout);
   }, [animate]);
 
   return (

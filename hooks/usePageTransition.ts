@@ -2,12 +2,15 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useScriptLoader } from "@/utils/ScriptLoaderContext";
+import { useLoadingContext } from "@/utils/LoadingContext";
 
 export function usePageTransition() {
   const router = useRouter();
   const { loaded } = useScriptLoader();
+  const { loadingComplete } = useLoadingContext()
 
   useEffect(() => {
+    if (!loadingComplete) return;
     const overlay = document.getElementById("overlay");
     const main = document.getElementById("main");
     const overlaySecond = document.getElementById("second-overlay");
@@ -15,10 +18,11 @@ export function usePageTransition() {
     if (!overlay || !main || !overlaySecond) return;
 
     let gsapTimeout: NodeJS.Timeout;
+    let timeline: Window["gsap"]
     const waitForGSAP = () => {
       if (window.gsap && window.ScrollTrigger && loaded) {
 
-        const timeline = window.gsap.timeline();
+        timeline = window.gsap.timeline();
 
         timeline
           .fromTo(
@@ -61,6 +65,9 @@ export function usePageTransition() {
     };
 
     waitForGSAP();
-    return () => clearTimeout(gsapTimeout);
-  }, [loaded, router]);
+    return () => {
+      clearTimeout(gsapTimeout)
+      timeline?.kill()
+    };
+  }, [loaded, router, loadingComplete]);
 }
