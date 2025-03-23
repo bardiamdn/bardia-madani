@@ -1,20 +1,15 @@
 "use client";
+import { Service as ServiceType } from "@/types/homepage";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 
 export default function Service({
-  serviceName,
-  serviceMedia,
-  serviceAlt,
-  serviceDescription,
+  name,
+  mediaSrc,
+  altText,
+  description,
   isVideo,
-}: {
-  serviceName: string;
-  serviceMedia: string;
-  serviceAlt: string;
-  serviceDescription: string;
-  isVideo: boolean;
-}) {
+}: ServiceType) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const serviceRef = useRef<HTMLDivElement>(null);
@@ -264,7 +259,7 @@ export default function Service({
         className="md:w-[40%] w-auto md:font-extralight md:text-start text-center"
         ref={serviceRef}
       >
-        {serviceName}
+        {name}
       </h3>
       <div
         className="relative w-[5%] opacity-0 hidden aspect-square "
@@ -272,8 +267,8 @@ export default function Service({
       >
         {isVideo ? (
           <video
-            src={serviceMedia}
-            aria-label={serviceAlt}
+            src={mediaSrc}
+            aria-label={altText}
             // autoPlay
             loop
             muted
@@ -284,8 +279,8 @@ export default function Service({
           </video>
         ) : (
           <Image
-            src={serviceMedia}
-            alt={serviceAlt}
+            src={mediaSrc}
+            alt={altText}
             fill
             className="object-center object-cover"
           />
@@ -295,7 +290,7 @@ export default function Service({
         className="md:w-[55%] w-full md:pt-0 pt-[35px] md:text-[20px] text-base"
         ref={desRef}
       >
-        {serviceDescription}
+        {description}
       </p>
     </div>
   );

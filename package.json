@@ -10,11 +10,16 @@
   },
   "dependencies": {
     "@next/third-parties": "^15.2.2",
+    "@portabletext/react": "^3.2.1",
+    "@sanity/client": "^6.28.3",
+    "@sanity/image-url": "^1.1.0",
     "@types/locomotive-scroll": "^4.1.4",
     "locomotive-scroll": "^5.0.0-beta.15",
     "next": "^15.1.7",
+    "next-sanity": "^9.9.5",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-is": "^19.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",

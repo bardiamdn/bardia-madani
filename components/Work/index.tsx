@@ -4,8 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import Tags from "./Tags";
+import { Work as WorkType } from "@/types/homepage";
 
-export default function Work() {
+export default function Work({ works }: { works: WorkType[] }) {
   const firstRef = useRef(null);
   const secondRef = useRef(null);
 
@@ -88,7 +89,7 @@ export default function Work() {
           </div>
           <div className="flex items-center justify-between px-[15px]">
             <h3 className="font-extralight text-3xl text-foreground">
-              <LetterDrop>Ozkan Eng.</LetterDrop>
+              <LetterDrop>{works[0].title}</LetterDrop>
             </h3>
             <Link href="https://ozkanmuhendislik.com.tr" target="_blank">
               <svg
@@ -122,7 +123,7 @@ export default function Work() {
               </svg>
             </Link>
           </div>
-          <Tags tags={["Web Design", "Web Development"]} />
+          <Tags tags={works[0].services} />
         </div>
         <div className="w-full space-y-[20px] mb-[50px]" ref={secondRef}>
           <div className="relative w-full aspect-square">
@@ -135,7 +136,7 @@ export default function Work() {
           </div>
           <div className="flex items-center justify-between px-[15px]">
             <h3 className="font-extralight text-3xl text-foreground">
-              <LetterDrop>WalletSpace</LetterDrop>
+              <LetterDrop>{works[1].title}</LetterDrop>
             </h3>
             <Link href="https://wallet-space.com" target="_blank">
               <svg
@@ -169,7 +170,7 @@ export default function Work() {
               </svg>
             </Link>
           </div>
-          <Tags tags={["Web Design", "Web Development"]} />
+          <Tags tags={works[0].services} />
         </div>
       </div>
     </section>

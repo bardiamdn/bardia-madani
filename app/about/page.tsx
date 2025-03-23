@@ -1,11 +1,31 @@
 "use client";
 import { usePageTransition } from "@/hooks/usePageTransition";
+import { client } from "@/sanity/client";
+import { AboutPageData } from "@/types/aboutpage";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function About() {
   const [loaded, setLoaded] = useState(false);
+  const [aboutpageData, setAboutpageData] = useState<AboutPageData | null>(
+    null
+  );
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await client.fetch(`*[_type == "aboutpage"][0]`);
+
+      setAboutpageData(data);
+    };
+
+    fetchData();
+  }, []);
+
   usePageTransition();
+
+  if (!aboutpageData) {
+    return <div>Loading...</div>;
+  }
   return (
     <section className="bg-white flex flex-col px-[15px] py-[50px] 2xl:px-0 w-full items-center">
       <div className=" w-full 2xl:w-[80%] ">
@@ -14,7 +34,7 @@ export default function About() {
           <div className="relative w-full h-full flex items-center">
             <h1 className=" md:my-[40px] mt-[40px] lg:text-start text-center">
               <div className="h-[50%] md:flex w-full items-center justify-between md:absolute top-0 left-0">
-                <span>Design, Development </span>
+                <span>{aboutpageData.heroSection.headlineTop} </span>
                 <div className="ml-[20px] flex-grow justify-center items-center h-full lg:flex hidden">
                   <div className="relative aspect-square h-[70%]">
                     <Image
@@ -46,20 +66,15 @@ export default function About() {
                     /> */}
                   </div>
                 </div>
-                <span>Interaction & Motion</span>
+                <span>{aboutpageData.heroSection.headlineBottom}</span>
               </div>
             </h1>
           </div>
         </div>
         <div className="md:space-x-[50px] md:space-y-0 relative flex md:flex-row flex-col items-center justify-between md:py-[200px] py-[50px] md:h-[1000px] h-[600px]">
           <div className="md:w-[50%] md:space-y-[35px] flex flex-col justify-center h-full space-y-[25px]">
-            <h4>Creative Developer</h4>
-            <p>
-              I&apos;m passionate about great design, bringing creative ideas to
-              life with dynamic motion and interactive code. I constantly push
-              boundaries, elevating each project to new heights while managing
-              every detail from concept to launch.
-            </p>
+            <h4>{aboutpageData.introSection.title}</h4>
+            <p>{aboutpageData.introSection.description}</p>
             {/* <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -93,11 +108,10 @@ export default function About() {
               id="process"
               className="mt-[45px] mb-[20px] text-center md:text-start"
             >
-              The Process
+              {aboutpageData.processSection.title}
             </h3>
             <p className="md:w-[85%] md:text-[26px] text-[20px] font-geologica font-extralight">
-              Here’s how I will bring your vision to life with a seamless,
-              end-to-end solution tailored to your needs.
+              {aboutpageData.processSection.description}
             </p>
             <div className="relative md:w-[50%] md:h-[50%] h-[200px] md:my-[100px] my-[50px] ">
               <Image
@@ -109,78 +123,26 @@ export default function About() {
             </div>
           </div>
           <div className="md:w-1/2 w-full ">
-            <div className="flex flex-col md:py-[50px] space-y-[25px] py-[35px] border-b-[0.5px] border-border md:border-black">
-              <div className="flex items-center space-x-[15px]">
-                <span className="md:text-xl text-foregroundAccent font-semibold ">
-                  01
-                </span>
-                <h4>Discover</h4>
+            {aboutpageData.processSection.steps.map((step, index) => (
+              <div
+                key={index}
+                className={`flex flex-col space-y-[25px] md:py-[50px] py-[35px] ${
+                  index < aboutpageData.processSection.steps.length - 1
+                    ? "border-b-[0.5px] border-border md:border-black"
+                    : ""
+                }`}
+              >
+                <div className="flex items-center space-x-[15px]">
+                  <span className="md:text-xl text-foregroundAccent font-semibold">
+                    {step.stepNumber}
+                  </span>
+                  <h4>{step.title}</h4>
+                </div>
+                <p className="text-[#757575] md:pl-[25px]">
+                  {step.description}
+                </p>
               </div>
-              <p className="text-[#757575] md:pl-[25px]">
-                We start with a quick online consultation to understand your
-                goals, challenges, and expectations.
-              </p>
-            </div>
-            <div className="flex flex-col space-y-[25px] md:py-[50px] py-[35px] border-b-[0.5px] border-border md:border-black">
-              <div className="flex items-center space-x-[15px]">
-                <span className="md:text-xl text-foregroundAccent font-semibold ">
-                  02
-                </span>
-                <h4>Define</h4>
-              </div>
-              <p className="text-[#757575] md:pl-[25px]">
-                I analyze your industry, competitors, and target audience to
-                define the website’s content and strategy.
-              </p>
-            </div>
-            <div className="flex flex-col space-y-[25px] md:py-[50px] py-[35px] border-b-[0.5px] border-border md:border-black">
-              <div className="flex items-center space-x-[15px]">
-                <span className="md:text-xl text-foregroundAccent font-semibold ">
-                  03
-                </span>
-                <h4>Design</h4>
-              </div>
-              <p className="text-[#757575] md:pl-[25px]">
-                Once we’ve established the concept, I create the design and
-                refine it based on your feedback.
-              </p>
-            </div>
-            <div className="flex flex-col space-y-[25px] md:py-[50px] py-[35px] border-b-[0.5px] border-border md:border-black">
-              <div className="flex items-center space-x-[15px]">
-                <span className="md:text-xl text-foregroundAccent font-semibold ">
-                  04
-                </span>
-                <h4>Develop</h4>
-              </div>
-              <p className="text-[#757575] md:pl-[25px]">
-                My favorite part—coding the website, adding motion, and bringing
-                everything to life.
-              </p>
-            </div>
-            <div className="flex flex-col space-y-[25px] md:py-[50px] py-[35px] border-b-[0.5px] border-border md:border-black">
-              <div className="flex items-center space-x-[15px]">
-                <span className="md:text-xl text-foregroundAccent font-semibold ">
-                  05
-                </span>
-                <h4>Launch</h4>
-              </div>
-              <p className="text-[#757575] md:pl-[25px]">
-                After thorough testing and final refinements, your website goes
-                live.
-              </p>
-            </div>
-            <div className="flex flex-col space-y-[25px] md:py-[50px] py-[35px]">
-              <div className="flex items-center space-x-[15px]">
-                <span className="md:text-xl text-foregroundAccent font-semibold ">
-                  06
-                </span>
-                <h4>Optimize</h4>
-              </div>
-              <p className="text-[#757575] md:pl-[25px]">
-                Post-launch, I analyze performance and ensure everything is
-                optimized for search engines.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </div>

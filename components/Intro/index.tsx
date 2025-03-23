@@ -4,7 +4,7 @@ import Navigate from "../../common/NavigateLink";
 import Image from "next/image";
 import { useLayoutEffect, useRef, useState } from "react";
 
-export default function Intro() {
+export default function Intro({ intro }: { intro: string }) {
   const [loaded, setLoaded] = useState({
     first: false,
     second: false,
@@ -348,9 +348,10 @@ export default function Intro() {
               // setEntered={setEntered}
               className="md:text-6xl text-3xl md:leading-[76px] leading-[42px] text-center font-light text-foreground md:px-[25px] px-[15px] max-w-[1300px]"
             >
-              Creating high performance websites with cutting edge technologies
+              {/* Creating high performance websites with cutting edge technologies
               to transform your ideas into reality, integrating dynamic motion
-              and interactive elements.
+              and interactive elements. */}
+              {intro}
             </SlideUpParagraph>
           </div>
           <div>

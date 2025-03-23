@@ -1,17 +1,10 @@
 "use client";
+// import { Service } from "@/types/homepage";
+import { ServiceBlock } from "@/types/servicespage";
 import Image from "next/image";
 import { useState } from "react";
 
-export default function ServiceRow({
-  services,
-}: {
-  services: {
-    title: string;
-    description: string;
-    mediaSrc: string;
-    isVideo: boolean;
-  }[];
-}) {
+export default function ServiceRow({ services }: { services: ServiceBlock[] }) {
   const [hoverIndex, setHoverIndex] = useState(0); // 0 for no hover
   const [loaded, setLoaded] = useState(false);
 
@@ -34,8 +27,8 @@ export default function ServiceRow({
             hoverIndex === index + 1
               ? "md:w-[65%] w-full md:bg-accent "
               : hoverIndex === 0
-              ? "md:w-[50%] w-full"
-              : "md:w-[35%] w-full"
+                ? "md:w-[50%] w-full"
+                : "md:w-[35%] w-full"
           }`}
         >
           <div className="flex md:flex-row flex-col justify-between mb-[50px]">
@@ -44,11 +37,11 @@ export default function ServiceRow({
                 hoverIndex === index + 1
                   ? "xl:text-7xl md:text-5xl text-5xl md:text-foreground"
                   : hoverIndex !== index + 1 && hoverIndex !== 0
-                  ? "xl:text-5xl md:text-4xl text-5xl"
-                  : "xl:text-6xl md:text-5xl text-5xl"
+                    ? "xl:text-5xl md:text-4xl text-5xl"
+                    : "xl:text-6xl md:text-5xl text-5xl"
               } md:font-thin font-extralight`}
             >
-              {service.title}
+              {service.name}
             </h2>
             <div
               className={` relative transition-all ease-[cubic-bezier(0.83,0,0.17,1)] duration-500 flex-shrink-0 ${
@@ -99,8 +92,8 @@ export default function ServiceRow({
               hoverIndex === index + 1
                 ? "md:text-2xl text-xl md:text-foreground"
                 : hoverIndex !== index + 1 && hoverIndex !== 0
-                ? "md:text-md text-xl md:text-foregroundLight"
-                : "md:text-2xl text-xl md:text-foregroundLight"
+                  ? "md:text-md text-xl md:text-foregroundLight"
+                  : "md:text-2xl text-xl md:text-foregroundLight"
             }`}
           >
             {service.description}

@@ -2,10 +2,32 @@
 
 import Form from "@/components/Form";
 import { usePageTransition } from "@/hooks/usePageTransition";
+import { client } from "@/sanity/client";
+import { ContactPageData } from "@/types/contactpage";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Contact() {
+  const [contactpageData, setContactpageData] =
+    useState<ContactPageData | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await client.fetch(`*[_type == "contactpage"][0]`);
+
+      console.log(data);
+
+      setContactpageData(data);
+    };
+
+    fetchData();
+  }, []);
+
   usePageTransition();
+
+  if (!contactpageData) {
+    return <div>Loading...</div>;
+  }
   return (
     <section className=" bg-white flex flex-col py-[50px] w-full items-center">
       <div className=" w-full flex flex-col items-center ">
@@ -15,17 +37,17 @@ export default function Contact() {
             <div className="flex items-center ">
               {/* <Star /> */}
               <h1 className=" my-[40px] ">
-                <span className="block">Have a Project in Mind? </span>
+                <span className="block">
+                  {contactpageData.heroSection.headlineTop}{" "}
+                </span>
                 <span className="block lg:ml-[200px] md:ml-[100px] mt-[30px]">
-                  Let’s Talk!
+                  {contactpageData.heroSection.headlineBottom}
                 </span>
               </h1>
             </div>
             <div className="flex justify-end">
               <p className="md:w-[250px] w-full md:-translate-y-[75px] md:my-0 mb-[40px]">
-                Whether you have a detailed project plan or just an idea, feel
-                free to get in touch. I&apos;m here to help bring your vision to
-                life.
+                {contactpageData.heroSection.description}
               </p>
             </div>
           </div>
