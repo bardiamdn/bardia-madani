@@ -1,6 +1,6 @@
 "use client";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import Stars from "../Stars";
+import Stars from "./Stars";
 import { useEffect, useRef, useState } from "react";
 
 export default function Hero() {

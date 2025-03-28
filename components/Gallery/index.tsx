@@ -42,7 +42,7 @@ export default function Gallery() {
     window.gsap.set(firstRef.current, { xPercent: xPercent.current });
     window.gsap.set(secondRef.current, { xPercent: xPercent.current });
 
-    xPercent.current += 0.017 * direction.current;
+    xPercent.current += 0.02 * direction.current;
     requestAnimationFrame(animate);
   }, []);
 
@@ -53,7 +53,7 @@ export default function Gallery() {
     const waitForGSAP = () => {
       if (window.gsap && window.ScrollTrigger) {
         window.gsap.to(sliderRef.current, {
-          x: "-300px",
+          x: "-500px",
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top bottom",
@@ -76,10 +76,13 @@ export default function Gallery() {
   }, [animate]);
 
   return (
-    <div className="w-full h-[700px] bg-white py-[150px]" ref={containerRef}>
+    <div
+      className="md:block hidden w-full h-[700px] bg-white py-[150px]"
+      ref={containerRef}
+    >
       <div className="relative w-full h-full" ref={sliderRef}>
         <div
-          className="md:flex hidden text-black absolute bottom-0 left-0 w-[3500px] h-full items-center justify-start space-x-[60px] px-[30px]"
+          className="flex text-black absolute bottom-0 left-0 w-[3500px] h-full items-center justify-start space-x-[60px] px-[30px]"
           ref={firstRef}
         >
           <div className="aspect-[144/90] h-full p-[50px] bg-accent">

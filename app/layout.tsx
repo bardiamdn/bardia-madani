@@ -41,11 +41,11 @@ export const metadata: Metadata = {
   description:
     "Improve your online presence with a custom website. I create high-quality, fast, and responsive websites tailored to your brand.",
 
-  // icons: {
-  //   icon: "favicon.ico",
-  //   shortcut: "favicon-32x32.png",
-  //   apple: "apple-touch-icon.png",
-  // },
+  icons: {
+    icon: "favicon.ico",
+    shortcut: "favicon-32x32.png",
+    apple: "apple-touch-icon.png",
+  },
 
   openGraph: {
     title: "Bardia Madani | Web Designer & Developer",
@@ -118,7 +118,7 @@ export default function RootLayout({
             </div>
             <Header />
             <SmoothScroll />
-            <main id="main" className="relative">
+            <main id="main" className="relative z-10">
               {children}
             </main>
             <Footer />

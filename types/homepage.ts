@@ -11,7 +11,7 @@ export type Service = {
 
 export type Work = {
   _key: string;
-  name: string;
+  title: string;
   services: string[];
 };
 

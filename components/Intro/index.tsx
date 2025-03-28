@@ -344,13 +344,7 @@ export default function Intro({ intro }: { intro: string }) {
           ref={stickyRef}
         >
           <div className=" md:w-full md:py-[20px] mb-[50px] ">
-            <SlideUpParagraph
-              // setEntered={setEntered}
-              className="md:text-6xl text-3xl md:leading-[76px] leading-[42px] text-center font-light text-foreground md:px-[25px] px-[15px] max-w-[1300px]"
-            >
-              {/* Creating high performance websites with cutting edge technologies
-              to transform your ideas into reality, integrating dynamic motion
-              and interactive elements. */}
+            <SlideUpParagraph className="md:text-6xl text-3xl md:leading-[76px] leading-[42px] text-center font-light text-foreground md:px-[25px] px-[15px] max-w-[1300px]">
               {intro}
             </SlideUpParagraph>
           </div>

@@ -2,12 +2,15 @@ import React, { useEffect, useRef } from "react";
 
 interface LetterDropProps {
   children: string;
+  setEntered?: (value: boolean) => void;
+  index?: number;
 }
 
-const DropLetter: React.FC<{ children: string; index: number }> = ({
-  children,
-  index,
-}) => {
+const DropLetter: React.FC<{
+  children: string;
+  index: number;
+  setEntered: (value: boolean) => void;
+}> = ({ children, index, setEntered }) => {
   const letterRef = useRef(null);
 
   useEffect(() => {
@@ -32,15 +35,18 @@ const DropLetter: React.FC<{ children: string; index: number }> = ({
             end: "top 80%",
             // markers: true,
             toggleActions: "play none none none",
+            onEnter: () => {
+              setEntered(true);
+            },
           },
         }
       );
     };
     requestAnimationFrame(DropLetter);
-  }, [letterRef, index]);
+  }, [letterRef, index, setEntered]);
 
   return (
-    <span className="inline-block overflow-hidden ">
+    <span className="inline-block overflow-hidden align-top">
       <span className="inline-block" ref={letterRef}>
         {children}
       </span>
@@ -48,11 +54,19 @@ const DropLetter: React.FC<{ children: string; index: number }> = ({
   );
 };
 
-const LetterDrop: React.FC<LetterDropProps> = ({ children }) => {
+const LetterDrop: React.FC<LetterDropProps> = ({
+  children,
+  setEntered,
+  index,
+}) => {
   return (
     <span className="">
       {children.split("").map((char, index) => (
-        <DropLetter key={index} index={index}>
+        <DropLetter
+          key={index}
+          index={index}
+          setEntered={setEntered || (() => {})}
+        >
           {char}
         </DropLetter>
       ))}

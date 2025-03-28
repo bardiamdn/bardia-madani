@@ -2,15 +2,20 @@ import React, { useEffect, useRef } from "react";
 
 interface LetterSlideUpProps {
   children: string;
+  animate?: boolean;
+  delay: number;
 }
 
-const SlideUpLetter: React.FC<{ children: string; index: number }> = ({
-  children,
-  index,
-}) => {
+const SlideUpLetter: React.FC<{
+  children: string;
+  index: number;
+  delay: number;
+  animate?: boolean;
+}> = ({ children, index, delay, animate }) => {
   const letterRef = useRef(null);
 
   useEffect(() => {
+    if (!animate) return;
     const SlideUpLetter = () => {
       if (!letterRef.current) return;
 
@@ -18,13 +23,13 @@ const SlideUpLetter: React.FC<{ children: string; index: number }> = ({
         letterRef.current,
         {
           y: "100%",
-          opacity: 0.5,
+          opacity: 0,
         },
         {
           y: "0px",
           opacity: 1,
           duration: 0.8,
-          delay: 0.01 * index,
+          delay: delay * index, // 0.01
           ease: "power2.out",
           scrollTrigger: {
             trigger: letterRef.current,
@@ -37,27 +42,41 @@ const SlideUpLetter: React.FC<{ children: string; index: number }> = ({
       );
     };
     requestAnimationFrame(SlideUpLetter);
-  }, [letterRef, index]);
+  }, [index, animate, delay]);
 
   return (
-    <span className="inline-block overflow-hidden ">
-      <span className="inline-block" ref={letterRef}>
+    <span className="inline-block overflow-hidden align-top">
+      <span className="inline-block opacity-0 " ref={letterRef}>
         {children}
       </span>
     </span>
   );
 };
 
-const LetterDrop: React.FC<LetterSlideUpProps> = ({ children }) => {
+const LetterSlideUp: React.FC<LetterSlideUpProps> = ({
+  children,
+  animate,
+  delay,
+}) => {
   return (
-    <span className="">
-      {children.split("").map((char, index) => (
-        <SlideUpLetter key={index} index={index}>
-          {char}
-        </SlideUpLetter>
+    <span className="inline-block">
+      {children.split(" ").map((word, wordIndex) => (
+        <span key={wordIndex} className="inline-block ">
+          {word.split("").map((char, charIndex) => (
+            <SlideUpLetter
+              key={`${wordIndex}-${charIndex}`}
+              index={wordIndex * 10 + charIndex}
+              animate={animate}
+              delay={delay}
+            >
+              {char}
+            </SlideUpLetter>
+          ))}
+          <span className="inline-block">&nbsp;</span>
+        </span>
       ))}
     </span>
   );
 };
 
-export default LetterDrop;
+export default LetterSlideUp;

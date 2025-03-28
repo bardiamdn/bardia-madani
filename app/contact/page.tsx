@@ -1,22 +1,33 @@
 "use client";
 
+import LetterSlideUp from "@/common/SlideUpLetter";
 import Form from "@/components/Form";
 import { usePageTransition } from "@/hooks/usePageTransition";
 import { client } from "@/sanity/client";
 import { ContactPageData } from "@/types/contactpage";
+import { useLoadingContext } from "@/utils/LoadingContext";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Contact() {
   const [contactpageData, setContactpageData] =
     useState<ContactPageData | null>(null);
+  const [startAnimation, setStartAnimation] = useState(false);
+  const { loadingComplete } = useLoadingContext();
+
+  useEffect(() => {
+    if (loadingComplete) {
+      const timer = setTimeout(() => {
+        setStartAnimation(true);
+      }, 800);
+
+      return () => clearTimeout(timer);
+    }
+  }, [loadingComplete]);
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await client.fetch(`*[_type == "contactpage"][0]`);
-
-      console.log(data);
-
       setContactpageData(data);
     };
 
@@ -37,16 +48,20 @@ export default function Contact() {
             <div className="flex items-center ">
               {/* <Star /> */}
               <h1 className=" my-[40px] ">
-                <span className="block">
-                  {contactpageData.heroSection.headlineTop}{" "}
-                </span>
+                <LetterSlideUp animate={startAnimation} delay={0.0065}>
+                  {contactpageData.heroSection.headlineTop}
+                </LetterSlideUp>
                 <span className="block lg:ml-[200px] md:ml-[100px] mt-[30px]">
-                  {contactpageData.heroSection.headlineBottom}
+                  <LetterSlideUp animate={startAnimation} delay={0.0065}>
+                    {contactpageData.heroSection.headlineBottom}
+                  </LetterSlideUp>
                 </span>
               </h1>
             </div>
             <div className="flex justify-end">
-              <p className="md:w-[250px] w-full md:-translate-y-[75px] md:my-0 mb-[40px]">
+              <p
+                className={`md:w-[250px] w-full md:-translate-y-[75px] md:my-0 mb-[40px] transition-all duration-500 delay-300 ease-in-out ${startAnimation ? "opacity-100" : "opacity-0"}`}
+              >
                 {contactpageData.heroSection.description}
               </p>
             </div>

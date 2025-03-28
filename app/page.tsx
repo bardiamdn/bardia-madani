@@ -15,9 +15,13 @@ export default function Home() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await client.fetch(`*[_type == "homepage"][1]`);
-      console.log(data);
-      setHomepageData(data);
+      try {
+        const res = await client.fetch(`*[_type == "homepage"][1]`);
+        setHomepageData(res);
+      } catch (err) {
+        console.error("Failed to load data from Sanity:", err);
+        setTimeout(fetchData, 1000);
+      }
     };
 
     fetchData();
@@ -29,17 +33,7 @@ export default function Home() {
     return <div>Loading...</div>;
   }
 
-  const {
-    tagline,
-    supportingText,
-    cta,
-    intro,
-    services,
-    works,
-    footerCTATextTop,
-    footerCTATextBottom,
-    footerCTAButton,
-  } = homepageData;
+  const { tagline, supportingText, cta, intro, services, works } = homepageData;
 
   return (
     <main className="relative">
@@ -53,7 +47,6 @@ export default function Home() {
       <Services services={services} />
       <Work works={works} />
       <Gallery />
-      {/* <FooterCTA textTop={footerCTATextTop} ... /> */}
     </main>
   );
 }

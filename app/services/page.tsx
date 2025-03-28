@@ -1,10 +1,12 @@
 "use client";
 import Navigate from "@/common/NavigateLink";
-import Star from "@/common/Star";
+import LetterSlideUp from "@/common/SlideUpLetter";
+import { Star } from "@/common/Star";
 import ServiceBlocks from "@/components/ServiceRow";
 import { usePageTransition } from "@/hooks/usePageTransition";
 import { client } from "@/sanity/client";
 import { ServiceBlock, ServicesPageData } from "@/types/servicespage";
+import { useLoadingContext } from "@/utils/LoadingContext";
 import { useEffect, useState } from "react";
 
 function chunkArray<T>(arr: T[], chunkSize: number): T[][] {
@@ -19,6 +21,7 @@ export default function Services() {
   const [servicespageData, setServicespageData] =
     useState<ServicesPageData | null>(null);
   const [services, setServices] = useState<ServiceBlock[][] | null>(null);
+  const [startAnimation, setStartAnimation] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,6 +36,18 @@ export default function Services() {
     fetchData();
   }, []);
 
+  const { loadingComplete } = useLoadingContext();
+
+  useEffect(() => {
+    if (loadingComplete) {
+      const timer = setTimeout(() => {
+        setStartAnimation(true);
+      }, 800);
+
+      return () => clearTimeout(timer);
+    }
+  }, [loadingComplete]);
+
   usePageTransition();
 
   if (!servicespageData || !services) {
@@ -40,24 +55,30 @@ export default function Services() {
   }
 
   return (
-    <section className="bg-white flex flex-col px-[15px] py-[50px] 2xl:px-0 w-full items-center">
-      <div className=" w-full 2xl:w-[80%] ">
+    <section className="relative bg-white flex flex-col px-[15px] py-[50px] 2xl:px-0 w-full items-center">
+      <div className="relative w-full 2xl:w-[80%]">
         {/* Intro */}
         <div className="border-b border-border md:h-[500px] h-auto flex flex-col justify-center md:mb-[150px] md:mt-[100px] md:p-0 pb-[100px] mb-[100px]">
           <div className="flex items-center ">
             <Star />
             <h1 className=" my-[40px] ">
               <span className="md:block">
-                {servicespageData.heroTitle.line1}{" "}
+                <LetterSlideUp animate={startAnimation} delay={0.005}>
+                  {servicespageData.heroTitle.line1}
+                </LetterSlideUp>
               </span>
               <span className="md:block xl:ml-[200px] lg:ml-[100px] md:mt-[30px]">
-                {servicespageData.heroTitle.line2}
+                <LetterSlideUp animate={startAnimation} delay={0.005}>
+                  {servicespageData.heroTitle.line2}
+                </LetterSlideUp>
               </span>
             </h1>
           </div>
           <div className="flex justify-end">
             <p className="md:w-[250px] lg:-translate-y-[75px]">
-              {servicespageData.heroDescription}
+              <LetterSlideUp animate={startAnimation} delay={0.005}>
+                {servicespageData.heroDescription}
+              </LetterSlideUp>
             </p>
           </div>
         </div>

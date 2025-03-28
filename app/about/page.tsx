@@ -1,7 +1,10 @@
 "use client";
+import LetterDrop from "@/common/DropDownLetter";
+import LetterSlideUp from "@/common/SlideUpLetter";
 import { usePageTransition } from "@/hooks/usePageTransition";
 import { client } from "@/sanity/client";
 import { AboutPageData } from "@/types/aboutpage";
+import { useLoadingContext } from "@/utils/LoadingContext";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -10,6 +13,43 @@ export default function About() {
   const [aboutpageData, setAboutpageData] = useState<AboutPageData | null>(
     null
   );
+  const [startAnimation, setStartAnimation] = useState(false);
+  const [titleEntered, setTitleEntered] = useState(false);
+  // to avoid rerenders on each child component
+  const [entered0, setEntered0] = useState(false);
+  const [entered1, setEntered1] = useState(false);
+  const [entered2, setEntered2] = useState(false);
+  const [entered3, setEntered3] = useState(false);
+  const [entered4, setEntered4] = useState(false);
+  const [entered5, setEntered5] = useState(false);
+  const processEnteredStates = [
+    entered0,
+    entered1,
+    entered2,
+    entered3,
+    entered4,
+    entered5,
+  ];
+  const setProcessEnteredStates = [
+    setEntered0,
+    setEntered1,
+    setEntered2,
+    setEntered3,
+    setEntered4,
+    setEntered5,
+  ];
+
+  const { loadingComplete } = useLoadingContext();
+
+  useEffect(() => {
+    if (loadingComplete) {
+      const timer = setTimeout(() => {
+        setStartAnimation(true);
+      }, 800);
+
+      return () => clearTimeout(timer);
+    }
+  }, [loadingComplete]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,27 +74,33 @@ export default function About() {
           <div className="relative w-full h-full flex items-center">
             <h1 className=" md:my-[40px] mt-[40px] lg:text-start text-center">
               <div className="h-[50%] md:flex w-full items-center justify-between md:absolute top-0 left-0">
-                <span>{aboutpageData.heroSection.headlineTop} </span>
+                <LetterSlideUp animate={startAnimation} delay={0.005}>
+                  {aboutpageData.heroSection.headlineTop}
+                </LetterSlideUp>
                 <div className="ml-[20px] flex-grow justify-center items-center h-full lg:flex hidden">
-                  <div className="relative aspect-square h-[70%]">
+                  <div
+                    className={`relative aspect-square h-[70%] transition-all ease-in-out duration-[450ms] delay-[420ms] ${startAnimation ? "opacity-100 scale-100" : "opacity-0 scale-75"}`}
+                  >
                     <Image
                       src={"/about-1.jpg"}
                       alt="steps"
                       fill
-                      className="text-sm object-cover object-center"
+                      className="text-sm object-cover object-center "
                     />
                   </div>
                 </div>
               </div>
               <div className="z-10 relative h-[50%] md:flex w-full items-center justify-between md:absolute bottom-0 right-0 lg:ml-[200px] lg:mt-[30px]">
                 <div className="mr-[70px] relative flex-grow h-full lg:flex hidden">
-                  <div className="absolute top-[45px] left-0 w-full h-[calc(100%-45px)]">
+                  <div
+                    className={`absolute top-[45px] left-0 w-full h-[calc(100%-45px)] transition-all ease-in-out duration-500 delay-500 ${startAnimation ? "opacity-100 scale-100" : "opacity-0 scale-75"}`}
+                  >
                     <video
                       src="/videos/about.mp4"
                       autoPlay
                       loop
                       muted
-                      className="object-center object-cover w-full h-full"
+                      className="object-center object-cover w-full h-full rounded-full"
                     >
                       Your browser does not support the video tag.
                     </video>
@@ -66,7 +112,10 @@ export default function About() {
                     /> */}
                   </div>
                 </div>
-                <span>{aboutpageData.heroSection.headlineBottom}</span>
+
+                <LetterSlideUp animate={startAnimation} delay={0.005}>
+                  {aboutpageData.heroSection.headlineBottom}
+                </LetterSlideUp>
               </div>
             </h1>
           </div>
@@ -108,11 +157,19 @@ export default function About() {
               id="process"
               className="mt-[45px] mb-[20px] text-center md:text-start"
             >
-              {aboutpageData.processSection.title}
+              <LetterDrop setEntered={setTitleEntered}>
+                {aboutpageData.processSection.title}
+              </LetterDrop>
             </h3>
-            <p className="md:w-[85%] md:text-[26px] text-[20px] font-geologica font-extralight">
-              {aboutpageData.processSection.description}
-            </p>
+            <div
+              className={`transition-all duration-300 delay-100 ease-in-out ${titleEntered ? "opacity-100" : "opacity-0"}`}
+            >
+              <p
+                className={`md:w-[85%] md:text-[26px] text-[20px] font-geologica font-extralight `}
+              >
+                {aboutpageData.processSection.description}
+              </p>
+            </div>
             <div className="relative md:w-[50%] md:h-[50%] h-[200px] md:my-[100px] my-[50px] ">
               <Image
                 src={"/stairs.png"}
@@ -133,12 +190,20 @@ export default function About() {
                 }`}
               >
                 <div className="flex items-center space-x-[15px]">
-                  <span className="md:text-xl text-foregroundAccent font-semibold">
+                  <span
+                    className={`md:text-xl text-foregroundAccent font-semibold transition-all duration-300 ease-in-out ${processEnteredStates[index] ? "opacity-100" : "opacity-0"}`}
+                  >
                     {step.stepNumber}
                   </span>
-                  <h4>{step.title}</h4>
+                  <h4 className="">
+                    <LetterDrop setEntered={setProcessEnteredStates[index]}>
+                      {step.title}
+                    </LetterDrop>
+                  </h4>
                 </div>
-                <p className="text-[#757575] md:pl-[25px]">
+                <p
+                  className={`text-[#757575] md:pl-[25px] transition-all duration-300 ease-in-out ${processEnteredStates[index] ? "opacity-100" : "opacity-0"}`}
+                >
                   {step.description}
                 </p>
               </div>
