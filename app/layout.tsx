@@ -8,9 +8,6 @@ import Loading from "@/components/Loading";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { LoadingProvider } from "@/utils/LoadingContext";
 
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
-
 const inter = localFont({
   src: "./fonts/Inter/Inter-VariableFont_opsz,wght.ttf",
   variable: "--font-inter",
@@ -116,12 +113,10 @@ export default function RootLayout({
             >
               <Loading />
             </div>
-            <Header />
             <SmoothScroll />
-            <main id="main" className="relative z-10">
+            <main id="main" className="relative overflow-hidden">
               {children}
             </main>
-            <Footer />
           </LoadingProvider>
         </ScriptLoaderProvider>
         <GoogleAnalytics gaId="G-6DCBFCPNTD" />

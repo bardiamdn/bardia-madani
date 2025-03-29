@@ -1,28 +1,25 @@
 "use client";
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef } from "react";
+import intro1 from "@/public/gallery-1.png";
+import intro2 from "@/public/gallery-2.png";
+import intro3 from "@/public/gallery-3.png";
+import intro4 from "@/public/gallery-4.png";
+import intro5 from "@/public/gallery-5.png";
 
 interface ScrollTriggerInstance {
   direction: number;
   progress: number;
 }
 
-const galleryInfo = [
-  { imgSrc: "gallery-1.png", imgLowSrc: "laptop-low.jpg" },
-  { imgSrc: "gallery-2.png", imgLowSrc: "laptop-low.jpg" },
-  { imgSrc: "gallery-3.png", imgLowSrc: "laptop-low.jpg" },
-  { imgSrc: "gallery-4.png", imgLowSrc: "laptop-low.jpg" },
-  { imgSrc: "gallery-5.png", imgLowSrc: "laptop-low.jpg" },
-];
-
 export default function Gallery() {
-  const [loaded, setLoaded] = useState({
-    first: false,
-    second: false,
-    third: false,
-    forth: false,
-    fifth: false,
-  });
+  const galleryInfo = [
+    { imgSrc: intro1 },
+    { imgSrc: intro2 },
+    { imgSrc: intro3 },
+    { imgSrc: intro4 },
+    { imgSrc: intro5 },
+  ];
   const firstRef = useRef(null);
   const secondRef = useRef(null);
   const containerRef = useRef(null);
@@ -77,7 +74,7 @@ export default function Gallery() {
 
   return (
     <div
-      className="md:block hidden w-full h-[700px] bg-white py-[150px]"
+      className="md:block hidden w-full h-[700px] bg-white py-[150px] overflow-hidden"
       ref={containerRef}
     >
       <div className="relative w-full h-full" ref={sliderRef}>
@@ -88,115 +85,60 @@ export default function Gallery() {
           <div className="aspect-[144/90] h-full p-[50px] bg-accent">
             <div className="relative w-full h-full">
               <Image
-                src={galleryInfo[0].imgLowSrc}
-                alt="half closed laptop in a dark room"
-                className={`object-cover object-top ${
-                  loaded.first ? "opacity-0 " : "opacity-100 "
-                }`}
-                priority
-                fill
-              />
-              <Image
                 src={galleryInfo[0].imgSrc}
                 alt="half closed laptop in a dark room"
-                className={`object-cover object-top ${
-                  loaded.first ? "opacity-100 " : "opacity-0 "
-                }`}
+                className={`object-cover object-top`}
                 loading="lazy"
+                placeholder="blur"
                 fill
-                onLoad={() => setLoaded((prev) => ({ ...prev, first: true }))}
               />
             </div>
           </div>
           <div className="aspect-[144/90] h-full p-[50px] bg-accent">
             <div className="relative w-full h-full">
-              <Image
-                src={galleryInfo[1].imgLowSrc}
-                alt="half closed laptop in a dark room"
-                className={`object-cover object-top ${
-                  loaded.second ? "opacity-0 " : "opacity-100 "
-                }`}
-                priority
-                fill
-              />
               <Image
                 src={galleryInfo[1].imgSrc}
                 alt="half closed laptop in a dark room"
-                className={`object-cover object-top ${
-                  loaded.second ? "opacity-100 " : "opacity-0 "
-                }`}
+                className={`object-cover object-top`}
                 loading="lazy"
+                placeholder="blur"
                 fill
-                onLoad={() => setLoaded((prev) => ({ ...prev, second: true }))}
               />
             </div>
           </div>
           <div className="aspect-[144/90] h-full p-[50px] bg-accent">
             <div className="relative w-full h-full">
-              <Image
-                src={galleryInfo[2].imgLowSrc}
-                alt="half closed laptop in a dark room"
-                className={`object-cover object-top ${
-                  loaded.third ? "opacity-0 " : "opacity-100 "
-                }`}
-                priority
-                fill
-              />
               <Image
                 src={galleryInfo[2].imgSrc}
                 alt="half closed laptop in a dark room"
-                className={`object-cover object-top ${
-                  loaded.third ? "opacity-100 " : "opacity-0 "
-                }`}
+                className={`object-cover object-top`}
                 loading="lazy"
+                placeholder="blur"
                 fill
-                onLoad={() => setLoaded((prev) => ({ ...prev, third: true }))}
               />
             </div>
           </div>
           <div className="aspect-[144/90] h-full p-[50px] bg-accent">
             <div className="relative w-full h-full">
-              <Image
-                src={galleryInfo[3].imgLowSrc}
-                alt="half closed laptop in a dark room"
-                className={`object-cover object-top ${
-                  loaded.forth ? "opacity-0 " : "opacity-100 "
-                }`}
-                priority
-                fill
-              />
               <Image
                 src={galleryInfo[3].imgSrc}
                 alt="half closed laptop in a dark room"
-                className={`object-cover object-top ${
-                  loaded.forth ? "opacity-100 " : "opacity-0 "
-                }`}
+                className={`object-cover object-top`}
                 loading="lazy"
+                placeholder="blur"
                 fill
-                onLoad={() => setLoaded((prev) => ({ ...prev, forth: true }))}
               />
             </div>
           </div>
           <div className="aspect-[144/90] h-full p-[50px] bg-accent">
             <div className="relative w-full h-full">
               <Image
-                src={galleryInfo[4].imgLowSrc}
-                alt="half closed laptop in a dark room"
-                className={`object-cover object-top ${
-                  loaded.fifth ? "opacity-0 " : "opacity-100 "
-                }`}
-                priority
-                fill
-              />
-              <Image
                 src={galleryInfo[4].imgSrc}
                 alt="half closed laptop in a dark room"
-                className={`object-cover object-top ${
-                  loaded.fifth ? "opacity-100 " : "opacity-0 "
-                }`}
+                className={`object-cover object-top`}
                 loading="lazy"
+                placeholder="blur"
                 fill
-                onLoad={() => setLoaded((prev) => ({ ...prev, fifth: true }))}
               />
             </div>
           </div>
@@ -208,115 +150,60 @@ export default function Gallery() {
           <div className="aspect-[144/90] h-full p-[50px] bg-accent">
             <div className="relative w-full h-full">
               <Image
-                src={galleryInfo[0].imgLowSrc}
-                alt="half closed laptop in a dark room"
-                className={`object-cover object-top ${
-                  loaded.first ? "opacity-0 " : "opacity-100 "
-                }`}
-                priority
-                fill
-              />
-              <Image
                 src={galleryInfo[0].imgSrc}
                 alt="half closed laptop in a dark room"
-                className={`object-cover object-top ${
-                  loaded.first ? "opacity-100 " : "opacity-0 "
-                }`}
+                className={`object-cover object-top`}
                 loading="lazy"
+                placeholder="blur"
                 fill
-                onLoad={() => setLoaded((prev) => ({ ...prev, first: true }))}
               />
             </div>
           </div>
           <div className="aspect-[144/90] h-full p-[50px] bg-accent">
             <div className="relative w-full h-full">
-              <Image
-                src={galleryInfo[1].imgLowSrc}
-                alt="half closed laptop in a dark room"
-                className={`object-cover object-top ${
-                  loaded.second ? "opacity-0 " : "opacity-100 "
-                }`}
-                priority
-                fill
-              />
               <Image
                 src={galleryInfo[1].imgSrc}
                 alt="half closed laptop in a dark room"
-                className={`object-cover object-top ${
-                  loaded.second ? "opacity-100 " : "opacity-0 "
-                }`}
+                className={`object-cover object-top`}
                 loading="lazy"
+                placeholder="blur"
                 fill
-                onLoad={() => setLoaded((prev) => ({ ...prev, second: true }))}
               />
             </div>
           </div>
           <div className="aspect-[144/90] h-full p-[50px] bg-accent">
             <div className="relative w-full h-full">
-              <Image
-                src={galleryInfo[2].imgLowSrc}
-                alt="half closed laptop in a dark room"
-                className={`object-cover object-top ${
-                  loaded.third ? "opacity-0 " : "opacity-100 "
-                }`}
-                priority
-                fill
-              />
               <Image
                 src={galleryInfo[2].imgSrc}
                 alt="half closed laptop in a dark room"
-                className={`object-cover object-top ${
-                  loaded.third ? "opacity-100 " : "opacity-0 "
-                }`}
+                className={`object-cover object-top`}
                 loading="lazy"
+                placeholder="blur"
                 fill
-                onLoad={() => setLoaded((prev) => ({ ...prev, third: true }))}
               />
             </div>
           </div>
           <div className="aspect-[144/90] h-full p-[50px] bg-accent">
             <div className="relative w-full h-full">
-              <Image
-                src={galleryInfo[3].imgLowSrc}
-                alt="half closed laptop in a dark room"
-                className={`object-cover object-top ${
-                  loaded.forth ? "opacity-0 " : "opacity-100 "
-                }`}
-                priority
-                fill
-              />
               <Image
                 src={galleryInfo[3].imgSrc}
                 alt="half closed laptop in a dark room"
-                className={`object-cover object-top ${
-                  loaded.forth ? "opacity-100 " : "opacity-0 "
-                }`}
+                className={`object-cover object-top`}
                 loading="lazy"
+                placeholder="blur"
                 fill
-                onLoad={() => setLoaded((prev) => ({ ...prev, forth: true }))}
               />
             </div>
           </div>
           <div className="aspect-[144/90] h-full p-[50px] bg-accent">
             <div className="relative w-full h-full">
               <Image
-                src={galleryInfo[4].imgLowSrc}
-                alt="half closed laptop in a dark room"
-                className={`object-cover object-top ${
-                  loaded.fifth ? "opacity-0 " : "opacity-100 "
-                }`}
-                priority
-                fill
-              />
-              <Image
                 src={galleryInfo[4].imgSrc}
                 alt="half closed laptop in a dark room"
-                className={`object-cover object-top ${
-                  loaded.fifth ? "opacity-100 " : "opacity-0 "
-                }`}
+                className={`object-cover object-top`}
                 loading="lazy"
+                placeholder="blur"
                 fill
-                onLoad={() => setLoaded((prev) => ({ ...prev, fifth: true }))}
               />
             </div>
           </div>

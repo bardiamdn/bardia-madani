@@ -4,9 +4,25 @@ import { ServiceBlock } from "@/types/servicespage";
 import Image from "next/image";
 import { useState } from "react";
 
+import laptopDesignImg from "@/public/laptop-design.jpg";
+import laptopDevelopmentImg from "@/public/laptop-development.jpg";
+import maintenanceImg from "@/public/maintenance.jpg";
+import seoImg from "@/public/seo.jpg";
+
+const mediaSrcs = [
+  { file: laptopDesignImg, src: "/laptop-design.jpg" },
+  { file: laptopDevelopmentImg, src: "/laptop-development.jpg" },
+  { file: maintenanceImg, src: "/maintenance.jpg" },
+  { file: seoImg, src: "/seo.jpg" },
+];
+
+const getFileFromSrc = (providedSrc: string) => {
+  const found = mediaSrcs.find((item) => item.src === providedSrc);
+  return found ? found.file : mediaSrcs[0].file;
+};
+
 export default function ServiceRow({ services }: { services: ServiceBlock[] }) {
   const [hoverIndex, setHoverIndex] = useState(0); // 0 for no hover
-  const [loaded, setLoaded] = useState(false);
 
   return (
     <div className={`contents md:flex md:flex-row items-end `}>
@@ -53,37 +69,21 @@ export default function ServiceRow({ services }: { services: ServiceBlock[] }) {
               {service.isVideo ? (
                 <video
                   src={service.mediaSrc}
-                  // aria-label={serviceAlt}
                   autoPlay
                   loop
                   muted
                   className="object-center object-cover w-full h-full"
-                  // ref={videoRef}
                 >
                   Your browser does not support the video tag.
                 </video>
               ) : (
-                <>
-                  <Image
-                    src="/laptop-low.jpg"
-                    alt="reduntant image alt"
-                    className={`object-cover object-center ${
-                      loaded ? "opacity-0 " : "opacity-100 "
-                    }`}
-                    priority
-                    fill
-                  />
-                  <Image
-                    src={service.mediaSrc}
-                    alt="half closed laptop in a dark room"
-                    className={`object-cover object-center ${
-                      loaded ? "opacity-100 " : "opacity-0 "
-                    }`}
-                    loading="lazy"
-                    fill
-                    onLoad={() => setLoaded(true)}
-                  />
-                </>
+                <Image
+                  src={getFileFromSrc(service.mediaSrc)}
+                  alt="half closed laptop in a dark room"
+                  className={`object-cover object-center`}
+                  placeholder="blur"
+                  fill
+                />
               )}
             </div>
           </div>

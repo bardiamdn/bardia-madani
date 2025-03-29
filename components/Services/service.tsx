@@ -262,7 +262,7 @@ export default function Service({
         {name}
       </h3>
       <div
-        className="relative w-[5%] opacity-0 hidden aspect-square "
+        className="relative w-[5%] h-[100%] opacity-0 hidden aspect-square "
         ref={imageRef}
       >
         {isVideo ? (

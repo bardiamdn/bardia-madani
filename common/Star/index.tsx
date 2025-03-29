@@ -13,12 +13,11 @@ export function StarFooter() {
         window.gsap.registerPlugin(window.ScrollTrigger);
         window.gsap.to(bgPathRef.current, {
           y: "-20px",
-          // duration: 1,
           ease: "power2.out",
           scrollTrigger: {
             trigger: bgPathRef.current,
             start: "top 10%",
-            end: "bottom top",
+            end: "200% top",
             scrub: 0.3,
           },
         });

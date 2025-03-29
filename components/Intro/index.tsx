@@ -2,18 +2,16 @@
 import SlideUpParagraph from "@/common/SlideUpParagraph";
 import Navigate from "../../common/NavigateLink";
 import Image from "next/image";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef } from "react";
+
+import gallery5Img from "@/public/gallery-5.png";
+import intro2Img from "@/public/intro-2.jpg";
+import intro3Img from "@/public/intro-3.png";
+import intro4Img from "@/public/intro-4.png";
+import intro5Img from "@/public/intro-5.png";
+import intro6Img from "@/public/intro-6.jpg";
 
 export default function Intro({ intro }: { intro: string }) {
-  const [loaded, setLoaded] = useState({
-    first: false,
-    second: false,
-    third: false,
-    forth: false,
-    fifth: false,
-    sixth: false,
-  });
-  // const [entered, setEntered] = useState(false);
   const containerRef = useRef(null);
   const stickyRef = useRef(null);
   const timelineRef = useRef<Window["gsap"] | null>(null);
@@ -205,138 +203,72 @@ export default function Intro({ intro }: { intro: string }) {
           className={`first-intro-image absolute opacity-0 md:top-[20%] top-[33%] md:left-[17%] left-[5%] md:w-[250px] w-[40%] aspect-square`}
         >
           <Image
-            src="/laptop-low.jpg"
+            src={gallery5Img}
             alt="half closed laptop in a dark room"
-            className={`object-contain  ${
-              loaded.first ? "opacity-0 " : "opacity-100 "
-            }`}
-            priority
+            className={`object-contain  
+            `}
+            placeholder="blur"
             fill
-          />
-          <Image
-            src="/gallery-5.png"
-            alt="half closed laptop in a dark room"
-            className={`object-contain  ${
-              loaded.first ? "opacity-100 " : "opacity-0 "
-            }`}
-            loading="lazy"
-            fill
-            onLoad={() => setLoaded((prev) => ({ ...prev, first: true }))}
           />
         </div>
         <div
           className={`second-intro-image absolute opacity-0 md:top-[23%] top-[30%] md:right-[12%] right-[7%] md:w-[230px] w-[35%] aspect-square`}
         >
           <Image
-            src="/laptop-low.jpg"
+            src={intro2Img}
             alt="half closed laptop in a dark room"
-            className={`object-contain  ${
-              loaded.second ? "opacity-0 " : "opacity-100 "
-            }`}
-            priority
+            className={`object-contain  
+            `}
+            placeholder="blur"
             fill
-          />
-          <Image
-            src="/intro-2.jpg"
-            alt="half closed laptop in a dark room"
-            className={`object-contain  ${
-              loaded.second ? "opacity-100 " : "opacity-0 "
-            }`}
-            loading="lazy"
-            fill
-            onLoad={() => setLoaded((prev) => ({ ...prev, second: true }))}
           />
         </div>
         <div
           className={`third-intro-image absolute opacity-0 top-[45%] md:left-[18%] left-[10%] md:w-[240px] w-[40%] aspect-square`}
         >
           <Image
-            src="/laptop-low.jpg"
+            src={intro3Img}
             alt="half closed laptop in a dark room"
-            className={`object-contain  ${
-              loaded.third ? "opacity-0 " : "opacity-100 "
-            }`}
-            priority
+            className={`object-contain  
+            `}
+            placeholder="blur"
             fill
-          />
-          <Image
-            src="/intro-3.png"
-            alt="half closed laptop in a dark room"
-            className={`object-contain  ${
-              loaded.third ? "opacity-100 " : "opacity-0 "
-            }`}
-            loading="lazy"
-            fill
-            onLoad={() => setLoaded((prev) => ({ ...prev, third: true }))}
           />
         </div>
         <div
           className={`forth-intro-image absolute opacity-0 top-[45%] md:right-[13%] right-[8%] md:w-[250px] w-[35%] aspect-square`}
         >
           <Image
-            src="/laptop-low.jpg"
+            src={intro4Img}
             alt="half closed laptop in a dark room"
-            className={`object-contain  ${
-              loaded.forth ? "opacity-0 " : "opacity-100 "
-            }`}
-            priority
+            className={`object-contain  
+            `}
+            placeholder="blur"
             fill
-          />
-          <Image
-            src="/intro-4.png"
-            alt="half closed laptop in a dark room"
-            className={`object-contain  ${
-              loaded.forth ? "opacity-100 " : "opacity-0 "
-            }`}
-            loading="lazy"
-            fill
-            onLoad={() => setLoaded((prev) => ({ ...prev, forth: true }))}
           />
         </div>
         <div
           className={`fifth-intro-image absolute opacity-0 md:bottom-[18%] bottom-[33%] md:left-[20%] left-[15%] md:w-[270px] w-[40%] aspect-square`}
         >
           <Image
-            src="/laptop-low.jpg"
+            src={intro5Img}
             alt="half closed laptop in a dark room"
-            className={`object-contain  ${
-              loaded.fifth ? "opacity-0 " : "opacity-100 "
-            }`}
-            priority
+            className={`object-contain  
+            `}
+            placeholder="blur"
             fill
-          />
-          <Image
-            src="/intro-5.png"
-            alt="half closed laptop in a dark room"
-            className={`object-contain  ${
-              loaded.fifth ? "opacity-100 " : "opacity-0 "
-            }`}
-            loading="lazy"
-            fill
-            onLoad={() => setLoaded((prev) => ({ ...prev, fifth: true }))}
           />
         </div>
         <div
           className={`sixth-intro-image absolute opacity-0 md:bottom-[22%] bottom-[25%] md:right-[15%] right-[3%] md:h-[240px] h-auto w-[30%] aspect-square`}
         >
           <Image
-            src="/laptop-low.jpg"
+            src={intro6Img}
             alt="half closed laptop in a dark room"
-            className={`object-contain  ${
-              loaded.sixth ? "opacity-0 " : "opacity-100 "
-            }`}
-            priority
+            className={`object-contain  
+            `}
+            placeholder="blur"
             fill
-          />
-          <Image
-            src="/intro-6.jpg"
-            alt="half closed laptop in a dark room"
-            className={`object-contain  ${
-              loaded.sixth ? "opacity-100 " : "opacity-0 "
-            }`}
-            loading="lazy"
-            fill
-            onLoad={() => setLoaded((prev) => ({ ...prev, sixth: true }))}
           />
         </div>
         <div

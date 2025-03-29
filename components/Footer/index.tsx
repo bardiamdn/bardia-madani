@@ -7,11 +7,13 @@ import { useEffect, useRef } from "react";
 
 const Footer: React.FC = () => {
   const footerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     let gsapTimeout: NodeJS.Timeout;
+    let footerAnimation: Window["gsap"];
     const waitForGSAP = () => {
       if (window.gsap && window.ScrollTrigger) {
-        window.gsap.to(footerRef.current, {
+        footerAnimation = window.gsap.to(footerRef.current, {
           top: 0,
           opacity: 1,
           scrollTrigger: {
@@ -28,7 +30,10 @@ const Footer: React.FC = () => {
     };
     waitForGSAP();
 
-    return () => clearTimeout(gsapTimeout);
+    return () => {
+      if (footerAnimation) footerAnimation.kill();
+      clearTimeout(gsapTimeout);
+    };
   }, []);
   return (
     <footer
@@ -36,7 +41,7 @@ const Footer: React.FC = () => {
       className="relative w-full h-screen bg-black text-white"
     >
       <div
-        className="absolute top-[-50vh] opacity-0 left-0 w-full h-full flex justify-center"
+        className="absolute top-[-50vh] opacity-0 bg-black left-0 w-full h-full flex justify-center"
         ref={footerRef}
       >
         <div className="2xl:w-[80%] 2xl:px-0 w-full h-full md:p-[25px] px-[15px]">
@@ -59,20 +64,6 @@ const Footer: React.FC = () => {
                 Start your project
               </CTABUtton>
             </div>
-            {/* <div className="flex flex-col gap-[25px] text-xl font-thin">
-            <Link
-              href="tel:+905538306978"
-              className="py-[20px] w-full border border-border rounded-full flex items-center justify-center"
-            >
-              +90 553 830 96 78
-            </Link>
-            <Link
-              href="mailto:me@bardiamadani.com"
-              className="py-[20px] w-full border border-border rounded-full flex items-center justify-center"
-            >
-              me@bardiamadani.com
-            </Link>
-          </div> */}
             <div className="w-full md:h-full h-auto flex items-end justify-between ">
               <svg
                 width="638"

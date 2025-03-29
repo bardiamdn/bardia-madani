@@ -22,7 +22,11 @@ export function usePageTransition() {
     const waitForGSAP = () => {
       if (window.gsap && window.ScrollTrigger && loaded) {
 
-        timeline = window.gsap.timeline();
+        timeline = window.gsap.timeline({
+          onComplete: () => {
+            window.ScrollTrigger.refresh();
+          }
+        });
 
         timeline
           .fromTo(

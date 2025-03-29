@@ -9,6 +9,8 @@ import Work from "@/components/Work";
 import Gallery from "@/components/Gallery";
 import { client } from "@/sanity/client";
 import { HomepageData } from "@/types/homepage";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   const [homepageData, setHomepageData] = useState<HomepageData | null>(null);
@@ -36,17 +38,21 @@ export default function Home() {
   const { tagline, supportingText, cta, intro, services, works } = homepageData;
 
   return (
-    <main className="relative">
+    <>
+      <Header />
       <Hero />
-      <HeroContent
-        tagline={tagline}
-        cta={cta}
-        supportingText={supportingText}
-      />
-      <Intro intro={intro} />
-      <Services services={services} />
-      <Work works={works} />
-      <Gallery />
-    </main>
+      <div className="relative z-10">
+        <HeroContent
+          tagline={tagline}
+          cta={cta}
+          supportingText={supportingText}
+        />
+        <Intro intro={intro} />
+        <Services services={services} />
+        <Work works={works} />
+        <Gallery />
+      </div>
+      <Footer />
+    </>
   );
 }

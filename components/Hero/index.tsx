@@ -60,10 +60,12 @@ export default function Hero() {
 
   return (
     <section
-      className="w-full h-screen flex md:flex-row flex-col bg-black fixed top-0 left-0 -z-10"
+      className="w-screen h-screen flex md:flex-row flex-col bg-black fixed top-0 left-0 -z-10"
       ref={containerRef}
     >
-      {inView ? null : <div className="bg-white absolute inset-0 z-10"></div>}
+      {inView ? null : (
+        <div className="bg-black absolute top-0 left-0 w-full h-full z-[1]"></div>
+      )}
       <div className="md:w-1/2 w-full h-full" ref={startsContainerRef}>
         {isMobile ? (
           <>
