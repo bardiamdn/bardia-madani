@@ -129,7 +129,7 @@ export default function About() {
             <div className="relative md:w-[40%] w-full md:h-full h-[50%]">
               <Image
                 src={mockComputerImg}
-                alt="half closed laptop in a dark room"
+                alt="computer in a gray room"
                 className={`object-cover object-center`}
                 placeholder="blur"
                 fill
@@ -155,13 +155,15 @@ export default function About() {
                   {aboutpageData.processSection.description}
                 </p>
               </div>
-              <div className="relative md:w-[50%] md:h-[50%] h-[200px] md:my-[100px] my-[50px] ">
-                <Image
-                  src={"/stairs.png"}
-                  alt="blue stairs"
-                  fill
-                  className="object-cover"
-                />
+              <div className="md:h-full md:w-full md:flex contents justify-start items-center">
+                <div className="relative xl:w-[50%] md:w-full md:h-[50%] h-[200px] md:my-[100px] my-[50px] ">
+                  <Image
+                    src={"/stairs.png"}
+                    alt="blue stairs"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
               </div>
             </div>
             <div className="md:w-1/2 w-full ">

@@ -1,11 +1,11 @@
 "use client";
 import Image from "next/image";
 import { useCallback, useEffect, useRef } from "react";
-import intro1 from "@/public/gallery-1.png";
-import intro2 from "@/public/gallery-2.png";
-import intro3 from "@/public/gallery-3.png";
-import intro4 from "@/public/gallery-4.png";
-import intro5 from "@/public/gallery-5.png";
+import gallery1 from "@/public/gallery-1.png";
+import gallery2 from "@/public/gallery-2.png";
+import gallery3 from "@/public/gallery-3.png";
+import gallery4 from "@/public/gallery-4.png";
+import gallery5 from "@/public/gallery-5.png";
 
 interface ScrollTriggerInstance {
   direction: number;
@@ -14,12 +14,33 @@ interface ScrollTriggerInstance {
 
 export default function Gallery() {
   const galleryInfo = [
-    { imgSrc: intro1 },
-    { imgSrc: intro2 },
-    { imgSrc: intro3 },
-    { imgSrc: intro4 },
-    { imgSrc: intro5 },
+    {
+      imgSrc: gallery1,
+      imgAlt:
+        "Screenshot of the Crunchcat website highlighting its modern layout and interactive design features",
+    },
+    {
+      imgSrc: gallery2,
+      imgAlt:
+        "Concept design for Haruno Japanese School website with traditional aesthetics and clean interface",
+    },
+    {
+      imgSrc: gallery3,
+      imgAlt:
+        "SDRC jewelry website concept featuring elegant typography and a sophisticated product showcase",
+    },
+    {
+      imgSrc: gallery4,
+      imgAlt:
+        "Golden Haven website concept displaying a warm color palette and inviting design elements",
+    },
+    {
+      imgSrc: gallery5,
+      imgAlt:
+        "GYMSprout website design concept with dynamic visuals and a modern, energetic style",
+    },
   ];
+
   const firstRef = useRef(null);
   const secondRef = useRef(null);
   const containerRef = useRef(null);
@@ -86,7 +107,7 @@ export default function Gallery() {
             <div className="relative w-full h-full">
               <Image
                 src={galleryInfo[0].imgSrc}
-                alt="half closed laptop in a dark room"
+                alt={galleryInfo[0].imgAlt}
                 className={`object-cover object-top`}
                 loading="lazy"
                 placeholder="blur"
@@ -98,7 +119,7 @@ export default function Gallery() {
             <div className="relative w-full h-full">
               <Image
                 src={galleryInfo[1].imgSrc}
-                alt="half closed laptop in a dark room"
+                alt={galleryInfo[1].imgAlt}
                 className={`object-cover object-top`}
                 loading="lazy"
                 placeholder="blur"
@@ -110,7 +131,7 @@ export default function Gallery() {
             <div className="relative w-full h-full">
               <Image
                 src={galleryInfo[2].imgSrc}
-                alt="half closed laptop in a dark room"
+                alt={galleryInfo[2].imgAlt}
                 className={`object-cover object-top`}
                 loading="lazy"
                 placeholder="blur"
@@ -122,7 +143,7 @@ export default function Gallery() {
             <div className="relative w-full h-full">
               <Image
                 src={galleryInfo[3].imgSrc}
-                alt="half closed laptop in a dark room"
+                alt={galleryInfo[3].imgAlt}
                 className={`object-cover object-top`}
                 loading="lazy"
                 placeholder="blur"
@@ -134,7 +155,7 @@ export default function Gallery() {
             <div className="relative w-full h-full">
               <Image
                 src={galleryInfo[4].imgSrc}
-                alt="half closed laptop in a dark room"
+                alt={galleryInfo[4].imgAlt}
                 className={`object-cover object-top`}
                 loading="lazy"
                 placeholder="blur"
@@ -151,7 +172,7 @@ export default function Gallery() {
             <div className="relative w-full h-full">
               <Image
                 src={galleryInfo[0].imgSrc}
-                alt="half closed laptop in a dark room"
+                alt={galleryInfo[0].imgAlt}
                 className={`object-cover object-top`}
                 loading="lazy"
                 placeholder="blur"
@@ -163,7 +184,7 @@ export default function Gallery() {
             <div className="relative w-full h-full">
               <Image
                 src={galleryInfo[1].imgSrc}
-                alt="half closed laptop in a dark room"
+                alt={galleryInfo[1].imgAlt}
                 className={`object-cover object-top`}
                 loading="lazy"
                 placeholder="blur"
@@ -175,7 +196,7 @@ export default function Gallery() {
             <div className="relative w-full h-full">
               <Image
                 src={galleryInfo[2].imgSrc}
-                alt="half closed laptop in a dark room"
+                alt={galleryInfo[2].imgAlt}
                 className={`object-cover object-top`}
                 loading="lazy"
                 placeholder="blur"
@@ -187,7 +208,7 @@ export default function Gallery() {
             <div className="relative w-full h-full">
               <Image
                 src={galleryInfo[3].imgSrc}
-                alt="half closed laptop in a dark room"
+                alt={galleryInfo[3].imgAlt}
                 className={`object-cover object-top`}
                 loading="lazy"
                 placeholder="blur"
@@ -199,7 +220,7 @@ export default function Gallery() {
             <div className="relative w-full h-full">
               <Image
                 src={galleryInfo[4].imgSrc}
-                alt="half closed laptop in a dark room"
+                alt={galleryInfo[4].imgAlt}
                 className={`object-cover object-top`}
                 loading="lazy"
                 placeholder="blur"

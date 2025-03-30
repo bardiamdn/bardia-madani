@@ -1,13 +1,13 @@
 "use client";
-// import { Service } from "@/types/homepage";
 import { ServiceBlock } from "@/types/servicespage";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import laptopDesignImg from "@/public/laptop-design.jpg";
 import laptopDevelopmentImg from "@/public/laptop-development.jpg";
 import maintenanceImg from "@/public/maintenance.jpg";
 import seoImg from "@/public/seo.jpg";
+import scrambleText from "@/common/ScrambleText";
 
 const mediaSrcs = [
   { file: laptopDesignImg, src: "/laptop-design.jpg" },
@@ -23,6 +23,19 @@ const getFileFromSrc = (providedSrc: string) => {
 
 export default function ServiceRow({ services }: { services: ServiceBlock[] }) {
   const [hoverIndex, setHoverIndex] = useState(0); // 0 for no hover
+  const desRef = useRef<HTMLParagraphElement[]>([]);
+
+  useEffect(() => {
+    services.forEach((service, i) => {
+      if (desRef.current[i]) {
+        scrambleText({
+          text: service.description || "Couldn't find the description",
+          elementRef: { current: desRef.current[i] },
+          duration: 0.5,
+        });
+      }
+    });
+  }, [hoverIndex, desRef, services]);
 
   return (
     <div className={`contents md:flex md:flex-row items-end `}>
@@ -95,6 +108,9 @@ export default function ServiceRow({ services }: { services: ServiceBlock[] }) {
                   ? "md:text-md text-xl md:text-foregroundLight"
                   : "md:text-2xl text-xl md:text-foregroundLight"
             }`}
+            ref={(el) => {
+              desRef.current[index] = el as HTMLParagraphElement;
+            }}
           >
             {service.description}
           </p>

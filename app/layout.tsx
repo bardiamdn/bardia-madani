@@ -7,6 +7,7 @@ import { ScriptLoaderProvider } from "@/utils/ScriptLoaderContext";
 import Loading from "@/components/Loading";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { LoadingProvider } from "@/utils/LoadingContext";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = localFont({
   src: "./fonts/Inter/Inter-VariableFont_opsz,wght.ttf",
@@ -114,12 +115,13 @@ export default function RootLayout({
               <Loading />
             </div>
             <SmoothScroll />
-            <main id="main" className="relative overflow-hidden">
+            <main id="main" className="relative ">
               {children}
             </main>
           </LoadingProvider>
         </ScriptLoaderProvider>
         <GoogleAnalytics gaId="G-6DCBFCPNTD" />
+        <Analytics />
       </body>
     </html>
   );

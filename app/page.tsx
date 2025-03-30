@@ -3,14 +3,23 @@ import { useState, useEffect } from "react";
 import Hero from "@/components/Hero";
 import HeroContent from "@/components/Hero/HeroContent";
 import { usePageTransition } from "@/hooks/usePageTransition";
-import Intro from "@/components/Intro";
-import Services from "@/components/Services";
-import Work from "@/components/Work";
-import Gallery from "@/components/Gallery";
 import { client } from "@/sanity/client";
 import { HomepageData } from "@/types/homepage";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import dynamic from "next/dynamic";
+const Intro = dynamic(() => import("@/components/Intro"), {
+  loading: () => <p>Loading Intro...</p>,
+});
+const Services = dynamic(() => import("@/components/Services"), {
+  loading: () => <p>Loading Services...</p>,
+});
+const Work = dynamic(() => import("@/components/Work"), {
+  loading: () => <p>Loading Work...</p>,
+});
+const Gallery = dynamic(() => import("@/components/Gallery"), {
+  loading: () => <p>Loading Gallery...</p>,
+});
 
 export default function Home() {
   const [homepageData, setHomepageData] = useState<HomepageData | null>(null);
@@ -18,7 +27,7 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await client.fetch(`*[_type == "homepage"][1]`);
+        const res = await client.fetch(`*[_type == "homepage"][0]`);
         setHomepageData(res);
       } catch (err) {
         console.error("Failed to load data from Sanity:", err);

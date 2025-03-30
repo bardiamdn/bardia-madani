@@ -204,7 +204,7 @@ export default function Intro({ intro }: { intro: string }) {
         >
           <Image
             src={gallery5Img}
-            alt="half closed laptop in a dark room"
+            alt="Screenshot of GymSprout website, concept of a fitness website"
             className={`object-contain  
             `}
             placeholder="blur"
@@ -216,7 +216,7 @@ export default function Intro({ intro }: { intro: string }) {
         >
           <Image
             src={intro2Img}
-            alt="half closed laptop in a dark room"
+            alt="ozkan muhendislik's website on a mobile screen"
             className={`object-contain  
             `}
             placeholder="blur"
@@ -228,7 +228,7 @@ export default function Intro({ intro }: { intro: string }) {
         >
           <Image
             src={intro3Img}
-            alt="half closed laptop in a dark room"
+            alt="WalletSpace website's hero sections screenshot framed"
             className={`object-contain  
             `}
             placeholder="blur"
@@ -240,7 +240,7 @@ export default function Intro({ intro }: { intro: string }) {
         >
           <Image
             src={intro4Img}
-            alt="half closed laptop in a dark room"
+            alt="Caring for your loved ones"
             className={`object-contain  
             `}
             placeholder="blur"
@@ -252,7 +252,7 @@ export default function Intro({ intro }: { intro: string }) {
         >
           <Image
             src={intro5Img}
-            alt="half closed laptop in a dark room"
+            alt="SDRC jewelery website's hero section"
             className={`object-contain  
             `}
             placeholder="blur"
@@ -264,7 +264,7 @@ export default function Intro({ intro }: { intro: string }) {
         >
           <Image
             src={intro6Img}
-            alt="half closed laptop in a dark room"
+            alt="Walletspace website's hero section on a mobile screen"
             className={`object-contain  
             `}
             placeholder="blur"

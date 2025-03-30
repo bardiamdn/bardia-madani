@@ -1,4 +1,5 @@
 "use client";
+import scrambleText from "@/common/ScrambleText";
 import { Service as ServiceType } from "@/types/homepage";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
@@ -13,7 +14,7 @@ export default function Service({
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const serviceRef = useRef<HTMLDivElement>(null);
-  const desRef = useRef<HTMLDivElement>(null);
+  const desRef = useRef<HTMLParagraphElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -170,6 +171,7 @@ export default function Service({
 
   const handleMouseEnter = () => {
     if (!containerRef.current) return;
+    scrambleText({ text: description, elementRef: desRef, duration: 0.5 });
     const mm = window.gsap.matchMedia();
 
     mm.add("(min-width: 768px)", () => {
@@ -235,6 +237,13 @@ export default function Service({
           },
           0
         )
+        .add(() => {
+          scrambleText({
+            text: description,
+            elementRef: desRef,
+            duration: 0.5,
+          });
+        })
         .to(
           desRef.current,
           {
