@@ -92,7 +92,7 @@ export default function ServiceRow({ services }: { services: ServiceBlock[] }) {
               ) : (
                 <Image
                   src={getFileFromSrc(service.mediaSrc)}
-                  alt="half closed laptop in a dark room"
+                  alt={service.altText || "web service image"}
                   className={`object-cover object-center`}
                   placeholder="blur"
                   fill

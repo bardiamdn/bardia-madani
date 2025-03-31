@@ -68,8 +68,8 @@ export const metadata: Metadata = {
     title: "Bardia Madani | Web Designer & Developer",
     description:
       "Improve your online presence with a custom website tailored to your brand.",
-    site: "@yourtwitterhandle",
-    creator: "@yourtwitterhandle",
+    site: "@bardiamdn",
+    creator: "@bardiamdn",
     images: ["/og-image.jpg"],
   },
 

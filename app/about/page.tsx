@@ -8,7 +8,7 @@ import { client } from "@/sanity/client";
 import { AboutPageData } from "@/types/aboutpage";
 import { useLoadingContext } from "@/utils/LoadingContext";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import about1Img from "@/public/about-1.jpg";
 import mockComputerImg from "@/public/walletspace-mock-computer.jpg";
@@ -42,8 +42,9 @@ export default function About() {
     setEntered4,
     setEntered5,
   ];
-
   const { loadingComplete } = useLoadingContext();
+  const aboutImgRef = useRef(null);
+  const processImgRef = useRef(null);
 
   useEffect(() => {
     if (loadingComplete) {
@@ -62,7 +63,38 @@ export default function About() {
       setAboutpageData(data);
     };
 
+    let gsapTimeout: NodeJS.Timeout;
+    const waitForGSAP = () => {
+      if (window.gsap && window.ScrollTrigger) {
+        window.ScrollTrigger.refresh();
+
+        window.gsap.to(aboutImgRef.current, {
+          y: "-13.04%",
+          scrollTrigger: {
+            trigger: aboutImgRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 0.5,
+          },
+        });
+        window.gsap.to(processImgRef.current, {
+          y: "-13.04%",
+          scrollTrigger: {
+            trigger: processImgRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 0.5,
+          },
+        });
+      } else {
+        console.warn("GSAP not loaded yet, retrying...");
+        gsapTimeout = setTimeout(waitForGSAP, 100);
+      }
+    };
+
     fetchData();
+    waitForGSAP();
+    return () => clearTimeout(gsapTimeout);
   }, []);
 
   usePageTransition();
@@ -76,9 +108,9 @@ export default function About() {
       <section className="bg-white flex flex-col px-[15px] py-[50px] 2xl:px-0 w-full items-center relative z-10">
         <div className=" w-full 2xl:w-[80%] ">
           {/* Headline */}
-          <div className="relative md:h-[500px] flex flex-col justify-center md:mt-[100px] md:mb-0 mb-[100px]">
+          <div className="relative xl:h-[500px] md:h-[300px] flex flex-col justify-center md:mt-[100px] md:mb-0 mb-[100px]">
             <div className="relative w-full h-full flex items-center">
-              <h1 className=" md:my-[40px] mt-[40px] lg:text-start text-center">
+              <h1 className="md:my-[40px] mt-[40px] text-start">
                 <div className="h-[50%] md:flex w-full items-center justify-between md:absolute top-0 left-0">
                   <LetterSlideUp animate={startAnimation} delay={0.005}>
                     {aboutpageData.heroSection.headlineTop}
@@ -89,7 +121,7 @@ export default function About() {
                     >
                       <Image
                         src={about1Img}
-                        alt="steps"
+                        alt="white 3d objects"
                         fill
                         placeholder="blur"
                         className="text-sm object-cover object-center "
@@ -121,19 +153,25 @@ export default function About() {
               </h1>
             </div>
           </div>
-          <div className="md:space-x-[50px] md:space-y-0 relative flex md:flex-row flex-col items-center justify-between md:py-[200px] py-[50px] md:h-[1000px] h-[600px]">
-            <div className="md:w-[50%] md:space-y-[35px] flex flex-col justify-center h-full space-y-[25px]">
+          <div className="lg:space-x-[50px] md:space-x-[25px] md:space-y-0 relative flex md:flex-row flex-col items-center justify-between md:py-[200px] py-[50px] md:h-[1000px] h-auto">
+            <div className="md:w-[50%] md:space-y-[35px] flex flex-col justify-center h-full space-y-[25px] md:pb-0 pb-[100px]">
               <h4>{aboutpageData.introSection.title}</h4>
               <p>{aboutpageData.introSection.description}</p>
             </div>
-            <div className="relative md:w-[40%] w-full md:h-full h-[50%]">
-              <Image
-                src={mockComputerImg}
-                alt="computer in a gray room"
-                className={`object-cover object-center`}
-                placeholder="blur"
-                fill
-              />
+            <div className="relative xl:w-[40%] md:w-1/2 w-full md:h-full h-[400px] overflow-hidden">
+              <div
+                className="w-full h-[115%] absolute top-0 left-0 bg-pink-200"
+                ref={aboutImgRef}
+                id="about-image"
+              >
+                <Image
+                  src={mockComputerImg}
+                  alt="computer in a gray room"
+                  className={`object-cover object-center`}
+                  placeholder="blur"
+                  fill
+                />
+              </div>
             </div>
           </div>
           <div className="flex flex-col md:flex-row md:border-t md:mt-0  my-[70px] border-black md:mb-[150px]">
@@ -150,19 +188,25 @@ export default function About() {
                 className={`transition-all duration-300 delay-100 ease-in-out ${titleEntered ? "opacity-100" : "opacity-0"}`}
               >
                 <p
-                  className={`md:w-[85%] md:text-[26px] text-[20px] font-geologica font-extralight `}
+                  className={`lg:w-[85%] md:w-full lg:text-[26px] md:text-[22px] text-[20px] font-geologica font-extralight `}
                 >
                   {aboutpageData.processSection.description}
                 </p>
               </div>
               <div className="md:h-full md:w-full md:flex contents justify-start items-center">
-                <div className="relative xl:w-[50%] md:w-full md:h-[50%] h-[200px] md:my-[100px] my-[50px] ">
-                  <Image
-                    src={"/stairs.png"}
-                    alt="blue stairs"
-                    fill
-                    className="object-cover"
-                  />
+                <div className="relative xl:w-[50%] md:w-full md:h-[50%] h-[200px] md:my-[100px] my-[50px] overflow-hidden">
+                  <div
+                    className="w-full h-[115%] absolute top-0 left-0 bg-pink-200"
+                    ref={processImgRef}
+                    id="about-image"
+                  >
+                    <Image
+                      src={"/stairs.png"}
+                      alt="blue stairs with gray background"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
                 </div>
               </div>
             </div>

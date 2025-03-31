@@ -24,7 +24,7 @@ export default function CTABUtton({
     );
   } else if (btnType === "secondary" && type !== "submit") {
     return (
-      <div className="relative inline-block">
+      <div className="relative inline-block overflow-hidden">
         <svg
           className="absolute inset-0 w-full h-full animate-[spin_35s_linear_infinite] hidden lg:block"
           viewBox="0 0 100 100"

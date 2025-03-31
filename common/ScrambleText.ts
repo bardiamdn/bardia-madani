@@ -14,12 +14,16 @@ const scrambleText = ({
   duration = 0.5,
   chars = "#$%&@~!<>-_/[]{}—=+*^?`|:;.,0123456789abcdefghijklmnopqrstuvwxyz", //ABCDEFGHIJKLMNOPQRSTUVWXYZ
 }: ScrambleTextOptions) => {
-  // const el = typeof elementId === "string" ? document.querySelector(elementId) : elementId;
+  if (typeof window !== "undefined" && window.innerWidth <= 768) {
+    const el = elementRef.current;
+    if (el) el.textContent = text;
+    return;
+  }
+
   const el = elementRef.current;
   const originalText = text.split("");
   const scrambled = [...originalText];
   let frame = 0;
-  // let interval: number;
 
   if (!el) {
     console.error("ref can not be null");
